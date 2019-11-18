@@ -41,11 +41,10 @@ class CreateTab extends Component {
     return (
       <React.Fragment>
         <div class="container">
-
           <h3
             style={{
               color: "#050607",
-              fontWeight: "600",
+              fontWeight: "600"
             }}
           >
             Record your document hash on the blockchain
@@ -73,9 +72,7 @@ class CreateTab extends Component {
               >
                 Your hash has been successfully added to the ledger.
               </h3>
-              <span>
-                {this.state.hash}
-              </span>
+              <span>{this.state.hash}</span>
             </div>
           ) : (
             <div>
@@ -93,7 +90,6 @@ class CreateTab extends Component {
                       this.handleFileName(e.target.files);
                       this.setState({ file: e.target.files });
                     }}
-                    accept=".pdf"
                     name="selectedFile"
                     style={{ display: "none" }}
                     class="inputfile inputfile-6"

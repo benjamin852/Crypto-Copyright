@@ -196,7 +196,6 @@ class VerifyTab extends Component {
                       this.processFileVerify(e.target.files);
                       this.handleVerifyFileName(e.target.files);
                     }}
-                    accept=".pdf"
                     style={{ display: "none" }}
                     class="inputfile inputfile-6"
                     data-multiple-caption="{count} files selected"

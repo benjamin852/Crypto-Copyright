@@ -11,7 +11,7 @@ import NewsLetter from "../NewsLetter/newsLetter";
 
 class Header extends Component {
   state = {
-    currentTab: 0,
+    currentTab: 0
   };
   render() {
     return (
@@ -41,13 +41,20 @@ class Header extends Component {
           >
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link text-white link-style mr-5" onClick={()=>this.setState({currentTab: 0})} href="#tab">
-                  {/* <div class="motion"></div> */}
-                  Create
+                <a
+                  class="nav-link text-white link-style mr-5"
+                  onClick={() => this.setState({ currentTab: 0 })}
+                  href="#tab"
+                >
+                  {/* <div class="motion"></div> */} Create
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-white link-style mr-5" onClick={()=>this.setState({currentTab: 1})} href="#tab">
+                <a
+                  class="nav-link text-white link-style mr-5"
+                  onClick={() => this.setState({ currentTab: 1 })}
+                  href="#tab"
+                >
                   Verify
                 </a>
               </li>
@@ -62,7 +69,10 @@ class Header extends Component {
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-white link-style mr-5" href="#newsletter">
+                <a
+                  class="nav-link text-white link-style mr-5"
+                  href="#newsletter"
+                >
                   News Letter
                 </a>
               </li>

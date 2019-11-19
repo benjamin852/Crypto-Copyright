@@ -34,15 +34,15 @@ class Intro extends Component {
     return (
       <React.Fragment>
         <div class="container-fluid">
-          <div class="row">
-            <div
+          <div class="row justify-content-center">
+            {/* <div
               class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5"
               data-aos="slide-right"
               data-aos-offset="200"
               // data-aos-delay="50"
               data-aos-duration="1000"
-            >
-              <div class="mt-5 mb-5">
+            > */}
+            {/* <div class="mt-5 mb-5">
                 <div class="row">
                   <img
                     class="intro-logo"
@@ -56,8 +56,8 @@ class Intro extends Component {
                 <div class="row">
                   <button class="btn btn-lg btn-intro">Read Full Doc</button>
                 </div>
-              </div>
-            </div>
+              </div> */}
+            {/* </div> */}
             <div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7">
               <div
                 class="flow-control"
@@ -66,7 +66,6 @@ class Intro extends Component {
                 // data-aos-delay="50"
                 data-aos-duration="1000"
               >
-                     
                 <div class="carousel-inner intro-carousel">
                   <div class="carousel-item active">
                     <div class="intro-text">
@@ -85,16 +84,16 @@ class Intro extends Component {
                       existed in a certain state at a specific time.
                       <br />
                       <br />
-                      Prove It streamlines this process, disintermediating the 
-                      manual, static approach of third parties by establishing 
-                      an open and trustless digital process to protect the 
-                      claim of a novel value entry on a distributed ledger. 
-                      Put off to the side: The US Copyright Office records 
-                      by hand almost 500,000 copyright interests per year 
-                      and generates revenues of $220 million and paid 
-                      out $148 million to copyright owners whose work 
-                      was used under licenses annually. It also 
-                      manages over $1 billion in copyright assets
+                      Prove It streamlines this process, disintermediating the
+                      manual, static approach of third parties by establishing
+                      an open and trustless digital process to protect the claim
+                      of a novel value entry on a distributed ledger. Put off to
+                      the side: The US Copyright Office records by hand almost
+                      500,000 copyright interests per year and generates
+                      revenues of $220 million and paid out $148 million to
+                      copyright owners whose work was used under licenses
+                      annually. It also manages over $1 billion in copyright
+                      assets
                     </div>
                   </div>
                 </div>

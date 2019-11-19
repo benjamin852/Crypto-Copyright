@@ -39,14 +39,15 @@ class Header extends Component {
             class="collapse navbar-collapse flex-row-reverse"
             id="collapsibleNavbar"
           >
-            <ul class="navbar-nav">
+            <ul class="navbar-nav" style={{ fontSize: 22 }}>
               <li class="nav-item">
                 <a
                   class="nav-link text-white link-style mr-5"
                   onClick={() => this.setState({ currentTab: 0 })}
                   href="#tab"
                 >
-                  {/* <div class="motion"></div> */} Create
+                  {/* <div class="motion"></div> */}
+                  Create
                 </a>
               </li>
               <li class="nav-item">
@@ -73,7 +74,7 @@ class Header extends Component {
                   class="nav-link text-white link-style mr-5"
                   href="#newsletter"
                 >
-                  News Letter
+                  Newsletter
                 </a>
               </li>
             </ul>

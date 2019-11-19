@@ -27,7 +27,7 @@ class Login extends Component {
                   <div class="text-center company-logo-section">
                     <img
                       class="company-logo"
-                      src={require("./company-logo.png")}
+                      src={require("../../Assets/Logo/company-logo.png")}
                       alt="company-logo"
                     />
                   </div>

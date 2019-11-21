@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
-import RaisedButton from "material-ui/RaisedButton";
-import TextField from "material-ui/TextField";
+import {MuiThemeProvider} from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+import TextField from '@material-ui/core/TextField';
 import "./Login.css";
 
 const style = {
@@ -71,8 +71,9 @@ class Login extends Component {
                             }
                           />
                           <br />
-                          <RaisedButton
+                          <Button
                             label="Register"
+                            variant="contained"
                             primary={true}
                             style={style}
                             onClick={event => this.handleClick(event)}

@@ -11,7 +11,7 @@ export const getDownloadAction = (hash, password, crtl) => dispatch => {
         type: DOWNLOAD,
         payload: res.data
       });
-      console.log(res.data);
+      console.log(res.data, "getDownload <<<=== action data");
       if (res.data) {
         crtl.setState({ loading: false });
       }

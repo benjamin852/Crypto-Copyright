@@ -1,70 +1,74 @@
-let blockchain;
-let wallet; //faucet wallet
-let addresses; //faucet address
-mnemonic =
-  "butter vacuum breeze glow virtual mutual veteran argue want pipe elite blast judge write sand toilet file joy exotic reflect truck topic receive wait"; //Faucet Mnemonic
+let blockchain = Blockchain({ url: "https://explorer-testnet.mvs.org/api/" });
 
-async function createWallet() {
-  blockchain = await Blockchain({
-    url: "https://explorer-testnet.mvs.org/api/"
-  });
+let faucetMnemonic =
+  "butter vacuum breeze glow virtual mutual veteran argue want pipe elite blast judge write sand toilet file joy exotic reflect truck topic receive wait";
+let newUserAddress;
+let wallet;
+let faucet;
+let addresses;
+let avatar;
 
+const generateReceiverWallet = async () => {
+  let mnemonic = await Metaverse.wallet.generateMnemonic();
   wallet = await Metaverse.wallet.fromMnemonic(mnemonic, "testnet");
 
   addresses = await wallet.getAddresses();
+};
 
+const generateFaucet = async () => {
+  faucet = await Metaverse.wallet.fromMnemonic(faucetMnemonic, "testnet");
+
+  console.log("FAUCET ADDRESS : ", faucet.getAddresses());
+};
+
+async function getETPBalance() {
+  //Get the lastest Blockchain Length
   let height = await blockchain.height();
-  let txs = await blockchain.addresses.txs(addresses);
-  let utxo = await Metaverse.output.calculateUtxo(txs.transactions, addresses);
+  let address = addresses[0];
+  // console.log(1, height)
 
-  let balance = await getBalances();
-  console.log(balance);
-  let ETPBalanceFormatted = parseFloat(balance.ETP.available / 10 ** 8);
-  console.log("Balance is " + ETPBalanceFormatted + " ETP");
+  //Get a list of wallet transactions
+  let txs = await blockchain.address.txs(address);
+  // console.log(2, txs)
+
+  //Get a list of unspent transaction outputs amongst your transactions
+  let utxo = await Metaverse.output.calculateUtxo(txs.transactions, address);
+  // console.log(3, utxo)
+
+  //Calculate your balances based on the utxos
+  let balances = await blockchain.balance.all(utxo, addresses, height);
+  // console.log(4, balances)
+
+  let ETPBalance = balances.ETP.available;
+  console.log("ETP BALANCE : ", ETPBalance);
+  return ETPBalance;
 }
 
-async function getBalances() {
-  let height = await blockchain.height();
-  let txs = await blockchain.addresses.txs(wallet.getAddresses());
-  let utxo = await Metaverse.output.calculateUtxo(
-    txs.transactions,
-    wallet.getAddresses()
-  );
-  let balances = await blockchain.balance.all(
-    utxo,
-    wallet.getAddresses(),
-    height
-  );
-
-  return balances;
-}
-
-async function withdraw() {
-  let recipient_address = document.getElementById("sendTo").value;
-  let balance = await getBalances();
-  console.log(balance.ETP.available);
-
-  send(parseInt(balance.ETP.available / 10), recipient_address);
-  //send(2500000000),recipient_address)
-}
-
-async function send(amount, recipient_address) {
+async function sendETP(amount, recipient_address) {
+  //Define the amount of ETP you want to send
+  //Measured in ETP units. There are 100 million units per ETP.
   var target = {
-    ETP: amount
+    ETP: amount //100 million units = 1 ETP
   };
 
+  //Define recipient
+  console.log("faucet", await faucet);
+
+  //Get latest blockchain length
   let height = await blockchain.height();
-  let txs = await blockchain.addresses.txs(addresses);
+  //Get a list of wallet transactions
+  let txs = await blockchain.addresses.txs(await faucet.getAddresses());
 
   //Get all utxo
   let utxos = await Metaverse.output.calculateUtxo(
     txs.transactions,
-    wallet.getAddresses()
+    await faucet.getAddresses()
   );
-
-  //Collect utxo for given target
+  //Collect enough utxos to pay for the transfer
   let result = await Metaverse.output.findUtxo(utxos, target, height);
+  console.log(1, result);
 
+  //Build the transaction object
   let tx = await Metaverse.transaction_builder.send(
     result.utxo,
     recipient_address,
@@ -74,12 +78,57 @@ async function send(amount, recipient_address) {
     result.change
   );
 
-  tx = await wallet.sign(tx);
+  //Sign the transaction with your wallet
+  tx = await faucet.sign(tx);
+
+  //Encode the transaction into bytecode
   tx = await tx.encode();
+  console.log(11, tx);
+
+  //Broadcast the transaction to the metaverse network.
   tx = await blockchain.transaction.broadcast(tx.toString("hex"));
 
-  console.log("tx hash: ");
+  console.log("tx hash: ", tx);
 
   //log amount ETP sent to WHO
-  console.log(tx);
+}
+
+async function registerAvatar(avatar_name, avatar_address) {
+  let change_address = avatar_address;
+  let height = await blockchain.height();
+  let txs = await blockchain.addresses.txs(addresses);
+  let utxos = await Metaverse.output.calculateUtxo(txs.transactions, addresses); //Get all utxo for the avatar address
+  let result = await Metaverse.output.findUtxo(utxos, {}, height, 100000000); //Collect utxo to pay for the fee of 1 ETP
+  let tx = await Metaverse.transaction_builder.issueDid(
+    result.utxo,
+    avatar_address,
+    avatar_name,
+    change_address,
+    result.change,
+    80000000,
+    "testnet"
+  );
+  console.log("avt1", tx);
+  tx = await wallet.sign(tx);
+  tx = await tx.encode();
+
+  tx = await blockchain.transaction.broadcast(tx.toString("hex"));
+  console.log("avt2", tx);
+}
+
+async function withdraw() {
+  let balance = await getETPBalance();
+  if ((await balance) < 110000000) {
+    await generateFaucet();
+    await sendETP(100000000, addresses[0]);
+
+    setTimeout(async () => {
+      await registerAvatar("LASTOFUS", addresses[0]);
+    }, 55000);
+  }
+}
+
+async function run() {
+  await generateReceiverWallet();
+  withdraw;
 }

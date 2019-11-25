@@ -2,6 +2,7 @@ import { STORE, STORE_ERR_MESSAGE } from "./types";
 import { BaseURL } from "./BaseURL";
 import axios from "axios";
 
+//used when users adds file with a password
 export const postStoreAction = (
   file,
   hash,
@@ -21,7 +22,7 @@ export const postStoreAction = (
         type: STORE,
         payload: res.data
       });
-      console.log(res.data);
+      console.log(res, "postStore res.data <<====");
       if (res.data) {
         crtl.setState({ loading: false });
         crtl.setState({ contentStatus: false });

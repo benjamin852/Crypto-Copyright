@@ -9,9 +9,8 @@ export const getStoreAction = (hash, crtl) => dispatch => {
     .then(res => {
       dispatch({
         type: STORE,
-        payload: res.data
+        payload: res.data //SUCCESS STATUS
       });
-      console.log(res.data);
       if (res.data) {
         crtl.setState({ loading: false });
         crtl.setState({ contentStatus: false });

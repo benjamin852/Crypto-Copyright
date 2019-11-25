@@ -24,7 +24,6 @@ class VerifyTab extends Component {
       // const hashURL = `https://explorer-testnet.mvs.org/mit/${hash}`;
       const hashURL = `https://proveit-muffins.firebaseapp.com/api/prove?hash=${hash}`;
       const response = await axios.get(hashURL);
-      console.log(response.data);
       if (response.data.status === "published") {
         this.setState({
           hashExists: true,

@@ -1,9 +1,10 @@
-import { STORE, PROVE, DOWNLOAD } from "../Actions/types";
+import { STORE, PROVE, DOWNLOAD, CREATE_WALLET } from "../Actions/types";
 
 const state = {
   successMsg: "",
-  proveSuccessMsg: "",
-  downloadSuccessMsg: ""
+  proveSuccessMsg: "", //renders verify page either for URL or to set hash
+  downloadSuccessMsg: "",
+  walletInfo: ""
 };
 
 function ProveitReducer(mState = { ...state }, action) {
@@ -11,6 +12,7 @@ function ProveitReducer(mState = { ...state }, action) {
     case STORE:
       if (action.payload === undefined || action.payload === null) {
       } else {
+        console.log(action.payload, "CASE Store action.payload");
         mState.successMsg = action.payload;
       }
       return deepCopy(mState);
@@ -18,6 +20,7 @@ function ProveitReducer(mState = { ...state }, action) {
     case PROVE:
       if (action.payload === undefined || action.payload === null) {
       } else {
+        console.log(action.payload, "CASE  Prove action.payload");
         mState.proveSuccessMsg = action.payload;
       }
       return deepCopy(mState);
@@ -25,9 +28,15 @@ function ProveitReducer(mState = { ...state }, action) {
     case DOWNLOAD:
       if (action.payload === undefined || action.payload === null) {
       } else {
+        console.log(action.payload, "CASE Download action.payload");
         mState.downloadSuccessMsg = action.payload;
       }
       return deepCopy(mState);
+    case CREATE_WALLET:
+      if (action.payload === undefined || action.payload === null) {
+      } else {
+        mState.walletInfo = action.payload;
+      }
 
     default:
       return deepCopy(mState);

@@ -11,6 +11,7 @@ export const getProveAction = (hash, crtl) => dispatch => {
         type: PROVE,
         payload: res.data
       });
+      console.log(res.data, "getProve action res.data<<<=======");
       if (res.data) {
         crtl.setState({ loading: false });
       }

@@ -19,11 +19,11 @@ function App() {
          if (accountExists == true) {
             <Login/>
           } else {
-            <Register/>
           }
-      */}
+        */}
 
-        <Header />
+        <Register />
+        {/* <Header /> */}
       </div>
     </Provider>
   );

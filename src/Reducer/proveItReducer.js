@@ -4,7 +4,7 @@ const state = {
   successMsg: "",
   proveSuccessMsg: "", //renders verify page either for URL or to set hash
   downloadSuccessMsg: "",
-  walletInfo: ""
+  avatar: ""
 };
 
 function ProveitReducer(mState = { ...state }, action) {

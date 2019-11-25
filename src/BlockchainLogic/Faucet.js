@@ -1,3 +1,5 @@
+import Metaverse from "metaversejs";
+import Blockchain from "mvs-blockchain";
 let blockchain = Blockchain({ url: "https://explorer-testnet.mvs.org/api/" });
 
 let faucetMnemonic =
@@ -8,17 +10,17 @@ let faucet;
 let addresses;
 let avatar;
 
-const generateReceiverWallet = async () => {
+export const generateReceiverWallet = async () => {
   let mnemonic = await Metaverse.wallet.generateMnemonic();
   wallet = await Metaverse.wallet.fromMnemonic(mnemonic, "testnet");
-
   addresses = await wallet.getAddresses();
+  return mnemonic;
 };
 
 const generateFaucet = async () => {
   faucet = await Metaverse.wallet.fromMnemonic(faucetMnemonic, "testnet");
 
-  console.log("FAUCET ADDRESS : ", faucet.getAddresses());
+  //console.log("FAUCET ADDRESS : ", faucet.getAddresses());
 };
 
 async function getETPBalance() {
@@ -40,7 +42,6 @@ async function getETPBalance() {
   // console.log(4, balances)
 
   let ETPBalance = balances.ETP.available;
-  console.log("ETP BALANCE : ", ETPBalance);
   return ETPBalance;
 }
 
@@ -66,7 +67,7 @@ async function sendETP(amount, recipient_address) {
   );
   //Collect enough utxos to pay for the transfer
   let result = await Metaverse.output.findUtxo(utxos, target, height);
-  console.log(1, result);
+  // console.log(1, result);
 
   //Build the transaction object
   let tx = await Metaverse.transaction_builder.send(
@@ -83,12 +84,12 @@ async function sendETP(amount, recipient_address) {
 
   //Encode the transaction into bytecode
   tx = await tx.encode();
-  console.log(11, tx);
+  // console.log(11, tx);
 
   //Broadcast the transaction to the metaverse network.
   tx = await blockchain.transaction.broadcast(tx.toString("hex"));
 
-  console.log("tx hash: ", tx);
+  // console.log("tx hash: ", tx);
 
   //log amount ETP sent to WHO
 }
@@ -108,12 +109,12 @@ async function registerAvatar(avatar_name, avatar_address) {
     80000000,
     "testnet"
   );
-  console.log("avt1", tx);
+  // console.log("avt1", tx);
   tx = await wallet.sign(tx);
   tx = await tx.encode();
 
   tx = await blockchain.transaction.broadcast(tx.toString("hex"));
-  console.log("avt2", tx);
+  // console.log("avt2", tx);
 }
 
 async function withdraw() {
@@ -128,7 +129,7 @@ async function withdraw() {
   }
 }
 
-async function run() {
+export async function run() {
   await generateReceiverWallet();
-  withdraw;
+  withdraw();
 }

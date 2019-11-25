@@ -23,13 +23,7 @@ class Register extends Component {
         <div class="container-fluid">
           <div class="row">
             <div class="col-2 col-sm-3 col-md-4 col-lg-4 col-xl-4"> </div>
-            <div
-              class="col-8 col-sm-6 col-md-4 col-lg-4 col-xl-4 logo-text-container"
-              //   data-aos="zoom-in"
-              //   data-aos-offset="200"
-              //   // data-aos-delay="50"
-              //   data-aos-duration="1000"
-            >
+            <div class="col-8 col-sm-6 col-md-4 col-lg-4 col-xl-4 logo-text-container">
               <div class="row">
                 <div class="col">
                   <div class="text-center company-logo-section">
@@ -47,31 +41,23 @@ class Register extends Component {
                     <div>
                       <MuiThemeProvider>
                         <div>
-                          {/* <AppBar title="Login" /> */}
                           <TextField
-                            // type="email"
                             hintText="Enter your digital identity"
                             floatingLabelText="Digital Identity"
-                            onChange={(event, newValue) =>
-                              this.setState({ username: newValue })
-                            }
+                            onChange={username => this.setState({ username })}
                           />
                           <br />
                           <TextField
                             type="email"
                             hintText="Enter your email"
                             floatingLabelText="Email"
-                            onChange={(event, newValue) =>
-                              this.setState({ password: newValue })
-                            }
+                            onChange={email => this.setState({ email })}
                           />
                           <TextField
                             type="password"
                             hintText="Enter your Password"
                             floatingLabelText="Password"
-                            onChange={(event, newValue) =>
-                              this.setState({ password: newValue })
-                            }
+                            onChange={password => this.setState({ password })}
                           />
                           <br />
                           <Button
@@ -79,7 +65,7 @@ class Register extends Component {
                             variant="contained"
                             primary={true}
                             style={style}
-                            onClick={event => this.handleClick(event)}
+                            onClick={createWallet(this.state.username)}
                           />
                         </div>
                       </MuiThemeProvider>
@@ -96,6 +82,7 @@ class Register extends Component {
   }
 }
 
-const mapStateToProps = props => {};
+// const mapStateToProps = props => {};
 
-export default connect(mapStateToProps, { createWallet })(Register);
+// export default connect(mapStateToProps, { createWallet })(Register);
+export default Register;

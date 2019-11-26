@@ -22,7 +22,8 @@ function App() {
           }
         */}
 
-        <Register />
+        {/* <Register /> */}
+        <Login />
         {/* <Header /> */}
       </div>
     </Provider>

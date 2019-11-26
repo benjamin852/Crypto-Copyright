@@ -41,27 +41,27 @@ class Login extends Component {
                   <div className="text-center mt-2 text-animation">
                     <div>
                       <MuiThemeProvider>
-                        {/* <div> */}
-                        <TextField
-                          hintText="Enter your digital identity"
-                          floatingLabelText="Digital Identity"
-                        />
-                        <br />
-                        <TextField
-                          type="password"
-                          hintText="Enter your Password"
-                          floatingLabelText="Password"
-                        />
+                        <div>
+                          <TextField
+                            hintText="Enter your digital identity"
+                            floatingLabelText="Digital Identity"
+                          />
+                          <br />
+                          <TextField
+                            type="password"
+                            hintText="Enter your Password"
+                            floatingLabelText="Password"
+                          />
 
-                        <br />
-                        <RaisedButton
-                          label="Login"
-                          variant="contained"
-                          primary={true}
-                          style={style}
-                          onClick={e => console.log(e.target.value)}
-                        />
-                        {/* </div> */}
+                          <br />
+                          <RaisedButton
+                            label="Login"
+                            variant="contained"
+                            primary={true}
+                            style={style}
+                            onClick={e => console.log(e.target.value)}
+                          />
+                        </div>
                       </MuiThemeProvider>
                     </div>
                   </div>

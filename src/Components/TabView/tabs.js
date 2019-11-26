@@ -27,11 +27,6 @@ class Tabs extends Component {
                   role="tab"
                   aria-controls="Create"
                   aria-selected="true"
-                  // style={{
-                  //   fontSize: "28px",
-                  //   fontFamily: "Proxima Nova",
-                  //   color: "#818281"
-                  // }}
                 >
                   Create
                 </a>
@@ -45,11 +40,6 @@ class Tabs extends Component {
                   role="tab"
                   aria-controls="Verify"
                   aria-selected="false"
-                  // style={{
-                  //   fontSize: "28px",
-                  //   fontFamily: "Proxima Nova",
-                  //   color: "#818281"
-                  // }}
                 >
                   Verify
                 </a>

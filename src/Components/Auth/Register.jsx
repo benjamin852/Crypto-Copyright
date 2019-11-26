@@ -7,7 +7,7 @@ import RaisedButton from "material-ui/RaisedButton";
 import TextField from "material-ui/TextField";
 import { connect } from "react-redux";
 
-import { createWallet } from "../../Actions/createWallet";
+import { createWallet } from "../../Actions/walletGeneration";
 import "./Login.css";
 
 const style = {
@@ -71,7 +71,9 @@ class Register extends Component {
                             variant="contained"
                             primary={true}
                             style={style}
-                            onClick={createWallet(this.state.username)}
+                            onClick={() =>
+                              this.props.createWallet(this.state.username)
+                            }
                           />
                         </div>
                       </MuiThemeProvider>
@@ -88,7 +90,7 @@ class Register extends Component {
   }
 }
 
-// const mapStateToProps = props => {};
+const mapStateToProps = props => {};
 
-// export default connect(mapStateToProps, { createWallet })(Register);
-export default Register;
+export default connect(mapStateToProps, { createWallet })(Register);
+// export default Register;

@@ -16,62 +16,65 @@ class Header extends Component {
   render() {
     return (
       <React.Fragment>
-        <nav class="navbar navbar-expand-md bg-color navbar-dark mb-1">
-          <div class="nav-item ml-2 mt-2">
-            <a class="nav-link text-white" href="#">
+        <nav className="navbar navbar-expand-md bg-color navbar-dark mb-1">
+          <div className="nav-item ml-2 mt-2">
+            <a className="nav-link text-white" href="#">
               <img
-                class="logo display"
+                className="logo display"
                 src={require("../../Assets/Logo/home-button.png")}
                 alt="home"
               />
-              {/* <span class="display">HOME</span> */}
+              {/* <span className="display">HOME</span> */}
             </a>
           </div>
           <button
-            class="navbar-toggler"
+            className="navbar-toggler"
             type="button"
             data-toggle="collapse"
             data-target="#collapsibleNavbar"
           >
-            <span class="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"></span>
           </button>
           <div
-            class="collapse navbar-collapse flex-row-reverse"
+            className="collapse navbar-collapse flex-row-reverse"
             id="collapsibleNavbar"
           >
-            <ul class="navbar-nav" style={{ fontSize: 22 }}>
-              <li class="nav-item">
+            <ul className="navbar-nav" style={{ fontSize: 22 }}>
+              <li className="nav-item">
                 <a
-                  class="nav-link text-white link-style mr-5"
+                  className="nav-link text-white link-style mr-5"
                   onClick={() => this.setState({ currentTab: 0 })}
                   href="#tab"
                 >
-                  {/* <div class="motion"></div> */}
+                  {/* <div className="motion"></div> */}
                   Create
                 </a>
               </li>
-              <li class="nav-item">
+              <li className="nav-item">
                 <a
-                  class="nav-link text-white link-style mr-5"
+                  className="nav-link text-white link-style mr-5"
                   onClick={() => this.setState({ currentTab: 1 })}
                   href="#tab"
                 >
                   Verify
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link text-white link-style mr-5" href="#about">
+              <li className="nav-item">
+                <a
+                  className="nav-link text-white link-style mr-5"
+                  href="#about"
+                >
                   About
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link text-white link-style mr-5" href="#team">
+              <li className="nav-item">
+                <a className="nav-link text-white link-style mr-5" href="#team">
                   Team
                 </a>
               </li>
-              <li class="nav-item">
+              <li className="nav-item">
                 <a
-                  class="nav-link text-white link-style mr-5"
+                  className="nav-link text-white link-style mr-5"
                   href="#newsletter"
                 >
                   Newsletter
@@ -80,25 +83,25 @@ class Header extends Component {
             </ul>
           </div>
         </nav>
-        <div class="container" id="banner">
+        <div className="container" id="banner">
           <Banner />
         </div>
-        <div class="container" id="tab">
+        <div className="container" id="tab">
           <TabView currentTab={this.state.currentTab} />
         </div>
-        <div class="container-fluid" id="about">
+        <div className="container-fluid" id="about">
           <Intro />
-          <div class="container mt-5 mb-5" id="work">
+          <div className="container mt-5 mb-5" id="work">
             <Work />
           </div>
         </div>
-        <div class="container" id="team">
+        <div className="container" id="team">
           <Team />
         </div>
-        <div class="container" id="metaverse">
+        <div className="container" id="metaverse">
           <Metaverse />
         </div>
-        <div class="container" id="newsletter">
+        <div className="container" id="newsletter">
           <NewsLetter />
         </div>
       </React.Fragment>

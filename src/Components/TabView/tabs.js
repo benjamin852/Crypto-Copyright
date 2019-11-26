@@ -10,7 +10,7 @@ class Tabs extends Component {
         {this.props.currentTab === 0 ? (
           <div>
             <ul
-              class="nav nav-tabs"
+              className="nav nav-tabs"
               id="myTab"
               role="tablist"
               style={{
@@ -18,9 +18,9 @@ class Tabs extends Component {
                 padding: "10px 0px 0px 30px"
               }}
             >
-              <li class="nav-item">
+              <li className="nav-item">
                 <a
-                  class="nav-link active "
+                  className="nav-link active "
                   id="Create-tab"
                   data-toggle="tab"
                   href="#Create"
@@ -36,9 +36,9 @@ class Tabs extends Component {
                   Create
                 </a>
               </li>
-              <li class="nav-item">
+              <li className="nav-item">
                 <a
-                  class="nav-link"
+                  className="nav-link"
                   id="Verify-tab"
                   data-toggle="tab"
                   href="#Verify"
@@ -55,9 +55,9 @@ class Tabs extends Component {
                 </a>
               </li>
             </ul>
-            <div class="tab-content" id="myTabContent">
+            <div className="tab-content" id="myTabContent">
               <div
-                class="tab-pane fade show active"
+                className="tab-pane fade show active"
                 id="Create"
                 role="tabpanel"
                 aria-labelledby="Create-tab"
@@ -66,7 +66,7 @@ class Tabs extends Component {
                 <CreateTab />
               </div>
               <div
-                class="tab-pane fade"
+                className="tab-pane fade"
                 id="Verify"
                 role="tabpanel"
                 aria-labelledby="Verify-tab"
@@ -79,7 +79,7 @@ class Tabs extends Component {
         ) : (
           <div>
             <ul
-              class="nav nav-tabs"
+              className="nav nav-tabs"
               id="myTab"
               role="tablist"
               style={{
@@ -87,9 +87,9 @@ class Tabs extends Component {
                 padding: "10px 0px 0px 30px"
               }}
             >
-              <li class="nav-item">
+              <li className="nav-item">
                 <a
-                  class="nav-link "
+                  className="nav-link "
                   id="Create-tab"
                   data-toggle="tab"
                   href="#Create"
@@ -105,9 +105,9 @@ class Tabs extends Component {
                   Create
                 </a>
               </li>
-              <li class="nav-item">
+              <li className="nav-item">
                 <a
-                  class="nav-link active"
+                  className="nav-link active"
                   id="Verify-tab"
                   data-toggle="tab"
                   href="#Verify"
@@ -124,9 +124,9 @@ class Tabs extends Component {
                 </a>
               </li>
             </ul>
-            <div class="tab-content" id="myTabContent">
+            <div className="tab-content" id="myTabContent">
               <div
-                class="tab-pane fade "
+                className="tab-pane fade "
                 id="Create"
                 role="tabpanel"
                 aria-labelledby="Create-tab"
@@ -135,7 +135,7 @@ class Tabs extends Component {
                 <CreateTab />
               </div>
               <div
-                class="tab-pane fade show active"
+                className="tab-pane fade show active"
                 id="Verify"
                 role="tabpanel"
                 aria-labelledby="Verify-tab"

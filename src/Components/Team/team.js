@@ -13,8 +13,8 @@ class Team extends Component {
       // Global settings:
       disable: false, // accepts following values: 'phone', 'tablet', 'mobile', boolean, expression or function
       startEvent: "DOMContentLoaded", // name of the event dispatched on the document, that AOS should initialize on
-      initClassName: "aos-init", // class applied after initialization
-      animatedClassName: "aos-animate", // class applied on animation
+      initClassName: "aos-init", // className applied after initialization
+      animatedClassName: "aos-animate", // className applied on animation
       useClassNames: false, // if true, will add content of `data-aos` as classes on scroll
       disableMutationObserver: false, // disables automatic mutations' detections (advanced)
       debounceDelay: 50, // the delay on debounce used while resizing window (advanced)
@@ -34,14 +34,14 @@ class Team extends Component {
     return (
       <React.Fragment>
         <div style={{ overflow: "hidden" }}>
-          <div class="row">
-            <div class="col-xl-3 col-lg-3 col-md-2 col-sm-2 col-xs-2" />
+          <div className="row">
+            <div className="col-xl-3 col-lg-3 col-md-2 col-sm-2 col-xs-2" />
             <div
-              class="col-xl-6 col-lg-6 col-md-8 col-sm-8 col-xs-8"
+              className="col-xl-6 col-lg-6 col-md-8 col-sm-8 col-xs-8"
               style={{ padding: "0% 6% 0% 6%" }}
             >
               <span
-                class="mt-4 mb-5 btn teamSpan"
+                className="mt-4 mb-5 btn teamSpan"
                 data-aos="zoom-in"
                 data-aos-offset="200"
                 // data-aos-delay="50"
@@ -50,123 +50,123 @@ class Team extends Component {
                 Who Are We?
               </span>
             </div>
-            <div class="col-xl-3 col-lg-3 col-md-2 col-sm-2 col-xs-2" />
+            <div className="col-xl-3 col-lg-3 col-md-2 col-sm-2 col-xs-2" />
           </div>
-          <div class="row" style={{ textAlign: "center" }}>
+          <div className="row" style={{ textAlign: "center" }}>
             <div
-              class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-4 teamFirstRow"
+              className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-4 teamFirstRow"
               data-aos="fade-right"
               data-aos-offset="200"
               // data-aos-delay="50"
               data-aos-duration="1000"
             >
               <img
-                class="teamImage"
+                className="teamImage"
                 src={require("../../Assets/Images/Eric.jpg")}
               />
               <div style={{ marginTop: "15px" }}>
-                <span class="teamName">Eric Gu</span>
+                <span className="teamName">Eric Gu</span>
               </div>
               <div style={{ marginTop: "10px" }}>
-                <span class="teamDesc">
+                <span className="teamDesc">
                   Early crypto adopter, famous investor and advisor for
                   blockchain projects
                 </span>
               </div>
             </div>
             <div
-              class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-4 teamFirstRow"
+              className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-4 teamFirstRow"
               data-aos="fade-right"
               data-aos-offset="200"
               // data-aos-delay="50"
               data-aos-duration="1000"
             >
               <img
-                class="teamImage"
+                className="teamImage"
                 src={require("../../Assets/Images/Christine.jpg")}
               />
               <div style={{ marginTop: "15px" }}>
-                <span class="teamName">Christine Duhaime</span>
+                <span className="teamName">Christine Duhaime</span>
               </div>
               <div style={{ marginTop: "10px" }}>
-                <span class="teamDesc">
+                <span className="teamDesc">
                   Lawyer in financial regulation, asset recovery, combatting
                   financial crime, AI and tech
                 </span>
               </div>
             </div>
             <div
-              class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-4 teamFirstRow"
+              className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-4 teamFirstRow"
               data-aos="fade-right"
               data-aos-offset="200"
               // data-aos-delay="50"
               data-aos-duration="1000"
             >
               <img
-                class="teamImage"
+                className="teamImage"
                 src={require("../../Assets/Images/tal.jpg")}
               />
               <div style={{ marginTop: "15px" }}>
-                <span class="teamName">Tal Zisckind</span>
+                <span className="teamName">Tal Zisckind</span>
               </div>
               <div style={{ marginTop: "10px" }}>
-                <span class="teamDesc">Explorer of the Metaverse</span>
+                <span className="teamDesc">Explorer of the Metaverse</span>
               </div>
             </div>
           </div>
-          <div class="row" style={{ textAlign: "center" }}>
+          <div className="row" style={{ textAlign: "center" }}>
             <div
-              class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-4 teamSecondRow"
+              className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-4 teamSecondRow"
               data-aos="fade-left"
               data-aos-offset="200"
               // data-aos-delay="50"
               data-aos-duration="1000"
             >
               <img
-                class="teamImage"
+                className="teamImage"
                 src={require("../../Assets/Images/sven.jpg")}
               />
               <div style={{ marginTop: "15px" }}>
-                <span class="teamName">Sven Mutzl</span>
+                <span className="teamName">Sven Mutzl</span>
               </div>
               <div style={{ marginTop: "10px" }}>
-                <span class="teamDesc">Coffee to code processor</span>
+                <span className="teamDesc">Coffee to code processor</span>
               </div>
             </div>
             <div
-              class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-4 teamSecondRow"
+              className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-4 teamSecondRow"
               data-aos="fade-left"
               data-aos-offset="200"
               // data-aos-delay="50"
               data-aos-duration="1000"
             >
               <img
-                class="teamImage"
+                className="teamImage"
                 src={require("../../Assets/Images/laurent.jpg")}
               />
               <div style={{ marginTop: "15px" }}>
-                <span class="teamName">Laurent Salou</span>
+                <span className="teamName">Laurent Salou</span>
               </div>
               <div style={{ marginTop: "10px" }}>
-                <span class="teamDesc">Metaverse developer</span>
+                <span className="teamDesc">Metaverse developer</span>
               </div>
             </div>
             <div
-              class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-4 teamSecondRow"
+              className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-4 teamSecondRow"
               data-aos="fade-left"
               data-aos-offset="200"
               // data-aos-delay="50"
               data-aos-duration="1000"
             >
               <img
-                class="teamImage"
+                className="teamImage"
                 src={require("../../Assets/Images/Emma.jpg")}
               />
               <div style={{ marginTop: "15px" }}>
-                <span class="teamName">Emma Hsueh</span>
+                <span className="teamName">Emma Hsueh</span>
               </div>
               <div style={{ marginTop: "10px" }}>
-                <span class="teamDesc">
+                <span className="teamDesc">
                   Core developer and data analyst with experience in blockchain,
                   informatics and machine learning
                 </span>

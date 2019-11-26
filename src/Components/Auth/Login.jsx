@@ -1,7 +1,10 @@
 import React, { Component } from "react";
-import {MuiThemeProvider} from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
-import TextField from '@material-ui/core/TextField';
+// import { MuiThemeProvider } from "@material-ui/core/styles";
+// import Button from "@material-ui/core/Button";
+// import TextField from "@material-ui/core/TextField";
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import RaisedButton from "material-ui/RaisedButton";
+import TextField from "material-ui/TextField";
 import "./Login.css";
 
 const style = {
@@ -12,30 +15,30 @@ class Login extends Component {
   render() {
     return (
       <React.Fragment>
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-2 col-sm-3 col-md-4 col-lg-4 col-xl-4"> </div>
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-2 col-sm-3 col-md-4 col-lg-4 col-xl-4"> </div>
             <div
-              class="col-8 col-sm-6 col-md-4 col-lg-4 col-xl-4 logo-text-container"
+              className="col-8 col-sm-6 col-md-4 col-lg-4 col-xl-4 logo-text-container"
               //   data-aos="zoom-in"
               //   data-aos-offset="200"
               //   // data-aos-delay="50"
               //   data-aos-duration="1000"
             >
-              <div class="row">
-                <div class="col">
-                  <div class="text-center company-logo-section">
+              <div className="row">
+                <div className="col">
+                  <div className="text-center company-logo-section">
                     <img
-                      class="company-logo"
+                      className="company-logo"
                       src={require("../../Assets/Logo/company-logo.png")}
                       alt="company-logo"
                     />
                   </div>
                 </div>
               </div>
-              <div class="row">
-                <div class="col">
-                  <div class="text-center mt-2 text-animation">
+              <div className="row">
+                <div className="col">
+                  <div className="text-center mt-2 text-animation">
                     <div>
                       <MuiThemeProvider>
                         {/* <div> */}
@@ -51,7 +54,7 @@ class Login extends Component {
                         />
 
                         <br />
-                        <Button
+                        <RaisedButton
                           label="Login"
                           variant="contained"
                           primary={true}
@@ -65,7 +68,7 @@ class Login extends Component {
                 </div>
               </div>
             </div>
-            <div class="col-2 col-sm-3 col-md-4 col-lg-4 col-xl-4"></div>
+            <div className="col-2 col-sm-3 col-md-4 col-lg-4 col-xl-4"></div>
           </div>
         </div>
       </React.Fragment>

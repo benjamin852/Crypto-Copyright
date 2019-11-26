@@ -34,14 +34,14 @@ class NewsLetter extends Component {
     return (
       <React.Fragment>
         <div>
-          <div class="row">
-            <div class="col-xl-3 col-lg-3 col-md-2 col-sm-2 col-xs-2" />
+          <div className="row">
+            <div className="col-xl-3 col-lg-3 col-md-2 col-sm-2 col-xs-2" />
             <div
-              class="col-xl-6 col-lg-6 col-md-8 col-sm-8 col-xs-8"
+              className="col-xl-6 col-lg-6 col-md-8 col-sm-8 col-xs-8"
               style={{ padding: "0% 6% 0% 6%" }}
             >
               <img
-                class="newsLetterImage"
+                className="newsLetterImage"
                 data-aos="zoom-in"
                 data-aos-offset="200"
                 // data-aos-delay="50"
@@ -49,13 +49,13 @@ class NewsLetter extends Component {
                 src={require("../../Assets/Logo/newsletter.png")}
               />
             </div>
-            <div class="col-xl-3 col-lg-3 col-md-2 col-sm-2 col-xs-2" />
+            <div className="col-xl-3 col-lg-3 col-md-2 col-sm-2 col-xs-2" />
           </div>
-          <div class="row" style={{ padding: "5% 5% 5% 5%" }}>
+          <div className="row" style={{ padding: "5% 5% 5% 5%" }}>
             <input
               type="text"
               placeholder="First Name"
-              class="textFieldFName"
+              className="textFieldFName"
               data-aos="slide-right"
               data-aos-offset="200"
               // data-aos-delay="50"
@@ -64,7 +64,7 @@ class NewsLetter extends Component {
             <input
               type="text"
               placeholder="Last Name"
-              class="textFieldLName"
+              className="textFieldLName"
               data-aos="slide-right"
               data-aos-offset="200"
               // data-aos-delay="50"
@@ -73,22 +73,27 @@ class NewsLetter extends Component {
             <input
               type="email"
               placeholder="Email"
-              class="textFieldEmail"
+              className="textFieldEmail"
               data-aos="slide-right"
               data-aos-offset="200"
               // data-aos-delay="50"
               data-aos-duration="1000"
             />
           </div>
-          <div class="row">
-            <div class="col-xl-3 col-lg-3 col-md-2 col-sm-2 col-xs-2" />
+          <div className="row">
+            <div className="col-xl-3 col-lg-3 col-md-2 col-sm-2 col-xs-2" />
             <div
-              class="col-xl-6 col-lg-6 col-md-8 col-sm-8 col-xs-8"
+              className="col-xl-6 col-lg-6 col-md-8 col-sm-8 col-xs-8"
               style={{ padding: "0% 6% 0% 6%" }}
             >
-              <button id="newsLetterButton" class="mt-4 mb-5 btn subcribeButton">Subscribe</button>
+              <button
+                id="newsLetterButton"
+                className="mt-4 mb-5 btn subcribeButton"
+              >
+                Subscribe
+              </button>
             </div>
-            <div class="col-xl-3 col-lg-3 col-md-2 col-sm-2 col-xs-2" />
+            <div className="col-xl-3 col-lg-3 col-md-2 col-sm-2 col-xs-2" />
           </div>
         </div>
       </React.Fragment>

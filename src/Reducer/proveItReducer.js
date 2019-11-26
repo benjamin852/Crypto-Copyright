@@ -37,11 +37,11 @@ function ProveitReducer(mState = { ...state }, action) {
       } else {
         mState.walletInfo = action.payload;
       }
-
     default:
       return deepCopy(mState);
   }
 }
+
 const deepCopy = obj => {
   const newObj = JSON.parse(JSON.stringify(obj));
   return newObj;

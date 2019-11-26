@@ -13,8 +13,8 @@ class Metaverse extends Component {
       // Global settings:
       disable: false, // accepts following values: 'phone', 'tablet', 'mobile', boolean, expression or function
       startEvent: "DOMContentLoaded", // name of the event dispatched on the document, that AOS should initialize on
-      initClassName: "aos-init", // class applied after initialization
-      animatedClassName: "aos-animate", // class applied on animation
+      initClassName: "aos-init", // className applied after initialization
+      animatedClassName: "aos-animate", // className applied on animation
       useClassNames: false, // if true, will add content of `data-aos` as classes on scroll
       disableMutationObserver: false, // disables automatic mutations' detections (advanced)
       debounceDelay: 50, // the delay on debounce used while resizing window (advanced)
@@ -34,14 +34,14 @@ class Metaverse extends Component {
     return (
       <React.Fragment>
         <div style={{ overflow: "hidden" }}>
-          <div class="row">
-            <div class="col-xl-3 col-lg-3 col-md-2 col-sm-2 col-xs-2" />
+          <div className="row">
+            <div className="col-xl-3 col-lg-3 col-md-2 col-sm-2 col-xs-2" />
             <div
-              class="col-xl-6 col-lg-6 col-md-8 col-sm-8 col-xs-8"
+              className="col-xl-6 col-lg-6 col-md-8 col-sm-8 col-xs-8"
               style={{ padding: "0% 6% 0% 6%" }}
             >
               <span
-                class="mt-4 mb-5 btn metaverseSpan"
+                className="mt-4 mb-5 btn metaverseSpan"
                 data-aos="zoom-in"
                 data-aos-offset="200"
                 // data-aos-delay="50"
@@ -50,75 +50,75 @@ class Metaverse extends Component {
                 Metaverse
               </span>
             </div>
-            <div class="col-xl-3 col-lg-3 col-md-2 col-sm-2 col-xs-2" />
+            <div className="col-xl-3 col-lg-3 col-md-2 col-sm-2 col-xs-2" />
           </div>
-          <div class="row" style={{ textAlign: "center" }}>
+          <div className="row" style={{ textAlign: "center" }}>
             <div
-              class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-12 mt-4 firstFrame"
+              className="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-12 mt-4 firstFrame"
               data-aos="flip-right"
               data-aos-offset="200"
               // data-aos-delay="50"
               data-aos-duration="1000"
             >
               <img
-                class="metaverseIcons"
+                className="metaverseIcons"
                 src={require("../../Assets/Logo/blockchain.PNG")}
               />
               <div>
-                <span class="metaverseIconText">
+                <span className="metaverseIconText">
                   Public blockchain with a high <br />
                   grade of decentralization
                 </span>
               </div>
             </div>
             <div
-              class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-12 mt-4 secondFrame"
+              className="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-12 mt-4 secondFrame"
               data-aos="flip-right"
               data-aos-offset="200"
               // data-aos-delay="50"
               data-aos-duration="1000"
             >
               <img
-                class="metaverseIcons"
+                className="metaverseIcons"
                 src={require("../../Assets/Logo/dollar.png")}
               />
               <div>
-                <span class="metaverseIconText">
+                <span className="metaverseIconText">
                   Experts on asset tokenization
                 </span>
               </div>
             </div>
             <div
-              class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-12 mt-4 thirdFrame"
+              className="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-12 mt-4 thirdFrame"
               data-aos="flip-left"
               data-aos-offset="200"
               // data-aos-delay="50"
               data-aos-duration="1000"
             >
               <img
-                class="metaverseIcons"
+                className="metaverseIcons"
                 src={require("../../Assets/Logo/Services.png")}
               />
               <div>
-                <span class="metaverseIconText">
+                <span className="metaverseIconText">
                   Blockchain as a service <br /> solution
                 </span>
               </div>
             </div>
 
             <div
-              class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-12 mt-4 fourthFrame"
+              className="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-12 mt-4 fourthFrame"
               data-aos="flip-left"
               data-aos-offset="200"
               // data-aos-delay="50"
               data-aos-duration="1000"
             >
               <img
-                class="metaverseIcons"
+                className="metaverseIcons"
                 src={require("../../Assets/Logo/earth.png")}
               />
               <div>
-                <span class="metaverseIconText">
+                <span className="metaverseIconText">
                   Open Source development <br /> community
                 </span>
               </div>

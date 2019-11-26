@@ -34,10 +34,10 @@ class Working extends Component {
     return (
       <React.Fragment>
         <div style={{ overflow: "hidden" }}>
-          <div class="row">
-            <div class="col-xl-3 col-lg-3 col-md-2 col-sm-1 col-xs-2" />
+          <div className="row">
+            <div className="col-xl-3 col-lg-3 col-md-2 col-sm-1 col-xs-2" />
             <div
-              class="col-xl-6 col-lg-6 col-md-8 col-sm-10 col-xs-8"
+              className="col-xl-6 col-lg-6 col-md-8 col-sm-10 col-xs-8"
               style={{ padding: "0% 6% 0% 6%" }}
 
               // data-aos-easing="ease-in-out"
@@ -46,7 +46,7 @@ class Working extends Component {
               // data-aos-anchor-placement="top-center"
             >
               <span
-                class="mt-4 mb-5 btn workSpan"
+                className="mt-4 mb-5 btn workSpan"
                 data-aos="zoom-in"
                 data-aos-offset="200"
                 // data-aos-delay="50"
@@ -55,25 +55,25 @@ class Working extends Component {
                 How does it work?
               </span>
             </div>
-            <div class="col-xl-3 col-lg-3 col-md-2 col-sm-1 col-xs-2" />
+            <div className="col-xl-3 col-lg-3 col-md-2 col-sm-1 col-xs-2" />
           </div>
-          <div class="row" style={{ textAlign: "center" }}>
+          <div className="row" style={{ textAlign: "center" }}>
             <div
-              class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-4 workContentAnimation"
+              className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-4 workContentAnimation"
               data-aos="zoom-in-right"
               data-aos-offset="200"
               // data-aos-delay="50"
               data-aos-duration="1000"
             >
               <img
-                class="workIcon"
+                className="workIcon"
                 src={require("../../Assets/Logo/print.png")}
               />
               <div style={{ marginTop: "10px" }}>
-                <span class="workHeading">Record</span>
+                <span className="workHeading">Record</span>
               </div>
               <div style={{ marginTop: "10px" }}>
-                <span class="workDesc">
+                <span className="workDesc">
                   We calculate a fingerprint (hash) of your document. This
                   fingerprint will be added to our processing queue. Optionally
                   we will store your document as well as its meta data on a
@@ -82,47 +82,46 @@ class Working extends Component {
               </div>
             </div>
             <div
-              class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-4 workContentAnimation"
+              className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-4 workContentAnimation"
               data-aos="zoom-in"
               data-aos-offset="200"
               // data-aos-delay="50"
               data-aos-duration="1000"
             >
               <img
-                class="workIcon"
+                className="workIcon"
                 src={require("../../Assets/Logo/device_hub.png")}
               />
               <div style={{ marginTop: "10px" }}>
-                <span class="workHeading">Write</span>
+                <span className="workHeading">Write</span>
               </div>
               <div style={{ marginTop: "10px" }}>
-                <span class="workDesc">
-                  We group multiple fingerprints into a
-                  merkle tree on a regular basis. The root hash of that tree will then be written
-                  to the Metaverse blockchain.
+                <span className="workDesc">
+                  We group multiple fingerprints into a merkle tree on a regular
+                  basis. The root hash of that tree will then be written to the
+                  Metaverse blockchain.
                 </span>
               </div>
             </div>
             <div
-              class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-4 workContentAnimation"
+              className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-4 workContentAnimation"
               data-aos="zoom-in-left"
               data-aos-offset="200"
               // data-aos-delay="50"
               data-aos-duration="1000"
             >
               <img
-                class="workIcon"
+                className="workIcon"
                 src={require("../../Assets/Logo/key.png")}
               />
               <div style={{ marginTop: "10px" }}>
-                <span class="workHeading">Prove</span>
+                <span className="workHeading">Prove</span>
               </div>
               <div style={{ marginTop: "10px" }}>
-                <span class="workDesc">
+                <span className="workDesc">
                   In order to prove the timestamp of your document independently
-                  we will provide you with the path through a merkle
-                  tree as well as the Blockchain transaction as a proof of
-                  record.
+                  we will provide you with the path through a merkle tree as
+                  well as the Blockchain transaction as a proof of record.
                 </span>
               </div>
             </div>

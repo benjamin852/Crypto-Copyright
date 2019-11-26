@@ -40,7 +40,7 @@ class CreateTab extends Component {
   render() {
     return (
       <React.Fragment>
-        <div class="container">
+        <div className="container">
           <h3
             style={{
               color: "#050607",
@@ -76,10 +76,10 @@ class CreateTab extends Component {
             </div>
           ) : (
             <div>
-              <div class="row">
-                <div class="d-none d-xl-block d-lg-block d-md-block d-sm-block col-xl-3 col-lg-3 col-md-2 col-sm-2" />
+              <div className="row">
+                <div className="d-none d-xl-block d-lg-block d-md-block d-sm-block col-xl-3 col-lg-3 col-md-2 col-sm-2" />
                 <div
-                  class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-xs-6"
+                  className="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-xs-6"
                   style={{ marginTop: "20px" }}
                 >
                   <input
@@ -92,16 +92,16 @@ class CreateTab extends Component {
                     }}
                     name="selectedFile"
                     style={{ display: "none" }}
-                    class="inputfile inputfile-6"
+                    className="inputfile inputfile-6"
                     data-multiple-caption="{count} files selected"
                     multiple
                   />
-                  <label class="w-100 h-100 file" for="fileInput">
+                  <label className="w-100 h-100 file" for="fileInput">
                     Choose a file
                   </label>
                 </div>
                 <div
-                  class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-xs-6"
+                  className="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-xs-6"
                   style={{ marginTop: "20px" }}
                 >
                   <span
@@ -114,25 +114,25 @@ class CreateTab extends Component {
                     {this.state.fileName ? this.state.fileName : "Report.pdf"}
                   </span>
                 </div>
-                <div class="d-none d-xl-block d-lg-block d-md-block d-sm-block col-xl-3 col-lg-3 col-md-2 col-sm-2" />
+                <div className="d-none d-xl-block d-lg-block d-md-block d-sm-block col-xl-3 col-lg-3 col-md-2 col-sm-2" />
               </div>
-              <div class="row">
-                <div class="d-none d-xl-block d-lg-block d-md-block d-sm-block col-xl-3 col-lg-3 col-md-2 col-sm-2" />
+              <div className="row">
+                <div className="d-none d-xl-block d-lg-block d-md-block d-sm-block col-xl-3 col-lg-3 col-md-2 col-sm-2" />
                 <div
-                  class="col-xl-3 col-lg-3 col-md-8 col-sm-6 col-xs-12"
+                  className="col-xl-3 col-lg-3 col-md-8 col-sm-6 col-xs-12"
                   style={{ marginTop: "20px" }}
                 >
-                  <div class="custom-control custom-checkbox mb-3">
+                  <div className="custom-control custom-checkbox mb-3">
                     <input
                       type="checkbox"
-                      class="custom-control-input form-control-lg"
+                      className="custom-control-input form-control-lg"
                       id="customCheck"
                       onChange={e => this.handleChange(e)}
                       name="example1"
                       style={{ padding: "100px" }}
                     />
                     <label
-                      class="custom-control-label"
+                      className="custom-control-label"
                       for="customCheck"
                       style={{
                         fontFamily: "Proxima Nova",
@@ -145,15 +145,15 @@ class CreateTab extends Component {
                     </label>
                   </div>
                 </div>
-                <div class="d-none d-xl-block d-lg-block d-md-block d-sm-block col-xl-3 col-lg-3 col-md-2 col-sm-2" />
-                <div class="d-none d-xl-block d-lg-block d-md-block d-sm-block col-xl-3 col-lg-3 col-md-2 col-sm-2" />
+                <div className="d-none d-xl-block d-lg-block d-md-block d-sm-block col-xl-3 col-lg-3 col-md-2 col-sm-2" />
+                <div className="d-none d-xl-block d-lg-block d-md-block d-sm-block col-xl-3 col-lg-3 col-md-2 col-sm-2" />
               </div>
               {this.state.checkboxStatus === true ? (
                 <div>
-                  <div class="row">
-                    <div class="col-xl-3 col-lg-3 col-md-2 col-sm-2 col-xs-2" />
+                  <div className="row">
+                    <div className="col-xl-3 col-lg-3 col-md-2 col-sm-2 col-xs-2" />
                     <div
-                      class="col-xl-6 col-lg-6 col-md-8 col-sm-8 col-xs-8"
+                      className="col-xl-6 col-lg-6 col-md-8 col-sm-8 col-xs-8"
                       style={{ padding: "0% 6% 0% 6%" }}
                     >
                       <input
@@ -162,7 +162,7 @@ class CreateTab extends Component {
                         onChange={e =>
                           this.setState({ password: e.target.value })
                         }
-                        class="form-control mb-3 mt-2"
+                        className="form-control mb-3 mt-2"
                         style={{
                           paddingLeft: "25px",
                           fontFamily: "Proxima Nova",
@@ -171,13 +171,13 @@ class CreateTab extends Component {
                         }}
                       />
                     </div>
-                    <div class="col-xl-3 col-lg-3 col-md-2 col-sm-2 col-xs-2" />
+                    <div className="col-xl-3 col-lg-3 col-md-2 col-sm-2 col-xs-2" />
                   </div>
-                  <div class="row">
-                    <div class="col-xl-3 col-lg-3 col-md-2 col-sm-2 col-xs-3" />
-                    <div class="col-xl-6 col-lg-6 col-md-8 col-sm-8 col-xs-6">
+                  <div className="row">
+                    <div className="col-xl-3 col-lg-3 col-md-2 col-sm-2 col-xs-3" />
+                    <div className="col-xl-6 col-lg-6 col-md-8 col-sm-8 col-xs-6">
                       <span
-                        class="mt-1 mb-2"
+                        className="mt-1 mb-2"
                         style={{
                           fontFamily: "Proxima Nova",
                           fontWeight: "400",
@@ -191,7 +191,7 @@ class CreateTab extends Component {
                         password to download the file
                       </span>
                     </div>
-                    <div class="col-xl-3 col-lg-3 col-md-2 col-sm-2 col-xs-3" />
+                    <div className="col-xl-3 col-lg-3 col-md-2 col-sm-2 col-xs-3" />
                   </div>
                 </div>
               ) : (
@@ -199,8 +199,11 @@ class CreateTab extends Component {
               )}
             </div>
           )}
-          <div class="row" style={{ textAlign: "center", marginTop: "20px" }}>
-            <div class="col-12">
+          <div
+            className="row"
+            style={{ textAlign: "center", marginTop: "20px" }}
+          >
+            <div className="col-12">
               {this.props.ErrorMsg === "DUPLICATE_ENTRY" ? (
                 <kbd style={{ fontFamily: "Proxima Nova", fontSize: "16px" }}>
                   This document has already been registered.&nbsp;&nbsp;
@@ -217,10 +220,10 @@ class CreateTab extends Component {
               )}
             </div>
           </div>
-          <div class="row">
-            <div class="col-xl-3 col-lg-3 col-md-2 col-sm-2 col-xs-2" />
+          <div className="row">
+            <div className="col-xl-3 col-lg-3 col-md-2 col-sm-2 col-xs-2" />
             <div
-              class="col-xl-6 col-lg-6 col-md-8 col-sm-8 col-xs-8"
+              className="col-xl-6 col-lg-6 col-md-8 col-sm-8 col-xs-8"
               style={{ padding: "0% 6% 0% 6%" }}
             >
               {this.props.SuccessMsg === "SUCCESS" ? (
@@ -228,17 +231,17 @@ class CreateTab extends Component {
                   onClick={() => {
                     window.location.reload();
                   }}
-                  class="mt-4 mb-5 btn btn-create"
+                  className="mt-4 mb-5 btn btn-create"
                 >
                   Record Another
                 </button>
               ) : this.state.recordStatus === true ? (
-                <button disabled class="mt-4 mb-5 btn btn-create-disabled">
+                <button disabled className="mt-4 mb-5 btn btn-create-disabled">
                   Record
                 </button>
               ) : (
                 <button
-                  class="mt-4 mb-5 btn btn-create"
+                  className="mt-4 mb-5 btn btn-create"
                   disabled={this.state.loading}
                   onClick={() => {
                     if (!this.state.loading) {
@@ -263,13 +266,13 @@ class CreateTab extends Component {
                   }}
                 >
                   {this.state.loading && (
-                    <i class="spinner-border" role="status" />
+                    <i className="spinner-border" role="status" />
                   )}
                   {!this.state.loading && <span>Record</span>}
                 </button>
               )}
             </div>
-            <div class="col-xl-3 col-lg-3 col-md-2 col-sm-2 col-xs-2" />
+            <div className="col-xl-3 col-lg-3 col-md-2 col-sm-2 col-xs-2" />
           </div>
         </div>
       </React.Fragment>

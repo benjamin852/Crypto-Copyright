@@ -14,7 +14,7 @@ import store from "./Store/store";
 function App() {
   return (
     <Provider store={store}>
-      <div class="home-bg" style={{ overflowX: "hidden" }}>
+      <div className="home-bg" style={{ overflowX: "hidden" }}>
         {/*
          if (accountExists == true) {
             <Login/>

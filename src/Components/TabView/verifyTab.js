@@ -54,7 +54,7 @@ class VerifyTab extends Component {
     console.log(this.props.downloadSuccessMessage);
     return (
       <React.Fragment>
-        <div class="container">
+        <div className="container">
           <h3
             style={{
               // color: "#6F706F",
@@ -64,24 +64,24 @@ class VerifyTab extends Component {
             Verify your document on the blockchain
           </h3>
           {this.props.proveSuccessMessage ? (
-            <div class="row">
+            <div className="row">
               <div
-                class="col-12"
+                className="col-12"
                 style={{
                   textAlign: "center"
                   // marginBottom: "-65px"
                 }}
               ></div>
               {this.props.proveSuccessMessage.hasPassword ? (
-                <div class="col-12 row">
-                  <div class="col-xl-3 col-lg-3 col-md-2 col-sm-2 col-xs-2" />
+                <div className="col-12 row">
+                  <div className="col-xl-3 col-lg-3 col-md-2 col-sm-2 col-xs-2" />
                   <div
-                    class="col-xl-6 col-lg-6 col-md-8 col-sm-8 col-xs-8"
+                    className="col-xl-6 col-lg-6 col-md-8 col-sm-8 col-xs-8"
                     style={{ padding: "0% 6% 0% 6%" }}
                   >
                     <input
                       style={{ borderRadius: "10px", fontSize: "30px" }}
-                      class="form-control form-control-lg"
+                      className="form-control form-control-lg"
                       onChange={e =>
                         this.setState({ password: e.target.value })
                       }
@@ -90,16 +90,16 @@ class VerifyTab extends Component {
                       placeholder="Password"
                     />
                   </div>
-                  <div class="col-xl-3 col-lg-3 col-md-2 col-sm-2 col-xs-2" />
+                  <div className="col-xl-3 col-lg-3 col-md-2 col-sm-2 col-xs-2" />
                 </div>
               ) : (
                 ""
               )}
               {this.props.proveSuccessMessage.hasFile ? (
-                <div class="col-12 row">
-                  <div class="col-xl-3 col-lg-3 col-md-2 col-sm-2 col-xs-2" />
+                <div className="col-12 row">
+                  <div className="col-xl-3 col-lg-3 col-md-2 col-sm-2 col-xs-2" />
                   <div
-                    class="col-xl-6 col-lg-6 col-md-8 col-sm-8 col-xs-8"
+                    className="col-xl-6 col-lg-6 col-md-8 col-sm-8 col-xs-8"
                     style={{ padding: "0% 6% 0% 6%" }}
                   >
                     <a
@@ -127,23 +127,23 @@ class VerifyTab extends Component {
                         //     this
                         //   );
                         // }}
-                        class="mt-4 mb-5 btn btn-verify"
+                        className="mt-4 mb-5 btn btn-verify"
                       >
                         Download
                       </button>
                     </a>
                   </div>
-                  <div class="col-xl-3 col-lg-3 col-md-2 col-sm-2 col-xs-2" />
+                  <div className="col-xl-3 col-lg-3 col-md-2 col-sm-2 col-xs-2" />
                 </div>
               ) : (
                 ""
               )}
-              <div class="col-12" style={{ marginTop: "-20px" }}>
-                <div class="panel">
+              <div className="col-12" style={{ marginTop: "-20px" }}>
+                <div className="panel">
                   {/* <details style={{ overflowX: "auto", overflowY: "hidden" }}> */}
                   <summary>
                     <ul>
-                      <li class="titleValue">
+                      <li className="titleValue">
                         <Fragment>
                           <a
                             className={this.state.hashExists ? "" : "hidden"}
@@ -168,8 +168,8 @@ class VerifyTab extends Component {
               </div>
             </div>
           ) : (
-            <div class="row mt-5">
-              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div className="row mt-5">
+              <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <span
                   style={{
                     fontWeight: "600",
@@ -186,7 +186,7 @@ class VerifyTab extends Component {
                     Learn more.
                   </a>
                 </span>
-                <div class="mt-4">
+                <div className="mt-4">
                   <input
                     type="file"
                     id="fileInputVerify"
@@ -196,13 +196,13 @@ class VerifyTab extends Component {
                       this.handleVerifyFileName(e.target.files);
                     }}
                     style={{ display: "none" }}
-                    class="inputfile inputfile-6"
+                    className="inputfile inputfile-6"
                     data-multiple-caption="{count} files selected"
                     multiple
                   />
                   <label
                     for="fileInputVerify"
-                    class="btn btn-lg w-50"
+                    className="btn btn-lg w-50"
                     style={{
                       backgroundColor: "#F9F7F7",
                       padding: "2%",
@@ -218,7 +218,7 @@ class VerifyTab extends Component {
                     BROWSE A File...
                   </label>
                 </div>
-                <div class="mt-2">
+                <div className="mt-2">
                   <span
                     style={{
                       fontWeight: "400",
@@ -229,7 +229,7 @@ class VerifyTab extends Component {
                   </span>
                 </div>
               </div>
-              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+              <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <h2
                   style={{
                     // color: "#6F706F",
@@ -252,7 +252,7 @@ class VerifyTab extends Component {
                 <div style={{ padding: "4% 4% 4% 6%" }}>
                   <input
                     style={{ borderRadius: "10px", fontSize: "30px" }}
-                    class="form-control form-control-lg"
+                    className="form-control form-control-lg"
                     onChange={e => this.setState({ hash: e.target.value })}
                     type="text"
                     value={this.state.hash}
@@ -263,8 +263,11 @@ class VerifyTab extends Component {
             </div>
           )}
 
-          <div class="row" style={{ textAlign: "center", marginTop: "20px" }}>
-            <div class="col-12">
+          <div
+            className="row"
+            style={{ textAlign: "center", marginTop: "20px" }}
+          >
+            <div className="col-12">
               {this.props.ErrMsg === "Item not found. Proof failed." ? (
                 <kbd style={{ fontSize: "16px" }}>
                   This document not found.&nbsp;&nbsp;
@@ -281,14 +284,14 @@ class VerifyTab extends Component {
               )}
             </div>
           </div>
-          <div class="row">
-            <div class="col-xl-3 col-lg-3 col-md-2 col-sm-2 col-xs-2" />
+          <div className="row">
+            <div className="col-xl-3 col-lg-3 col-md-2 col-sm-2 col-xs-2" />
             <div
-              class="col-xl-6 col-lg-6 col-md-8 col-sm-8 col-xs-8"
+              className="col-xl-6 col-lg-6 col-md-8 col-sm-8 col-xs-8"
               style={{ padding: "0% 6% 0% 6%" }}
             >
               <button
-                class="mt-4 mb-5 btn btn-verify"
+                className="mt-4 mb-5 btn btn-verify"
                 style={{ fontWeight: "700" }}
                 onClick={() => {
                   if (!this.state.hashExists) {
@@ -310,14 +313,14 @@ class VerifyTab extends Component {
                 }}
               >
                 {this.state.loading && (
-                  <i class="spinner-border" role="status" />
+                  <i className="spinner-border" role="status" />
                 )}
                 {!this.state.loading && (
                   <span>{this.state.hashExists ? "Verify New" : "Verify"}</span>
                 )}
               </button>
             </div>
-            <div class="col-xl-3 col-lg-3 col-md-2 col-sm-2 col-xs-2" />
+            <div className="col-xl-3 col-lg-3 col-md-2 col-sm-2 col-xs-2" />
           </div>
         </div>
       </React.Fragment>

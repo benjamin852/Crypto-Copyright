@@ -14,7 +14,9 @@ export const generateReceiverWallet = async () => {
   let mnemonic = await Metaverse.wallet.generateMnemonic();
   wallet = await Metaverse.wallet.fromMnemonic(mnemonic, "testnet");
   addresses = await wallet.getAddresses();
-  return mnemonic;
+  // let address = await wallet.getAddress();
+  console.log(addresses[0], "address[0]");
+  return [mnemonic, addresses[0]];
 };
 
 const generateFaucet = async () => {
@@ -46,8 +48,6 @@ async function getETPBalance() {
 }
 
 async function sendETP(amount, recipient_address) {
-  //Define the amount of ETP you want to send
-  //Measured in ETP units. There are 100 million units per ETP.
   var target = {
     ETP: amount //100 million units = 1 ETP
   };
@@ -130,6 +130,13 @@ async function withdraw() {
 }
 
 export async function run() {
-  await generateReceiverWallet();
-  withdraw();
+  const mnemonic = await generateReceiverWallet();
+  await withdraw();
+  return mnemonic;
 }
+
+export const getAvatar = async address => {
+  const testVar = await blockchain.avatar.get(address);
+  console.log(testVar, "<<<====testVar");
+  return testVar;
+};

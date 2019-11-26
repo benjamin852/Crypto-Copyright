@@ -30,14 +30,16 @@ export const createWallet = (username, password) => async dispatch => {
 };
 
 //LOGIN FUNCTIONALITY
-// export const getWallet = (username, password) => async dispatch => {
-//   const returningMnemonic = await Metaverse.wallet.fromMnemonic(
-//     faucetMnemonic,
-//     "testnet"
-//   );
 
-//   dispatch({
-//     type: GET_WALLET,
-//     payload: returningMnemonic
-//   });
-// };
+export const getWallet = password => async dispatch => {
+  let mnemonic;
+  const returningMnemonic = await Metaverse.wallet.fromMnemonic(
+    mnemonic,
+    "testnet"
+  );
+
+  dispatch({
+    type: GET_WALLET,
+    payload: returningMnemonic
+  });
+};

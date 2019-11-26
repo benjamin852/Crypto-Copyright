@@ -8,8 +8,8 @@ import {
 } from "./types";
 import { run, generateReceiverWallet } from "../BlockchainLogic/Faucet";
 import { convertColorToString } from "material-ui/utils/colorManipulator";
-import { keyString256, aesEncrypt } from "../utils/creepto";
-import { addItem, dbExist } from "../utils/idb";
+import { keyString256, aesEncrypt, aesDecrypt } from "../utils/creepto";
+import { addItem, getItem } from "../utils/idb";
 
 // let blockchain = Blockchain({ url: "https://explorer-testnet.mvs.org/api/" });
 
@@ -23,11 +23,11 @@ export const createWallet = (username, password) => async dispatch => {
   let passHash = keyString256(password);
   const key = passHash.key;
   const salt = passHash.salt;
-  let decryptedHash = aesEncrypt(key, newMnemonic);
+  let encryptedHash = aesEncrypt(key, newMnemonic);
 
   let secret = {
     salt: salt,
-    accoutnInfo: decryptedHash
+    accoutnInfo: encryptedHash
   };
   console.log(secret);
 
@@ -48,6 +48,15 @@ export const createWallet = (username, password) => async dispatch => {
 
 export const getWallet = password => async dispatch => {
   let mnemonic;
+  let { salt, accoutnInfo } = await getItem("secret").salt;
+  let key = keyString256(password, salt).key;
+  let decryptedMnemonic = aesDecrypt(key, accoutnInfo);
+  if (accoutnInfo === aesEncrypt(key, decryptedMnemonic)) {
+    mnemonic = decryptedMnemonic;
+  } else {
+    console.error("WRONG PASSWORD");
+  }
+
   const returningMnemonic = await Metaverse.wallet.fromMnemonic(
     mnemonic,
     "testnet"

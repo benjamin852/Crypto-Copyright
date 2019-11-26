@@ -21,7 +21,9 @@ class App extends Component {
   async componentWillMount() {
     let loggedIn = await getItem("loggedIn");
     if (loggedIn) {
-      this.setState({ loggedIn });
+      let account = await getItem("secret");
+      this.setState({ loggedIn,account });
+
     } else {
       let account = await getItem("secret");
       if (account) {

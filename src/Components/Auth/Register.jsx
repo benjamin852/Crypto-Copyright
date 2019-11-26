@@ -72,7 +72,7 @@ class Register extends Component {
                             primary={true}
                             style={style}
                             onClick={() =>
-                              this.props.createWallet(this.state.username)
+                              this.props.createWallet(this.state.username,this.state.password)
                             }
                           />
                         </div>
@@ -90,7 +90,9 @@ class Register extends Component {
   }
 }
 
-const mapStateToProps = props => {};
+const mapStateToProps = props => {
+
+};
 
 export default connect(mapStateToProps, { createWallet })(Register);
-// export default Register;
+

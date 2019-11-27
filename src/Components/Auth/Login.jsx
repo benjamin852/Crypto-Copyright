@@ -15,6 +15,11 @@ class Login extends Component {
   state = {
     password: ""
   };
+
+  handlePassword = event => {
+    let password = event.target.value
+    this.setState({password})
+  }
   render() {
     return (
       <React.Fragment>
@@ -54,7 +59,7 @@ class Login extends Component {
                             type="password"
                             hintText="Enter your Password"
                             floatingLabelText="Password"
-                            onChange={password => this.setState({ password })}
+                            onChange={this.handlePassword}
                           />
 
                           <br />
@@ -63,7 +68,7 @@ class Login extends Component {
                             variant="contained"
                             primary={true}
                             style={style}
-                            onClick={() => getWallet(this.state.password)}
+                            onClick={getWallet(this.state.password)}
                           />
                         </div>
                       </MuiThemeProvider>

@@ -9,7 +9,7 @@ import {
 import {
   run,
   generateReceiverWallet,
-  getAvatar
+  registerAvatar
 } from "../BlockchainLogic/Faucet";
 import { convertColorToString } from "material-ui/utils/colorManipulator";
 import { keyString256, aesEncrypt, aesDecrypt } from "../utils/creepto";
@@ -20,14 +20,14 @@ import { addItem, getItem } from "../utils/idb";
 const blockchain = Blockchain({ url: "https://explorer-testnet.mvs.org/api/" });
 
 export const createWallet = (username, password) => async dispatch => {
-  console.log(password)
-  const [newMnemonic, address] = await run();
-  const avatar = await getAvatar(address);
+  const [mnemonic, avatar] = await run();
+  console.log(mnemonic, "mnemonic in action");
+  console.log(avatar, "avatar in action");
 
   let passHash = keyString256(password);
   const key = passHash.key;
   const salt = passHash.salt;
-  let encryptedHash = aesEncrypt(key, newMnemonic);
+  let encryptedHash = aesEncrypt(key, mnemonic);
 
   let secret = {
     salt: salt,
@@ -36,9 +36,11 @@ export const createWallet = (username, password) => async dispatch => {
 
   await addItem([secret, true], ["secret", "loggedIn"]);
 
+
+  
   dispatch({
     type: CREATE_WALLET,
-    payload: [newMnemonic, avatar]
+    payload: [mnemonic, avatar]
   });
 };
 
@@ -57,10 +59,9 @@ export const getWallet = password => async dispatch => {
   }
 
   const returningMnemonic = await Metaverse.wallet.fromMnemonic(
-    mnemonic,
+    mnemonic, //mnemonic should already be stored in indexdb
     "testnet"
   );
-
   dispatch({
     type: GET_WALLET,
     payload: returningMnemonic

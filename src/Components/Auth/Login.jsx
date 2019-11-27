@@ -59,7 +59,9 @@ class Login extends Component {
                             type="password"
                             hintText="Enter your Password"
                             floatingLabelText="Password"
-                            onChange={this.handlePassword}
+                            onChange={e =>
+                              this.setState({ password: e.target.value })
+                            }
                           />
 
                           <br />

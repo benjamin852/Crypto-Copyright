@@ -4,19 +4,18 @@ let blockchain = Blockchain({ url: "https://explorer-testnet.mvs.org/api/" });
 
 let faucetMnemonic =
   "butter vacuum breeze glow virtual mutual veteran argue want pipe elite blast judge write sand toilet file joy exotic reflect truck topic receive wait";
-let newUserAddress;
 let wallet;
 let faucet;
 let addresses;
-let avatar;
+// let avatar;
 
-export const generateReceiverWallet = async () => {
-  let mnemonic = await Metaverse.wallet.generateMnemonic();
+export const generateReceiverWallet = async mnemonic => {
+  if (!mnemonic) {
+    mnemonic = await Metaverse.wallet.generateMnemonic();
+  }
   wallet = await Metaverse.wallet.fromMnemonic(mnemonic, "testnet");
   addresses = await wallet.getAddresses();
-  // let address = await wallet.getAddress();
-  console.log(addresses[0], "address[0]");
-  return [mnemonic, addresses[0]];
+  return mnemonic;
 };
 
 const generateFaucet = async () => {
@@ -30,7 +29,6 @@ async function getETPBalance() {
   let height = await blockchain.height();
   let address = addresses[0];
   // console.log(1, height)
-
   //Get a list of wallet transactions
   let txs = await blockchain.address.txs(address);
   // console.log(2, txs)
@@ -78,7 +76,6 @@ async function sendETP(amount, recipient_address) {
     result.utxo[0].address,
     result.change
   );
-
   //Sign the transaction with your wallet
   tx = await faucet.sign(tx);
 
@@ -88,13 +85,9 @@ async function sendETP(amount, recipient_address) {
 
   //Broadcast the transaction to the metaverse network.
   tx = await blockchain.transaction.broadcast(tx.toString("hex"));
-
-  // console.log("tx hash: ", tx);
-
-  //log amount ETP sent to WHO
 }
 
-async function registerAvatar(avatar_name, avatar_address) {
+export async function registerAvatar(avatar_name, avatar_address) {
   let change_address = avatar_address;
   let height = await blockchain.height();
   let txs = await blockchain.addresses.txs(addresses);
@@ -109,34 +102,34 @@ async function registerAvatar(avatar_name, avatar_address) {
     80000000,
     "testnet"
   );
-  // console.log("avt1", tx);
+  let avatar = await tx.outputs[0].attachment.symbol;
   tx = await wallet.sign(tx);
   tx = await tx.encode();
 
   tx = await blockchain.transaction.broadcast(tx.toString("hex"));
-  // console.log("avt2", tx);
+  return avatar;
 }
 
-async function withdraw() {
+export async function withdraw() {
   let balance = await getETPBalance();
+  console.log(balance);
   if ((await balance) < 110000000) {
     await generateFaucet();
     await sendETP(100000000, addresses[0]);
-
-    setTimeout(async () => {
-      await registerAvatar("LASTOFUS", addresses[0]);
-    }, 55000);
   }
+
+  let avatar = await new Promise((resolve, reject) => {
+    setTimeout(async () => {
+      resolve(registerAvatar("LASTOFUS15", addresses[0]));
+    }, 75000);
+  });
+
+  console.log(avatar, "avatar in withdraw<==");
+  return avatar;
 }
 
 export async function run() {
   const mnemonic = await generateReceiverWallet();
-  await withdraw();
-  return mnemonic;
+  const avatar = await withdraw();
+  return [mnemonic, avatar];
 }
-
-export const getAvatar = async address => {
-  const testVar = await blockchain.avatar.get(address);
-  console.log(testVar, "<<<====testVar");
-  return testVar;
-};

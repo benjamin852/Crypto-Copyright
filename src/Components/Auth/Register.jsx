@@ -48,7 +48,9 @@ class Register extends Component {
                             id="username"
                             hintText="Enter your digital identity"
                             floatingLabelText="Digital Identity"
-                            onChange={username => this.setState({ username })}
+                            onChange={e =>
+                              this.setState({ username: e.target.value })
+                            }
                           />
                           <br />
                           <TextField
@@ -56,14 +58,18 @@ class Register extends Component {
                             type="email"
                             hintText="Enter your email"
                             floatingLabelText="Email"
-                            onChange={email => this.setState({ email })}
+                            onChange={e =>
+                              this.setState({ email: e.target.value })
+                            }
                           />
                           <TextField
                             id="password"
                             type="password"
                             hintText="Enter your Password"
                             floatingLabelText="Password"
-                            onChange={password => this.setState({ password })}
+                            onChange={e => {
+                              this.setState({ password: e.target.value });
+                            }}
                           />
                           <br />
                           <RaisedButton
@@ -72,7 +78,7 @@ class Register extends Component {
                             primary={true}
                             style={style}
                             onClick={() =>
-                              this.props.createWallet(this.state.username)
+                              this.props.createWallet(this.state.password)
                             }
                           />
                         </div>

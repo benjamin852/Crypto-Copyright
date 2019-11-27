@@ -9,29 +9,25 @@ import {
 import {
   run,
   generateReceiverWallet,
-  getAvatar
+  registerAvatar
 } from "../BlockchainLogic/Faucet";
 
-const blockchain = Blockchain({ url: "https://explorer-testnet.mvs.org/api/" });
-
-export const createWallet = (username, password) => async dispatch => {
-  const [newMnemonic, address] = await run();
-  //^working
-  const avatar = await getAvatar(address);
-  console.log(avatar, "<<==== avatar");
+export const createWallet = password => async dispatch => {
+  const [mnemonic, avatar] = await run();
+  console.log(mnemonic, "mnemonic in action");
+  console.log(avatar, "avatar in action");
   dispatch({
     type: CREATE_WALLET,
-    payload: [newMnemonic, avatar]
+    payload: [mnemonic, avatar]
   });
 };
 
 export const getWallet = password => async dispatch => {
   let mnemonic;
   const returningMnemonic = await Metaverse.wallet.fromMnemonic(
-    mnemonic,
+    mnemonic, //mnemonic should already be stored in indexdb
     "testnet"
   );
-
   dispatch({
     type: GET_WALLET,
     payload: returningMnemonic

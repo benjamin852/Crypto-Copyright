@@ -6,19 +6,23 @@ import {
   GET_WALLET_ERR_MESSAGE,
   GET_WALLET
 } from "./types";
-import { run, generateReceiverWallet } from "../BlockchainLogic/Faucet";
+import {
+  run,
+  generateReceiverWallet,
+  getAvatar
+} from "../BlockchainLogic/Faucet";
 import { convertColorToString } from "material-ui/utils/colorManipulator";
 import { keyString256, aesEncrypt, aesDecrypt } from "../utils/creepto";
 import { addItem, getItem } from "../utils/idb";
 
 // let blockchain = Blockchain({ url: "https://explorer-testnet.mvs.org/api/" });
 
-// let avatarInfo = await blockchain.avatar.get("tSvWqidQE5tKCCVaucpeECoHvyExq54t2p");
-// console.log(avatarInfo);
+const blockchain = Blockchain({ url: "https://explorer-testnet.mvs.org/api/" });
 
 export const createWallet = (username, password) => async dispatch => {
-  run();
-  const newMnemonic = await generateReceiverWallet();
+  console.log(password)
+  const [newMnemonic, address] = await run();
+  const avatar = await getAvatar(address);
 
   let passHash = keyString256(password);
   const key = passHash.key;
@@ -29,30 +33,25 @@ export const createWallet = (username, password) => async dispatch => {
     salt: salt,
     accoutnInfo: encryptedHash
   };
-  console.log(secret);
 
   await addItem([secret, true], ["secret", "loggedIn"]);
+
   dispatch({
     type: CREATE_WALLET,
-    payload: newMnemonic
+    payload: [newMnemonic, avatar]
   });
-  // .catch(err => {
-  //   dispatch({
-  //     type: CREATE_WALLET_ERR_MESSAGE,
-  //     payload: err.response.data
-  //   });
-  // });
 };
 
-//LOGIN FUNCTIONALITY
-
 export const getWallet = password => async dispatch => {
+  console.log(password)
   let mnemonic;
-  let { salt, accoutnInfo } = await getItem("secret").salt;
+  let { salt, accoutnInfo } = await getItem("secret");
   let key = keyString256(password, salt).key;
+  console.log(key)
   let decryptedMnemonic = aesDecrypt(key, accoutnInfo);
   if (accoutnInfo === aesEncrypt(key, decryptedMnemonic)) {
     mnemonic = decryptedMnemonic;
+    console.log(mnemonic)
   } else {
     console.error("WRONG PASSWORD");
   }

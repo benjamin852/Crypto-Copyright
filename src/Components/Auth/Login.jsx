@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-// import { MuiThemeProvider } from "@material-ui/core/styles";
-// import Button from "@material-ui/core/Button";
-// import TextField from "@material-ui/core/TextField";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import RaisedButton from "material-ui/RaisedButton";
 import TextField from "material-ui/TextField";
+import { connect } from "react-redux";
+
+import { getWallet } from "../../Actions/walletGeneration";
 import "./Login.css";
 
 const style = {
@@ -12,6 +12,9 @@ const style = {
 };
 
 class Login extends Component {
+  state = {
+    password: ""
+  };
   render() {
     return (
       <React.Fragment>
@@ -51,6 +54,7 @@ class Login extends Component {
                             type="password"
                             hintText="Enter your Password"
                             floatingLabelText="Password"
+                            onChange={password => this.setState({ password })}
                           />
 
                           <br />
@@ -59,7 +63,7 @@ class Login extends Component {
                             variant="contained"
                             primary={true}
                             style={style}
-                            onClick={e => console.log(e.target.value)}
+                            onClick={() => getWallet(this.state.password)}
                           />
                         </div>
                       </MuiThemeProvider>
@@ -76,4 +80,6 @@ class Login extends Component {
   }
 }
 
-export default Login;
+const mapStateToProps = props => {};
+
+export default connect(mapStateToProps, { getWallet })(Login);

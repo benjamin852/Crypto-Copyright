@@ -5,6 +5,7 @@ const state = {
   proveSuccessMsg: "", //renders verify page either for URL or to set hash
   downloadSuccessMsg: "",
   avatar: "",
+  mnemonic: "",
   mits: []
 };
 
@@ -36,7 +37,9 @@ function ProveitReducer(mState = { ...state }, action) {
     case CREATE_WALLET:
       if (action.payload === undefined || action.payload === null) {
       } else {
-        mState.walletInfo = action.payload;
+        console.log(action.payload, "action.payload<<<===");
+        mState.mnemonic = action.payload[0];
+        mState.avatar = action.payload[1];
       }
     default:
       return deepCopy(mState);

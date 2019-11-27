@@ -71,9 +71,10 @@ class Register extends Component {
                             variant="contained"
                             primary={true}
                             style={style}
-                            onClick={() =>
-                              this.props.createWallet(this.state.username,this.state.password)
-                            }
+                            onClick={createWallet(
+                              this.state.username,
+                              this.state.password
+                            )}
                           />
                         </div>
                       </MuiThemeProvider>
@@ -90,9 +91,6 @@ class Register extends Component {
   }
 }
 
-const mapStateToProps = props => {
-
-};
+const mapStateToProps = props => {};
 
 export default connect(mapStateToProps, { createWallet })(Register);
-

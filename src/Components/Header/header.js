@@ -8,10 +8,18 @@ import Work from "../Working/works";
 import Team from "../Team/team";
 import Metaverse from "../Metaverse/metaverse";
 import NewsLetter from "../NewsLetter/newsLetter";
+import { updateItem } from "../../utils/idb";
+import { login_out } from "../../Actions/Authentication";
+import { connect } from "react-redux";
 
 class Header extends Component {
   state = {
     currentTab: 0
+  };
+
+  handleLogout = async event => {
+    await updateItem("loggedIn", false);
+    this.props.login_out(false);
   };
   render() {
     return (
@@ -80,6 +88,9 @@ class Header extends Component {
                   Newsletter
                 </a>
               </li>
+              <li onClick={this.handleLogout} className="nav-item">
+                <a className="nav-link text-white link-style mr-5">Logout</a>
+              </li>
             </ul>
           </div>
         </nav>
@@ -109,4 +120,8 @@ class Header extends Component {
   }
 }
 
-export default Header;
+const mapStateToProps = state => ({
+  loggedIn: state.ProveitReducer.loggedIn
+});
+
+export default connect(mapStateToProps, { login_out })(Header);

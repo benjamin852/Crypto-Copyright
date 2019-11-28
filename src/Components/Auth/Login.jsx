@@ -2,10 +2,12 @@ import React, { Component } from "react";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import RaisedButton from "material-ui/RaisedButton";
 import TextField from "material-ui/TextField";
+import Button from "material-ui/FlatButton";
 import { connect } from "react-redux";
 
 import { getWallet } from "../../Actions/walletGeneration";
-import { getItem } from "../../utils/idb";
+import { login_out } from "../../Actions/Authentication";
+import { getItem, deleteItem } from "../../utils/idb";
 import { keyString256, aesEncrypt, aesDecrypt } from "../../utils/creepto";
 
 import "./Login.css";
@@ -34,10 +36,17 @@ class Login extends Component {
       if (walletInfo === aesEncrypt(key, decryptedMnemonic)) {
         mnemonic = decryptedMnemonic;
         this.props.getWallet(mnemonic);
+        this.props.login_out(true);
       } else {
         this.setState({ error: "wrong password" });
       }
     }
+  };
+
+  handleRegister = async event => {
+    await deleteItem("accountInfo");
+    await deleteItem("loggedIn");
+    window.location.reload();
   };
 
   render() {
@@ -97,6 +106,16 @@ class Login extends Component {
                           ) : (
                             ""
                           )}
+                          <br />
+                          <span>Or</span>
+                          <br />
+                          <Button
+                            className="registerBtn"
+                            onClick={this.handleRegister}
+                          >
+                            Register New Account
+                          </Button>
+                          <br />
                           <RaisedButton
                             disabled={this.state.password ? false : true}
                             label="Login"
@@ -121,8 +140,8 @@ class Login extends Component {
 }
 
 const mapStateToProps = state => {
-  // mnemonic : state.ProveItReducer.mnemonic
+  // mnemonic : state.ProveitReducer.mnemonic
 };
 // this.props.mnemonic
 
-export default connect(mapStateToProps, { getWallet })(Login);
+export default connect(mapStateToProps, { getWallet, login_out })(Login);

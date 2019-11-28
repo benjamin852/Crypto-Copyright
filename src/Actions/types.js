@@ -14,3 +14,5 @@ export const GET_WALLET_ERR_MESSAGE = "GET_WALLET_ERR_MESSAGE";
 export const GET_WALLET = "GET_WALLET";
 export const CREATE_MIT = "CREATE_MIT";
 export const SENT_MIT = "SEND_MIT";
+export const AUTHENTICATION = "AUTHENTICATION";
+export const CREATE_ACCOUNT = "CREATE_ACCOUNT";

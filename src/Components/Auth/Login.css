@@ -19,12 +19,18 @@
 }
 
 span.error {
-  color : red;
+  color: red;
   font-size: 13px;
-  border : 1px solid red;
+  border: 1px solid red;
   display: block;
   text-align: center;
   padding: 4px;
+}
+
+.registerBtn {
+  padding: 0 5px !important;
+  display: inline-block;
+  color: #555 !important;
 }
 @keyframes LogoMoveToRight {
   0% {

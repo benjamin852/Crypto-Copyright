@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import ProveitReducer from "../Reducer/proveItReducer";
-import ProveitErrorReducer from "../Reducer/proveItErrorReducer";
+import ProveitReducer from "./proveItReducer";
+import ProveitErrorReducer from "./proveItErrorReducer";
 
 const rootReducer = combineReducers({
   ProveitReducer,

@@ -3,7 +3,9 @@ import {
   PROVE,
   DOWNLOAD,
   CREATE_WALLET,
-  GET_WALLET
+  GET_WALLET,
+  AUTHENTICATION,
+  CREATE_ACCOUNT
 } from "../Actions/types";
 
 const state = {
@@ -12,7 +14,9 @@ const state = {
   downloadSuccessMsg: "",
   avatar: "",
   mnemonic: "",
-  mits: []
+  mits: [],
+  loggedIn: false,
+  account: null
 };
 
 function ProveitReducer(mState = { ...state }, action) {
@@ -28,7 +32,7 @@ function ProveitReducer(mState = { ...state }, action) {
     case PROVE:
       if (action.payload === undefined || action.payload === null) {
       } else {
-        console.log(action.payload, "CASE  Prove action.payload");
+        console.log(action.payload, "CASE Prove action.payload");
         mState.proveSuccessMsg = action.payload;
       }
       return deepCopy(mState);
@@ -52,6 +56,18 @@ function ProveitReducer(mState = { ...state }, action) {
       if (action.payload === undefined || action.payload === null) {
       } else {
         mState.mnemonic = action.payload;
+      }
+      return deepCopy(mState);
+    case AUTHENTICATION:
+      if (action.payload === undefined || action.payload === null) {
+      } else {
+        mState.loggedIn = action.payload;
+      }
+      return deepCopy(mState);
+    case CREATE_ACCOUNT:
+      if (action.payload === undefined || action.payload === null) {
+      } else {
+        mState.account = action.payload;
       }
       return deepCopy(mState);
     default:

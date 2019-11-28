@@ -1,65 +1,59 @@
 import React, { Component } from "react";
-
-import "./App.css";
-
 import Login from "./Components/Auth/Login";
 import Register from "./Components/Auth/Register";
 import Header from "./Components/Header/header";
-// import Test from "./Components/TabView/test";
-// import Banner from "./Components/Banner/banner";
-// import Intro from "./Components/Intro/intro";
-import { Provider } from "react-redux";
-import store from "./Store/store";
 import { getItem, updateItem } from "./utils/idb";
 import { connect } from "react-redux";
+import { login_out } from "./Actions/Authentication";
+import { updateAccount } from "./Actions/Account";
+
+import "./App.css";
 
 class App extends Component {
-  state = {
-    account: null,
-    loggedIn: false
-  };
-
   async componentWillMount() {
     let account = await getItem("accountInfo");
     console.log(account);
     if (account) {
       let loggedIn = await getItem("loggedIn");
 
-      this.setState({ loggedIn, account });
+      this.props.login_out(loggedIn);
+      this.props.updateAccount(account);
     }
   }
 
   async cleanApp() {
-    await updateItem("loggedIn", false);
+    // await updateItem("loggedIn", false);
   }
   componentDidMount() {
     window.addEventListener("beforeunload", this.cleanApp());
   }
   async componentWillUnmount() {
-    this.cleanApp();
+    // this.cleanApp();
     window.removeEventListener("beforeunload", this.cleanApp());
   }
 
   render() {
     return (
-      <Provider store={store}>
-        <div className="home-bg" style={{ overflowX: "hidden" }}>
-          {this.state.account ? (
-            this.state.loggedIn ? (
-              <Header />
-            ) : (
-              <Login username={this.state.account.avatar} />
-            )
+      <div className="home-bg" style={{ overflowX: "hidden" }}>
+        {this.props.account ? (
+          this.props.loggedIn ? (
+            <Header />
           ) : (
-            <Register />
-          )}
-          {/* <Register /> */}
-          {/* <Login /> */}
-          {/* <Header /> */}
-        </div>
-      </Provider>
+            <Login username={this.props.account.avatar} />
+          )
+        ) : (
+          <Register />
+        )}
+        {/* <Register /> */}
+        {/* <Login /> */}
+        {/* <Header /> */}
+      </div>
     );
   }
 }
+const mapStateToProps = state => ({
+  loggedIn: state.ProveitReducer.loggedIn,
+  account: state.ProveitReducer.account
+});
 
-export default App;
+export default connect(mapStateToProps, { login_out, updateAccount })(App);

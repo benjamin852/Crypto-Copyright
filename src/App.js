@@ -44,7 +44,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <div className="home-bg" style={{ overflowX: "hidden" }}>
-          {this.state.account ? (
+          {/* {this.state.account ? (
             this.state.loggedIn ? (
               <Header />
             ) : (
@@ -52,8 +52,8 @@ class App extends Component {
             )
           ) : (
             <Register />
-          )}
-          {/* <Register /> */}
+          )} */}
+          <Register />
           {/* <Login /> */}
           {/* <Header /> */}
         </div>

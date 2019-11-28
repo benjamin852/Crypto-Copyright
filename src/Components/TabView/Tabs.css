@@ -81,3 +81,7 @@
 .file:hover {
   background-color: #52859e;
 }
+
+.mitInput input {
+  text-align: center;
+}

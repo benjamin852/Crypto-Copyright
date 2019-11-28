@@ -20,26 +20,19 @@ export const generateReceiverWallet = async mnemonic => {
 
 const generateFaucet = async () => {
   faucet = await Metaverse.wallet.fromMnemonic(faucetMnemonic, "testnet");
-
-  //console.log("FAUCET ADDRESS : ", faucet.getAddresses());
 };
 
 async function getETPBalance() {
-  //Get the lastest Blockchain Length
   let height = await blockchain.height();
   let address = addresses[0];
-  // console.log(1, height)
   //Get a list of wallet transactions
   let txs = await blockchain.address.txs(address);
-  // console.log(2, txs)
 
   //Get a list of unspent transaction outputs amongst your transactions
   let utxo = await Metaverse.output.calculateUtxo(txs.transactions, address);
-  // console.log(3, utxo)
 
   //Calculate your balances based on the utxos
   let balances = await blockchain.balance.all(utxo, addresses, height);
-  // console.log(4, balances)
 
   let ETPBalance = balances.ETP.available;
   return ETPBalance;
@@ -50,10 +43,6 @@ async function sendETP(amount, recipient_address) {
     ETP: amount //100 million units = 1 ETP
   };
 
-  //Define recipient
-  console.log("faucet", await faucet);
-
-  //Get latest blockchain length
   let height = await blockchain.height();
   //Get a list of wallet transactions
   let txs = await blockchain.addresses.txs(await faucet.getAddresses());
@@ -65,7 +54,6 @@ async function sendETP(amount, recipient_address) {
   );
   //Collect enough utxos to pay for the transfer
   let result = await Metaverse.output.findUtxo(utxos, target, height);
-  // console.log(1, result);
 
   //Build the transaction object
   let tx = await Metaverse.transaction_builder.send(
@@ -81,11 +69,10 @@ async function sendETP(amount, recipient_address) {
 
   //Encode the transaction into bytecode
   tx = await tx.encode();
-  // console.log(11, tx);
 
   //Broadcast the transaction to the metaverse network.
   tx = await blockchain.transaction.broadcast(tx.toString("hex"));
-  console.log(1313,tx )
+  return tx;
 }
 
 export async function registerAvatar(avatar_name, avatar_address) {
@@ -111,17 +98,42 @@ export async function registerAvatar(avatar_name, avatar_address) {
   return avatar;
 }
 
+// export async function withdraw() {
+//   let balance = await getETPBalance();
+//   console.log(balance);
+//   if ((await balance) < 110000000) {
+//     await generateFaucet();
+//     const tx = await sendETP(100000000, addresses[0]);
+//     console.log(tx, "new tx");
+//     let avatar = await new Promise((resolve, reject) => {
+//       setInterval(async () => {
+//         const hashURL = await axios.get(
+//           `https://explorer-testnet.mvs.org/api/tx/${tx.hash}`
+//         );
+//         if (hashURL.data.status.success) {
+//           console.log("hit");
+//           // avatar = await registerAvatar("LASTOFUS19", addresses[0]);
+//           console.log(addresses[0]);
+//           resolve(registerAvatar("LASTOFUS20", addresses[0]));
+//         }
+//       }, 10000);
+//     });
+//     console.log(avatar, "avatar in withdraw<==");
+//     return avatar;
+//   }
+// }
+
 export async function withdraw() {
   let balance = await getETPBalance();
   console.log(balance);
-  if ((await balance) < 110000000) {
+  if ((await balance) < 210000000) {
     await generateFaucet();
-    await sendETP(100000000, addresses[0]);
+    await sendETP(200000000, addresses[0]);
   }
 
   let avatar = await new Promise((resolve, reject) => {
     setTimeout(async () => {
-      resolve(registerAvatar("LASTOFUS16", addresses[0]));
+      resolve(registerAvatar("LASTOFUS196", addresses[0]));
     }, 75000);
   });
 

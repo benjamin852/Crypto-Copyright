@@ -33,7 +33,7 @@ class Login extends Component {
 
       if (walletInfo === aesEncrypt(key, decryptedMnemonic)) {
         mnemonic = decryptedMnemonic;
-        this.props.getWallet(mnemonic)
+        this.props.getWallet(mnemonic);
       } else {
         this.setState({ error: "wrong password" });
       }
@@ -71,6 +71,7 @@ class Login extends Component {
                       <MuiThemeProvider>
                         <div>
                           <TextField
+                            error
                             hintText="Enter your digital identity"
                             floatingLabelText="Digital Identity"
                             disabled
@@ -78,7 +79,7 @@ class Login extends Component {
                           />
                           <br />
                           <TextField
-                            error
+                            error={true}
                             type="password"
                             hintText="Enter your Password"
                             floatingLabelText="Password"
@@ -88,10 +89,14 @@ class Login extends Component {
                             onChange={e =>
                               this.setState({ password: e.target.value })
                             }
-                            onFocus={e=>this.setState({error : null})}
+                            onFocus={e => this.setState({ error: null })}
                           />
                           <br />
-                          {this.state.error ? <span className="error">{this.state.error}</span> : ""}
+                          {this.state.error ? (
+                            <span className="error">{this.state.error}</span>
+                          ) : (
+                            ""
+                          )}
                           <RaisedButton
                             disabled={this.state.password ? false : true}
                             label="Login"

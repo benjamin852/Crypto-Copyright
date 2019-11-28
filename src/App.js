@@ -22,8 +22,7 @@ class App extends Component {
     let loggedIn = await getItem("loggedIn");
     if (loggedIn) {
       let account = await getItem("secret");
-      this.setState({ loggedIn,account });
-
+      this.setState({ loggedIn, account });
     } else {
       let account = await getItem("secret");
       if (account) {
@@ -41,12 +40,12 @@ class App extends Component {
             } else {
             }
           */}
-          {
+          {/* {
             this.state.loggedIn ? <Header /> : (this.state.account ? <Login /> : <Register /> ) 
-          }
+          } */}
           {/* <Register /> */}
           {/* <Login /> */}
-          {/* <Header /> */}
+          <Header />
         </div>
       </Provider>
     );

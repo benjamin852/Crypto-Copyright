@@ -3,6 +3,7 @@ import { SHA256 } from "crypto-js";
 import { postStoreAction } from "../../Actions/postStore";
 import { getStoreAction } from "../../Actions/getStore";
 import { connect } from "react-redux";
+import { TextField } from "material-ui/TextField";
 import "./Tabs.css";
 
 class CreateTab extends Component {
@@ -144,6 +145,15 @@ class CreateTab extends Component {
                       Save the file online
                     </label>
                   </div>
+                  {/* <TextField
+                    id="outlined-helperText"
+                    label="Helper text"
+                    defaultValue="Default Value"
+                    // className={classes.textField}
+                    helperText="Some important text"
+                    margin="normal"
+                    variant="outlined"
+                  /> */}
                 </div>
                 <div className="d-none d-xl-block d-lg-block d-md-block d-sm-block col-xl-3 col-lg-3 col-md-2 col-sm-2" />
                 <div className="d-none d-xl-block d-lg-block d-md-block d-sm-block col-xl-3 col-lg-3 col-md-2 col-sm-2" />
@@ -283,8 +293,9 @@ class CreateTab extends Component {
 const mapStateToProps = state => ({
   SuccessMsg: state.ProveitReducer.successMsg,
   // SuccessMsg: state.ProveitReducer.getStoreSuccessMsg,
-  ErrorMsg: state.ProveitErrorReducer.StoreErrorMsg
+  ErrorMsg: state.ProveitErrorReducer.StoreErrorMsg,
   // ErrorMsg: state.ProveitErrorReducer.getStoreErrorMsg
+  Avatar: state.ProveitReducer.avatar
 });
 
 export default connect(mapStateToProps, { postStoreAction, getStoreAction })(

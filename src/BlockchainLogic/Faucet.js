@@ -85,6 +85,7 @@ async function sendETP(amount, recipient_address) {
 
   //Broadcast the transaction to the metaverse network.
   tx = await blockchain.transaction.broadcast(tx.toString("hex"));
+  console.log(1313,tx )
 }
 
 export async function registerAvatar(avatar_name, avatar_address) {
@@ -120,7 +121,7 @@ export async function withdraw() {
 
   let avatar = await new Promise((resolve, reject) => {
     setTimeout(async () => {
-      resolve(registerAvatar("LASTOFUS15", addresses[0]));
+      resolve(registerAvatar("LASTOFUS16", addresses[0]));
     }, 75000);
   });
 

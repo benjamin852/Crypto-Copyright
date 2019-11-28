@@ -6,11 +6,12 @@ import Login from "./Components/Auth/Login";
 import Register from "./Components/Auth/Register";
 import Header from "./Components/Header/header";
 // import Test from "./Components/TabView/test";
-import Banner from "./Components/Banner/banner";
-import Intro from "./Components/Intro/intro";
+// import Banner from "./Components/Banner/banner";
+// import Intro from "./Components/Intro/intro";
 import { Provider } from "react-redux";
 import store from "./Store/store";
-import { getItem } from "./utils/idb";
+import { getItem, updateItem } from "./utils/idb";
+import { connect } from "react-redux";
 
 class App extends Component {
   state = {
@@ -19,31 +20,39 @@ class App extends Component {
   };
 
   async componentWillMount() {
-    let loggedIn = await getItem("loggedIn");
-    if (loggedIn) {
-      let account = await getItem("secret");
-      this.setState({ loggedIn,account });
+    let account = await getItem("accountInfo");
+    console.log(account);
+    if (account) {
+      let loggedIn = await getItem("loggedIn");
 
-    } else {
-      let account = await getItem("secret");
-      if (account) {
-        this.setState({ account });
-      }
+      this.setState({ loggedIn, account });
     }
   }
+
+  async cleanApp() {
+    await updateItem("loggedIn", false);
+  }
+  componentDidMount() {
+    window.addEventListener("beforeunload", this.cleanApp());
+  }
+  async componentWillUnmount() {
+    this.cleanApp();
+    window.removeEventListener("beforeunload", this.cleanApp());
+  }
+
   render() {
     return (
       <Provider store={store}>
         <div className="home-bg" style={{ overflowX: "hidden" }}>
-          {/*
-           if (accountExists == true) {
-              <Login/>
-            } else {
-            }
-          */}
-          {
-            this.state.loggedIn ? <Header /> : (this.state.account ? <Login /> : <Register /> ) 
-          }
+          {this.state.account ? (
+            this.state.loggedIn ? (
+              <Header />
+            ) : (
+              <Login username={this.state.account.avatar} />
+            )
+          ) : (
+            <Register />
+          )}
           {/* <Register /> */}
           {/* <Login /> */}
           {/* <Header /> */}
@@ -52,5 +61,7 @@ class App extends Component {
     );
   }
 }
+
+
 
 export default App;

@@ -5,6 +5,9 @@ import TextField from "material-ui/TextField";
 import { connect } from "react-redux";
 
 import { getWallet } from "../../Actions/walletGeneration";
+import { getItem } from "../../utils/idb";
+import { keyString256, aesEncrypt, aesDecrypt } from "../../utils/creepto";
+
 import "./Login.css";
 
 const style = {
@@ -13,13 +16,30 @@ const style = {
 
 class Login extends Component {
   state = {
-    password: ""
+    password: "",
+    avatar: "",
+    error: null
   };
 
-  handlePassword = event => {
-    let password = event.target.value
-    this.setState({password})
-  }
+  handleClick = async event => {
+    event.preventDefault();
+    if (this.state.password) {
+      let password = this.state.password;
+      let mnemonic;
+      let { salt, walletInfo } = await getItem("accountInfo");
+      let key = keyString256(password, salt).key;
+
+      let decryptedMnemonic = aesDecrypt(key, walletInfo);
+
+      if (walletInfo === aesEncrypt(key, decryptedMnemonic)) {
+        mnemonic = decryptedMnemonic;
+        this.props.getWallet(mnemonic)
+      } else {
+        this.setState({ error: "wrong password" });
+      }
+    }
+  };
+
   render() {
     return (
       <React.Fragment>
@@ -53,24 +73,32 @@ class Login extends Component {
                           <TextField
                             hintText="Enter your digital identity"
                             floatingLabelText="Digital Identity"
+                            disabled
+                            value={this.props.username}
                           />
                           <br />
                           <TextField
+                            error
                             type="password"
                             hintText="Enter your Password"
                             floatingLabelText="Password"
+                            helperText={
+                              this.state.error ? this.state.error : ""
+                            }
                             onChange={e =>
                               this.setState({ password: e.target.value })
                             }
+                            onFocus={e=>this.setState({error : null})}
                           />
-
                           <br />
+                          {this.state.error ? <span className="error">{this.state.error}</span> : ""}
                           <RaisedButton
+                            disabled={this.state.password ? false : true}
                             label="Login"
                             variant="contained"
                             primary={true}
                             style={style}
-                            onClick={getWallet(this.state.password)}
+                            onClick={this.handleClick}
                           />
                         </div>
                       </MuiThemeProvider>
@@ -87,6 +115,9 @@ class Login extends Component {
   }
 }
 
-const mapStateToProps = props => {};
+const mapStateToProps = state => {
+  // mnemonic : state.ProveItReducer.mnemonic
+};
+// this.props.mnemonic
 
 export default connect(mapStateToProps, { getWallet })(Login);

@@ -1,4 +1,10 @@
-import { STORE, PROVE, DOWNLOAD, CREATE_WALLET } from "../Actions/types";
+import {
+  STORE,
+  PROVE,
+  DOWNLOAD,
+  CREATE_WALLET,
+  GET_WALLET
+} from "../Actions/types";
 
 const state = {
   successMsg: "",
@@ -41,6 +47,13 @@ function ProveitReducer(mState = { ...state }, action) {
         mState.mnemonic = action.payload[0];
         mState.avatar = action.payload[1];
       }
+      return deepCopy(mState);
+    case GET_WALLET:
+      if (action.payload === undefined || action.payload === null) {
+      } else {
+        mState.mnemonic = action.payload;
+      }
+      return deepCopy(mState);
     default:
       return deepCopy(mState);
   }

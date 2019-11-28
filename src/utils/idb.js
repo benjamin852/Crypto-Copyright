@@ -40,12 +40,19 @@ let addItem = async (value, key) => {
 
 let getItem = async key => {
   let db = await initDB();
-
   let items = db.get("wallet", key);
 
   return items;
 };
 
-let updateItem = async(key,value) => {}
+let updateItem = async(key,value) => {
+  let db = await initDB()
+  await db.put("wallet",value,key )
+}
 
-export { initDB, dbExist, addItem, getItem,updateItem };
+let deleteItem = async key => {
+  let db = await initDB()
+  await db.delete("wallet", key)
+}
+
+export { initDB, dbExist, addItem, getItem,updateItem,deleteItem };

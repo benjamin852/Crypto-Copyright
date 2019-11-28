@@ -96,6 +96,8 @@ class Register extends Component {
   }
 }
 
-const mapStateToProps = props => {};
+const mapStateToProps = state => {
+  
+};
 
 export default connect(mapStateToProps, { createWallet })(Register);

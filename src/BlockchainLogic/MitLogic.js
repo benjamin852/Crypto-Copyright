@@ -1,5 +1,7 @@
-let mnemonic =
-  "butter vacuum breeze glow virtual mutual veteran argue want pipe elite blast judge write sand toilet file joy exotic reflect truck topic receive wait";
+import Metaverse from "metaversejs";
+import Blockchain from "mvs-blockchain";
+
+// let mnemonic = "butter vacuum breeze glow virtual mutual veteran argue want pipe elite blast judge write sand toilet file joy exotic reflect truck topic receive wait";
 let wallet;
 let addresses;
 let blockchain;
@@ -9,49 +11,43 @@ let MITsymbols;
 let MITData;
 
 async function initialize() {
+  //   await populateAvatarSelect(); //drop down menu of avatars
+  //   await showMITBalances(); //display balance data
+  //   await populateMITSelect(); //drop down menu for mit
+}
+
+//create new MIT
+export async function issueMIT(mnemonic, symbol) {
   blockchain = await Blockchain({
     url: "https://explorer-testnet.mvs.org/api/"
   });
   wallet = await Metaverse.wallet.fromMnemonic(mnemonic, "testnet");
-  addresses = await wallet.getAddresses();
-  avatars = new Array();
-  await getAvatars(); //nova nova2 cangr
-  await populateAvatarSelect(); //drop down menu of avatars
-  await showMITBalances(); //display balance data
-  await populateMITSelect(); //drop down menu for mit
-}
+  let address = await wallet.getAddresses();
+  console.log(address, "address");
+  //   avatars = new Array();
+  //   await getAvatars();  //<--nova nova2 cangr
 
-//create new MIT
-async function issueMIT() {
-  let symbol = document.getElementById("MITSymbol").value;
-  let content = document.getElementById("MITContent").value;
-  let target = {
-    ETP: 10000
-  };
+  /*issuer avatar -> recipient address & change_address are the same.*/
+  let avatar = await blockchain.avatar.get(address);
 
-  //issuer avatar -> recipient address & change_address are the same.
+  //   let issuingAddress = await getAvatar(avatar);
+  console.log(address, "this SHOULDDD be the same as address above");
+  address = address.toString();
 
-  let issuer_avatar = avatarSelect[avatarSelect.selectedIndex].value;
-  console.log(issuer_avatar, "issuer_avatar");
-  let issuingAddress = await getAvatar(issuer_avatar);
-  issuingAddress = issuingAddress.toString();
-  let recipient_address = issuingAddress;
-  console.log(recipient_address, "recipient_address");
-  let change_address = issuingAddress;
+  //   let recipient_address = address;
+  console.log(address, "recipient_address");
 
   let height = await blockchain.height();
   let txs = await blockchain.addresses.txs(wallet.getAddresses());
-  let utxos = await Metaverse.output.calculateUtxo(txs.transactions, [
-    recipient_address
-  ]); //Get all utxo
+  let utxos = await Metaverse.output.calculateUtxo(txs.transactions, [address]); //Get all utxo
   let result = await Metaverse.output.findUtxo(utxos, {}, height, 10000); //Collect utxo to pay fee of 0.0001 ETP
   let tx = await Metaverse.transaction_builder.registerMIT(
     result.utxo,
-    recipient_address,
-    issuer_avatar,
+    address,
+    avatar,
     symbol,
-    content,
-    change_address,
+    "content", //<- fix later
+    address,
     result.change
   );
   tx = await wallet.sign(tx);
@@ -60,7 +56,7 @@ async function issueMIT() {
   // .then(tx=>tx.toString('hex'))
   console.log(tx, "tx");
 }
-
+/*
 //Transfer MIT To Selected avatar not address
 async function sendMIT() {
   let MITIndex = MITSelect[MITSelect.selectedIndex].value;
@@ -193,8 +189,12 @@ async function getAvatars() {
   }
 }
 
+*/
 //used in issueMit() as a logic func
+//consider renaming getAddress()
 async function getAvatar(avatar) {
+  console.log(avatar, "avatar at the bottom");
   let avatarInfo = await blockchain.avatar.get(avatar);
+  console.log(avatarInfo, "avatarInfo");
   return avatarInfo.address;
 }

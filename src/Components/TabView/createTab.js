@@ -2,8 +2,12 @@ import React, { Component } from "react";
 import { SHA256 } from "crypto-js";
 import { postStoreAction } from "../../Actions/postStore";
 import { getStoreAction } from "../../Actions/getStore";
+import { createMit } from "../../Actions/MitGeneration";
 import { connect } from "react-redux";
-import { TextField } from "material-ui/TextField";
+
+import TextField from "material-ui/TextField";
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+
 import "./Tabs.css";
 
 class CreateTab extends Component {
@@ -16,7 +20,8 @@ class CreateTab extends Component {
     checkboxStatus: false,
     loading: false,
     recordStatus: true,
-    contentStatus: true
+    contentStatus: true,
+    symbol: ""
   };
   processFile = files => {
     const file = files[0];
@@ -38,6 +43,29 @@ class CreateTab extends Component {
     const file = files[0];
     this.setState({ fileName: file.name });
   };
+  handleClick = () => {
+    if (!this.state.loading) {
+      this.props.createMit(this.props.mnemonic, this.state.symbol);
+      this.setState(
+        {
+          loading: true
+        },
+        () => {
+          this.timer = setTimeout(() => {}, this.state.loading);
+          this.state.password
+            ? this.props.postStoreAction(
+                this.state.file,
+                this.state.hash,
+                this.state.password,
+                this.state.meta,
+                this
+              )
+            : this.props.getStoreAction(this.state.hash, this);
+        }
+      );
+    }
+  };
+
   render() {
     return (
       <React.Fragment>
@@ -62,7 +90,7 @@ class CreateTab extends Component {
             The filename is not part of the calculation.
             <br />
           </span>
-          {this.props.SuccessMsg === "SUCCESS" ? (
+          {this.props.successMsg === "SUCCESS" ? (
             <div>
               <h3
                 style={{
@@ -117,8 +145,7 @@ class CreateTab extends Component {
                 </div>
                 <div className="d-none d-xl-block d-lg-block d-md-block d-sm-block col-xl-3 col-lg-3 col-md-2 col-sm-2" />
               </div>
-              <div className="row">
-                <div className="d-none d-xl-block d-lg-block d-md-block d-sm-block col-xl-3 col-lg-3 col-md-2 col-sm-2" />
+              <div className="row justify-content-center">
                 <div
                   className="col-xl-3 col-lg-3 col-md-8 col-sm-6 col-xs-12"
                   style={{ marginTop: "20px" }}
@@ -145,18 +172,17 @@ class CreateTab extends Component {
                       Save the file online
                     </label>
                   </div>
-                  {/* <TextField
-                    id="outlined-helperText"
-                    label="Helper text"
-                    defaultValue="Default Value"
-                    // className={classes.textField}
-                    helperText="Some important text"
-                    margin="normal"
-                    variant="outlined"
-                  /> */}
+                  <br />
+                  <MuiThemeProvider>
+                    <TextField
+                      id="outlined-helperText"
+                      placeholder="Your Token Symbol"
+                      className="mitInput"
+                      variant="outlined"
+                      onChange={e => this.setState({ symbol: e.target.value })}
+                    />
+                  </MuiThemeProvider>
                 </div>
-                <div className="d-none d-xl-block d-lg-block d-md-block d-sm-block col-xl-3 col-lg-3 col-md-2 col-sm-2" />
-                <div className="d-none d-xl-block d-lg-block d-md-block d-sm-block col-xl-3 col-lg-3 col-md-2 col-sm-2" />
               </div>
               {this.state.checkboxStatus === true ? (
                 <div>
@@ -214,7 +240,7 @@ class CreateTab extends Component {
             style={{ textAlign: "center", marginTop: "20px" }}
           >
             <div className="col-12">
-              {this.props.ErrorMsg === "DUPLICATE_ENTRY" ? (
+              {this.props.errorMsg === "DUPLICATE_ENTRY" ? (
                 <kbd style={{ fontFamily: "Proxima Nova", fontSize: "16px" }}>
                   This document has already been registered.&nbsp;&nbsp;
                   <span
@@ -236,7 +262,7 @@ class CreateTab extends Component {
               className="col-xl-6 col-lg-6 col-md-8 col-sm-8 col-xs-8"
               style={{ padding: "0% 6% 0% 6%" }}
             >
-              {this.props.SuccessMsg === "SUCCESS" ? (
+              {this.props.successMsg === "SUCCESS" ? (
                 <button
                   onClick={() => {
                     window.location.reload();
@@ -253,27 +279,7 @@ class CreateTab extends Component {
                 <button
                   className="mt-4 mb-5 btn btn-create"
                   disabled={this.state.loading}
-                  onClick={() => {
-                    if (!this.state.loading) {
-                      this.setState(
-                        {
-                          loading: true
-                        },
-                        () => {
-                          this.timer = setTimeout(() => {}, this.state.loading);
-                          this.state.password
-                            ? this.props.postStoreAction(
-                                this.state.file,
-                                this.state.hash,
-                                this.state.password,
-                                this.state.meta,
-                                this
-                              )
-                            : this.props.getStoreAction(this.state.hash, this);
-                        }
-                      );
-                    }
-                  }}
+                  onClick={this.handleClick}
                 >
                   {this.state.loading && (
                     <i className="spinner-border" role="status" />
@@ -291,13 +297,19 @@ class CreateTab extends Component {
 }
 
 const mapStateToProps = state => ({
-  SuccessMsg: state.ProveitReducer.successMsg,
+  successMsg: state.ProveitReducer.successMsg,
   // SuccessMsg: state.ProveitReducer.getStoreSuccessMsg,
-  ErrorMsg: state.ProveitErrorReducer.StoreErrorMsg,
+  errorMsg: state.ProveitErrorReducer.StoreErrorMsg,
   // ErrorMsg: state.ProveitErrorReducer.getStoreErrorMsg
-  Avatar: state.ProveitReducer.avatar
+  avatar: state.ProveitReducer.avatar,
+  mnemonic: state.ProveitReducer.mnemonic
 });
 
-export default connect(mapStateToProps, { postStoreAction, getStoreAction })(
-  CreateTab
-);
+//grab avatar and address here from reducer
+//pass these to action and to MitLogic.js
+
+export default connect(mapStateToProps, {
+  postStoreAction,
+  getStoreAction,
+  createMit
+})(CreateTab);

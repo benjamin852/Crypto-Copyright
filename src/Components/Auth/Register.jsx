@@ -3,8 +3,13 @@ import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import RaisedButton from "material-ui/RaisedButton";
 import TextField from "material-ui/TextField";
 import { connect } from "react-redux";
-import { getItem } from "../../utils/idb";
+import { getItem, addItem } from "../../utils/idb";
 import { createWallet } from "../../Actions/walletGeneration";
+import { login_out } from "../../Actions/Authentication";
+import { updateAccount } from "../../Actions/Account";
+import { keyString256, aesEncrypt } from "../../utils/creepto";
+import { run } from "../../BlockchainLogic/Faucet";
+
 import "./Login.css";
 
 const style = {
@@ -16,7 +21,8 @@ class Register extends Component {
     username: "",
     password: "",
     email: "",
-    error: null
+    error: null,
+    loading: false
   };
 
   handleClick = async event => {
@@ -27,7 +33,27 @@ class Register extends Component {
         let existedLoggedIn = await getItem("loggedIn");
 
         if (existedLoggedIn === undefined && exsitedAccount === undefined) {
-          this.props.createWallet(password, username);
+          this.setState({ loading: true });
+          const [mnemonic, avatar] = await run();
+          // let avatar = "godofwar";
+          // let mnemonic =
+          //   "alcohol hammer involve little wide kitten antenna fly census escape front arctic suggest angry affair flag sick pattern potato place page reopen sing mango";
+          let passHash = keyString256(password);
+          const key = passHash.key;
+          const salt = passHash.salt;
+          let encryptedHash = aesEncrypt(key, mnemonic);
+
+          let secret = {
+            avatar: username,
+            salt: salt,
+            walletInfo: encryptedHash
+          };
+
+          await addItem([secret, true], ["accountInfo", "loggedIn"]);
+          this.props.login_out(true);
+          this.props.updateAccount(secret);
+          this.props.createWallet(mnemonic, avatar);
+          this.setState({ loading: false });
         } else {
           this.setState({ error: "Account already existed." });
         }
@@ -104,11 +130,16 @@ class Register extends Component {
                             disabled={
                               this.state.password &&
                               this.state.email &&
-                              this.state.username
+                              this.state.username &&
+                              !this.state.loading
                                 ? false
                                 : true
                             }
-                            label="Register"
+                            label={
+                              this.state.loading
+                                ? "Talking to Metaverse..."
+                                : "Register"
+                            }
                             variant="contained"
                             primary={true}
                             style={style}
@@ -129,6 +160,10 @@ class Register extends Component {
   }
 }
 
-const mapStateToProps = state => {};
+const mapStateToProps = state => ({});
 
-export default connect(mapStateToProps, { createWallet })(Register);
+export default connect(mapStateToProps, {
+  createWallet,
+  updateAccount,
+  login_out
+})(Register);

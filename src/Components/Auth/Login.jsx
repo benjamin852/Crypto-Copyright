@@ -7,7 +7,8 @@ import { connect } from "react-redux";
 
 import { getWallet } from "../../Actions/walletGeneration";
 import { login_out } from "../../Actions/Authentication";
-import { getItem, deleteItem } from "../../utils/idb";
+import { updateAccount } from "../../Actions/Account";
+import { getItem, deleteItem, updateItem } from "../../utils/idb";
 import { keyString256, aesEncrypt, aesDecrypt } from "../../utils/creepto";
 
 import "./Login.css";
@@ -35,6 +36,7 @@ class Login extends Component {
 
       if (walletInfo === aesEncrypt(key, decryptedMnemonic)) {
         mnemonic = decryptedMnemonic;
+        await updateItem("loggedIn", true);
         this.props.getWallet(mnemonic);
         this.props.login_out(true);
       } else {
@@ -46,7 +48,8 @@ class Login extends Component {
   handleRegister = async event => {
     await deleteItem("accountInfo");
     await deleteItem("loggedIn");
-    window.location.reload();
+    this.props.updateAccount(null);
+    this.props.login_out(false);
   };
 
   render() {
@@ -80,7 +83,6 @@ class Login extends Component {
                       <MuiThemeProvider>
                         <div>
                           <TextField
-                            error
                             hintText="Enter your digital identity"
                             floatingLabelText="Digital Identity"
                             disabled
@@ -88,13 +90,10 @@ class Login extends Component {
                           />
                           <br />
                           <TextField
-                            error={true}
+
                             type="password"
                             hintText="Enter your Password"
                             floatingLabelText="Password"
-                            helperText={
-                              this.state.error ? this.state.error : ""
-                            }
                             onChange={e =>
                               this.setState({ password: e.target.value })
                             }
@@ -139,9 +138,13 @@ class Login extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = state => ({
   // mnemonic : state.ProveitReducer.mnemonic
-};
+});
 // this.props.mnemonic
 
-export default connect(mapStateToProps, { getWallet, login_out })(Login);
+export default connect(mapStateToProps, {
+  getWallet,
+  login_out,
+  updateAccount
+})(Login);

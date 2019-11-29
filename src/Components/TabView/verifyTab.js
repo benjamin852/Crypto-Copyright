@@ -50,14 +50,11 @@ class VerifyTab extends Component {
   };
 
   render() {
-    console.log(this.props.downloadErrorMessage);
-    console.log(this.props.downloadSuccessMessage);
     return (
       <React.Fragment>
         <div className="container">
           <h3
             style={{
-              // color: "#6F706F",
               fontWeight: "800"
             }}
           >
@@ -69,7 +66,6 @@ class VerifyTab extends Component {
                 className="col-12"
                 style={{
                   textAlign: "center"
-                  // marginBottom: "-65px"
                 }}
               ></div>
               {this.props.proveSuccessMessage.hasPassword ? (
@@ -201,7 +197,7 @@ class VerifyTab extends Component {
                     multiple
                   />
                   <label
-                    for="fileInputVerify"
+                    htmlFor="fileInputVerify"
                     className="btn btn-lg w-50"
                     style={{
                       backgroundColor: "#F9F7F7",

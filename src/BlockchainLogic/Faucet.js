@@ -133,7 +133,7 @@ export async function withdraw() {
 
   let avatar = await new Promise((resolve, reject) => {
     setTimeout(async () => {
-      resolve(registerAvatar("LASTOFUS256", addresses[0]));
+      resolve(registerAvatar("LASTOFUS1000", addresses[0]));
     }, 75000);
   });
 

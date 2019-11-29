@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Login from "./Components/Auth/Login";
 import Register from "./Components/Auth/Register";
 import Header from "./Components/Header/header";
-import { getItem, updateItem } from "./utils/idb";
+import { getItem } from "./utils/idb";
 import { connect } from "react-redux";
 import { login_out } from "./Actions/Authentication";
 import { updateAccount } from "./Actions/Account";
@@ -10,26 +10,15 @@ import { updateAccount } from "./Actions/Account";
 import "./App.css";
 
 class App extends Component {
-  async componentWillMount() {
+  async UNSAFE_componentWillMount() {
     let account = await getItem("accountInfo");
-    console.log(account);
+    
     if (account) {
       let loggedIn = await getItem("loggedIn");
 
       this.props.login_out(loggedIn);
       this.props.updateAccount(account);
     }
-  }
-
-  async cleanApp() {
-    // await updateItem("loggedIn", false);
-  }
-  componentDidMount() {
-    window.addEventListener("beforeunload", this.cleanApp());
-  }
-  async componentWillUnmount() {
-    // this.cleanApp();
-    window.removeEventListener("beforeunload", this.cleanApp());
   }
 
   render() {

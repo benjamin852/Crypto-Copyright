@@ -125,7 +125,7 @@ class CreateTab extends Component {
                     data-multiple-caption="{count} files selected"
                     multiple
                   />
-                  <label className="w-100 h-100 file" for="fileInput">
+                  <label className="w-100 h-100 file" htmlFor="fileInput">
                     Choose a file
                   </label>
                 </div>
@@ -161,7 +161,7 @@ class CreateTab extends Component {
                     />
                     <label
                       className="custom-control-label"
-                      for="customCheck"
+                      htmlFor="customCheck"
                       style={{
                         fontFamily: "Proxima Nova",
                         fontWeight: "400",

@@ -65,7 +65,7 @@ function ProveitReducer(mState = { ...state }, action) {
       }
       return deepCopy(mState);
     case CREATE_ACCOUNT:
-      if (action.payload === undefined || action.payload === null) {
+      if (action.payload === undefined) {
       } else {
         mState.account = action.payload;
       }

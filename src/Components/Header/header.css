@@ -14,8 +14,12 @@ html {
   size: 100%;
 }
 
+.link-style {
+  border-bottom: 2px solid transparent;
+}
+
 .link-style:hover {
-  border-bottom: 2px solid #ffffff;
+  border-bottom-color: #ffffff;
 }
 
 #banner {

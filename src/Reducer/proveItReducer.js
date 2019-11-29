@@ -5,7 +5,8 @@ import {
   CREATE_WALLET,
   GET_WALLET,
   AUTHENTICATION,
-  CREATE_ACCOUNT
+  CREATE_ACCOUNT,
+  GET_MITS
 } from "../Actions/types";
 
 const state = {
@@ -68,6 +69,12 @@ function ProveitReducer(mState = { ...state }, action) {
       if (action.payload === undefined) {
       } else {
         mState.account = action.payload;
+      }
+      return deepCopy(mState);
+    case GET_MITS:
+      if (action.payload === undefined || action.payload === null) {
+      } else {
+        mState.mits = action.payload;
       }
       return deepCopy(mState);
     default:

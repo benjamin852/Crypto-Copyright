@@ -1,14 +1,17 @@
 import React, { Component } from "react";
 import { SHA256 } from "crypto-js";
-import { postStoreAction } from "../../Actions/postStore";
-import { getStoreAction } from "../../Actions/getStore";
-import { createMit } from "../../Actions/MitGeneration";
-import { connect } from "react-redux";
-
 import TextField from "material-ui/TextField";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import { connect } from "react-redux";
+import Metaverse from "metaversejs";
+
+import { postStoreAction } from "../../Actions/postStore";
+import { getStoreAction } from "../../Actions/getStore";
+import { getMitsAction } from "../../Actions/MitGeneration";
 
 import "./Tabs.css";
+import { issueMIT } from "../../BlockchainLogic/MitLogic";
+import { getMits } from "../../BlockchainLogic/MitLogic";
 
 class CreateTab extends Component {
   state = {
@@ -43,9 +46,15 @@ class CreateTab extends Component {
     const file = files[0];
     this.setState({ fileName: file.name });
   };
-  handleClick = () => {
+  handleClick = async () => {
     if (!this.state.loading) {
-      this.props.createMit(this.props.mnemonic, this.state.symbol);
+      const mnemonic =
+        "orphan nothing dolphin fantasy opinion shop letter ski coral sound fun sail moral abuse unveil glove radio blush young issue oak impact hen tower";
+      issueMIT(mnemonic, this.state.symbol);
+      const wallet = await Metaverse.wallet.fromMnemonic(mnemonic, "testnet");
+      const addresses = await wallet.getAddresses();
+      const mits = await getMits(addresses);
+      this.props.getMitsAction(mits);
       this.setState(
         {
           loading: true
@@ -311,5 +320,5 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps, {
   postStoreAction,
   getStoreAction,
-  createMit
+  getMitsAction
 })(CreateTab);

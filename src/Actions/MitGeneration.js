@@ -1,16 +1,16 @@
-import Metaverse from "metaversejs";
-import { CREATE_MIT, SENT_MIT } from "./types";
-import { issueMIT } from "../BlockchainLogic/MitLogic";
+import { GET_MITS } from "./types";
+// import { getMits } from "../BlockchainLogic/MitLogic";
 
-export const createMit = (mnemonic, symbol) => async dispatch => {
-  console.log("action called");
-  //   console.log(mnemonic, "got the mnemonic");
-  await issueMIT(
-    "alcohol hammer involve little wide kitten antenna fly census escape front arctic suggest angry affair flag sick pattern potato place page reopen sing mang",
-    symbol
-  );
-  //   dispatch({
-  //     type: CREATE_MIT,
-  //     payload: [mnemonic, avatar]
-  //   });
+export const getMitsAction = mits => async dispatch => {
+  // const newMit = await issueMIT(mnemonic, symbol);
+  // const mnemonic = "orphan nothing dolphin fantasy opinion shop letter ski coral sound fun sail moral abuse unveil glove radio blush young issue oak impact hen tower";
+
+  // const wallet = await Metaverse.wallet.fromMnemonic(mnemonic, "testnet");
+  // const addresses = await wallet.getAddresses();
+  // const mits = await getMits(addresses);
+
+  dispatch({
+    type: GET_MITS,
+    payload: mits
+  });
 };

@@ -1,53 +1,51 @@
 import Metaverse from "metaversejs";
 import Blockchain from "mvs-blockchain";
 
-// let mnemonic = "butter vacuum breeze glow virtual mutual veteran argue want pipe elite blast judge write sand toilet file joy exotic reflect truck topic receive wait";
+// let mnemonic = "orphan nothing dolphin fantasy opinion shop letter ski coral sound fun sail moral abuse unveil glove radio blush young issue oak impact hen tower";
 let wallet;
 let addresses;
-let blockchain;
 let avatars;
 
 let MITsymbols;
 let MITData;
 
-async function initialize() {
-  //   await populateAvatarSelect(); //drop down menu of avatars
-  //   await showMITBalances(); //display balance data
-  //   await populateMITSelect(); //drop down menu for mit
-}
+let blockchain = Blockchain({
+  url: "https://explorer-testnet.mvs.org/api/"
+});
+//async function initialize() {
+//   await populateAvatarSelect(); //drop down menu of avatars
+//   await showMITBalances(); //display balance data
+//   await populateMITSelect(); //drop down menu for mit
+//}
 
 //create new MIT
 export async function issueMIT(mnemonic, symbol) {
-  blockchain = await Blockchain({
-    url: "https://explorer-testnet.mvs.org/api/"
-  });
   wallet = await Metaverse.wallet.fromMnemonic(mnemonic, "testnet");
-  let address = await wallet.getAddresses();
-  console.log(address, "address");
+  console.log(wallet);
+  let addresses = await wallet.getAddresses();
+  console.log(addresses[0]);
   //   avatars = new Array();
   //   await getAvatars();  //<--nova nova2 cangr
 
   /*issuer avatar -> recipient address & change_address are the same.*/
-  let avatar = await blockchain.avatar.get(address);
-
-  //   let issuingAddress = await getAvatar(avatar);
-  console.log(address, "this SHOULDDD be the same as address above");
-  address = address.toString();
-
-  //   let recipient_address = address;
-  console.log(address, "recipient_address");
+  let avatar = await blockchain.avatar.get(addresses[0]);
+  console.log(avatar.symbol, "avatar");
 
   let height = await blockchain.height();
+  // let txs = await blockchain.address.txs(wallet.getAddress());
   let txs = await blockchain.addresses.txs(wallet.getAddresses());
-  let utxos = await Metaverse.output.calculateUtxo(txs.transactions, [address]); //Get all utxo
+  let utxos = await Metaverse.output.calculateUtxo(txs.transactions, [
+    addresses[0]
+  ]); //Get all utxo
+  console.log(utxos, "utxo<-");
   let result = await Metaverse.output.findUtxo(utxos, {}, height, 10000); //Collect utxo to pay fee of 0.0001 ETP
   let tx = await Metaverse.transaction_builder.registerMIT(
     result.utxo,
-    address,
-    avatar,
+    addresses[0],
+    avatar.symbol,
     symbol,
     "content", //<- fix later
-    address,
+    addresses[0],
     result.change
   );
   tx = await wallet.sign(tx);
@@ -106,48 +104,8 @@ async function sendMIT() {
 
   console.log(tx, "tx"); //<- just the hash
 }
-
-//*
-async function showMITBalances() {
-  let MITTable = document.getElementById("MITTable");
-  console.log(MITTable, "MITTable");
-  let balanceData = await getBalanceData(addresses);
-  MITData = balanceData.MIT;
-  console.log(MITData, "MITData");
-
-  for (i = 0; i < MITData.length; ++i) {
-    let row = MITTable.insertRow(i + 1);
-
-    // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
-    let cell1 = row.insertCell(0);
-    let cell2 = row.insertCell(1);
-    let cell3 = row.insertCell(2);
-    let cell4 = row.insertCell(3);
-    let cell5 = row.insertCell(4);
-
-    // Add some text to the new cells:
-    cell1.innerHTML = MITData[i].symbol;
-    cell2.innerHTML = MITData[i].content;
-    cell3.innerHTML = MITData[i].owner;
-    cell4.innerHTML = MITData[i].address;
-    cell5.innerHTML = MITData[i].status;
-  }
-}
-
-//*
-async function populateMITSelect() {
-  let MITselect = document.getElementById("MITSelect");
-  for (i = 0; i < MITData.length; ++i) {
-    let opt = document.createElement("option");
-    opt.value = i;
-    opt.innerHTML = MITData[i].symbol;
-
-    MITselect.appendChild(opt);
-  }
-}
-
-//the brain of showMITBalance()
-async function getBalanceData(addressArray) {
+*/
+export async function getMits(addressArray) {
   //Get the lastest Blockchain Length
   let height = await blockchain.height();
 
@@ -157,39 +115,15 @@ async function getBalanceData(addressArray) {
   //Get a list of unspent transaction outputs amongst your transactions
   let utxo = await Metaverse.output.calculateUtxo(
     txs.transactions,
-    addressArray
+    addressArray[0]
   );
 
   //Calculate your balances based on the utxos
-  let balances = await blockchain.balance.all(utxo, addressArray, height);
-  console.log(balances, "balances");
-  return balances;
+  let balances = await blockchain.balance.all(utxo, addressArray[0], height);
+  return balances.MIT.map(mit => mit.symbol, "balances");
 }
 
-//*
-async function populateAvatarSelect() {
-  let avatarSelect = document.getElementById("avatarSelect");
-  for (i = 0; i < avatars.length; ++i) {
-    let opt = document.createElement("option");
-    opt.value = avatars[i].symbol;
-    opt.innerHTML = avatars[i].symbol;
-
-    avatarSelect.appendChild(opt);
-  }
-}
-
-//*
-async function getAvatars() {
-  for (i = 0; i < addresses.length; ++i) {
-    console.log(i);
-    let avatarInfo = await blockchain.avatar.get(addresses[i]);
-    if (avatarInfo != null) {
-      avatars.push(avatarInfo);
-    }
-  }
-}
-
-*/
+/*
 //used in issueMit() as a logic func
 //consider renaming getAddress()
 async function getAvatar(avatar) {
@@ -198,3 +132,4 @@ async function getAvatar(avatar) {
   console.log(avatarInfo, "avatarInfo");
   return avatarInfo.address;
 }
+*/

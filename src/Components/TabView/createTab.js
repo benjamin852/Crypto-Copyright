@@ -24,7 +24,7 @@ class CreateTab extends Component {
     loading: false,
     recordStatus: true,
     contentStatus: true,
-    symbol: ""
+    mitContent: ""
   };
   processFile = files => {
     const file = files[0];
@@ -33,7 +33,6 @@ class CreateTab extends Component {
       const data = event.target.result;
       this.setState({ recordStatus: false });
       this.setState({ hash: SHA256(data) + "" });
-      console.log(this.state.hash);
     };
     reader.readAsBinaryString(file);
   };
@@ -42,16 +41,12 @@ class CreateTab extends Component {
       console.log(this.state.checkboxStatus);
     });
   }
-  handleFileName = files => {
-    const file = files[0];
-    this.setState({ fileName: file.name });
-  };
   handleClick = async () => {
     if (!this.state.loading) {
       const mnemonic =
         "orphan nothing dolphin fantasy opinion shop letter ski coral sound fun sail moral abuse unveil glove radio blush young issue oak impact hen tower";
-      issueMIT(mnemonic, this.state.symbol);
       const wallet = await Metaverse.wallet.fromMnemonic(mnemonic, "testnet");
+      await issueMIT(wallet, this.state.mitContent, this.state.hash);
       const addresses = await wallet.getAddresses();
       const mits = await getMits(addresses);
       this.props.getMitsAction(mits);
@@ -125,7 +120,7 @@ class CreateTab extends Component {
                     id="fileInput"
                     onChange={e => {
                       this.processFile(e.target.files);
-                      this.handleFileName(e.target.files);
+                      // this.handleFileName(e.target.files);
                       this.setState({ file: e.target.files });
                     }}
                     name="selectedFile"
@@ -188,7 +183,9 @@ class CreateTab extends Component {
                       placeholder="Your Token Symbol"
                       className="mitInput"
                       variant="outlined"
-                      onChange={e => this.setState({ symbol: e.target.value })}
+                      onChange={e =>
+                        this.setState({ mitContent: e.target.value })
+                      }
                     />
                   </MuiThemeProvider>
                 </div>
@@ -287,7 +284,9 @@ class CreateTab extends Component {
               ) : (
                 <button
                   className="mt-4 mb-5 btn btn-create"
-                  disabled={this.state.loading}
+                  disabled={
+                    this.state.loading && !this.state.symbol ? true : false
+                  }
                   onClick={this.handleClick}
                 >
                   {this.state.loading && (

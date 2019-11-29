@@ -19,8 +19,7 @@ let blockchain = Blockchain({
 //}
 
 //create new MIT
-export async function issueMIT(mnemonic, symbol) {
-  wallet = await Metaverse.wallet.fromMnemonic(mnemonic, "testnet");
+export async function issueMIT(wallet, content, symbolHash) {
   console.log(wallet);
   let addresses = await wallet.getAddresses();
   console.log(addresses[0]);
@@ -43,8 +42,8 @@ export async function issueMIT(mnemonic, symbol) {
     result.utxo,
     addresses[0],
     avatar.symbol,
-    symbol,
-    "content", //<- fix later
+    symbolHash,
+    content,
     addresses[0],
     result.change
   );

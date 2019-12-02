@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import CreateTab from "./createTab";
 import VerifyTab from "./verifyTab";
+import ListMits from "./listMits";
 import "./Tabs.css";
 
 class Tabs extends Component {
@@ -44,6 +45,19 @@ class Tabs extends Component {
                   Verify
                 </a>
               </li>
+              <li className="nav-item">
+                <a
+                  className="nav-link"
+                  id="Mit-tab"
+                  data-toggle="tab"
+                  href="#Mits"
+                  role="tab"
+                  aria-controls="Mits"
+                  aria-selected="false"
+                >
+                  Your MITS
+                </a>
+              </li>
             </ul>
             <div className="tab-content" id="myTabContent">
               <div
@@ -63,6 +77,15 @@ class Tabs extends Component {
                 style={{ marginTop: "6%", textAlign: "center" }}
               >
                 <VerifyTab />
+              </div>
+              <div
+                className="tab-pane fade"
+                id="Mits"
+                role="tabpanel"
+                aria-labelledby="M-tab"
+                style={{ marginTop: "6%", textAlign: "center" }}
+              >
+                <ListMits />
               </div>
             </div>{" "}
           </div>
@@ -88,7 +111,7 @@ class Tabs extends Component {
                   aria-selected="true"
                   style={{
                     fontSize: "28px",
-                    fontFamily: "Proxima Nova",
+                    // fontFamily: "Proxima Nova",
                     color: "#818281"
                   }}
                 >
@@ -106,11 +129,29 @@ class Tabs extends Component {
                   aria-selected="false"
                   style={{
                     fontSize: "28px",
-                    fontFamily: "Proxima Nova",
+                    // fontFamily: "Proxima Nova",
                     color: "#818281"
                   }}
                 >
                   Verify
+                </a>
+              </li>
+              <li className="nav-item">
+                <a
+                  className="nav-link active"
+                  id="Mit-tab"
+                  data-toggle="tab"
+                  href="#Mit"
+                  role="tab"
+                  aria-controls="Mit"
+                  aria-selected="false"
+                  style={{
+                    fontSize: "28px",
+                    // fontFamily: "Proxima Nova",
+                    color: "#818281"
+                  }}
+                >
+                  Your MITS
                 </a>
               </li>
             </ul>
@@ -132,6 +173,15 @@ class Tabs extends Component {
                 style={{ marginTop: "6%", textAlign: "center" }}
               >
                 <VerifyTab />
+              </div>
+              <div
+                className="tab-pane fade show active"
+                id="Verify"
+                role="tabpanel"
+                aria-labelledby="Verify-tab"
+                style={{ marginTop: "6%", textAlign: "center" }}
+              >
+                <ListMits />
               </div>
             </div>
           </div>

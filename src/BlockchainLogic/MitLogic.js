@@ -119,7 +119,7 @@ export async function getMits(addressArray) {
 
   //Calculate your balances based on the utxos
   let balances = await blockchain.balance.all(utxo, addressArray[0], height);
-  return balances.MIT.map(mit => mit.symbol, "balances");
+  return balances.MIT.map(mit => mit, "balances");
 }
 
 /*

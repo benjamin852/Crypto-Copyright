@@ -124,25 +124,33 @@ export async function registerAvatar(avatar_name, avatar_address) {
 // }
 
 export async function withdraw() {
-  let balance = await getETPBalance();
-  console.log(balance);
-  if ((await balance) < 210000000) {
-    await generateFaucet();
-    await sendETP(200000000, addresses[0]);
+  try {
+    let balance = await getETPBalance();
+    console.log(balance);
+    if ((await balance) < 210000000) {
+      await generateFaucet();
+      await sendETP(200000000, addresses[0]);
+    }
+
+    let avatar = await new Promise((resolve, reject) => {
+      setTimeout(async () => {
+        resolve(registerAvatar("LASTOFUS1000", addresses[0]));
+      }, 75000);
+    });
+
+    console.log(avatar, "avatar in withdraw<==");
+    return avatar;
+  } catch (error) {
+    throw new Error(error);
   }
-
-  let avatar = await new Promise((resolve, reject) => {
-    setTimeout(async () => {
-      resolve(registerAvatar("taylor_swift", addresses[0]));
-    }, 75000);
-  });
-
-  console.log(avatar, "avatar in withdraw<==");
-  return avatar;
 }
 
 export async function run() {
-  const mnemonic = await generateReceiverWallet();
-  const avatar = await withdraw();
-  return [mnemonic, avatar];
+  try {
+    const mnemonic = await generateReceiverWallet();
+    const avatar = await withdraw();
+    return [mnemonic, avatar];
+  } catch (error) {
+    throw new Error(error);
+  }
 }

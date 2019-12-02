@@ -8,8 +8,9 @@ import Work from "../Working/works";
 import Team from "../Team/team";
 import Metaverse from "../Metaverse/metaverse";
 import NewsLetter from "../NewsLetter/newsLetter";
-import { updateItem } from "../../utils/idb";
+import { updateItem, deleteItem } from "../../utils/idb";
 import { login_out } from "../../Actions/Authentication";
+import { getWallet } from "../../Actions/walletGeneration";
 import { connect } from "react-redux";
 
 class Header extends Component {
@@ -19,7 +20,9 @@ class Header extends Component {
 
   handleLogout = async event => {
     await updateItem("loggedIn", false);
+    await deleteItem("mnemonic");
     this.props.login_out(false);
+    this.props.getWallet("");
   };
   render() {
     return (
@@ -124,4 +127,4 @@ const mapStateToProps = state => ({
   loggedIn: state.ProveitReducer.loggedIn
 });
 
-export default connect(mapStateToProps, { login_out })(Header);
+export default connect(mapStateToProps, { login_out, getWallet })(Header);

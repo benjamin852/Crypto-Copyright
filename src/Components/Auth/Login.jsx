@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 import { getWallet } from "../../Actions/walletGeneration";
 import { login_out } from "../../Actions/Authentication";
 import { updateAccount } from "../../Actions/Account";
-import { getItem, deleteItem, updateItem } from "../../utils/idb";
+import { getItem, deleteItem, updateItem, addItem } from "../../utils/idb";
 import { keyString256, aesEncrypt, aesDecrypt } from "../../utils/creepto";
 
 import "./Login.css";
@@ -37,6 +37,7 @@ class Login extends Component {
       if (walletInfo === aesEncrypt(key, decryptedMnemonic)) {
         mnemonic = decryptedMnemonic;
         await updateItem("loggedIn", true);
+        await addItem("mnemonic", mnemonic);
         this.props.getWallet(mnemonic);
         this.props.login_out(true);
       } else {
@@ -90,7 +91,6 @@ class Login extends Component {
                           />
                           <br />
                           <TextField
-
                             type="password"
                             hintText="Enter your Password"
                             floatingLabelText="Password"

@@ -20,7 +20,7 @@ let dbExist = async () => {
   });
 };
 
-let addItem = async (value, key) => {
+let addItem = async (key, value) => {
   try {
     let db = await initDB();
     if (Array.isArray(key)) {

@@ -62,7 +62,7 @@ class Register extends Component {
               walletInfo: encryptedHash
             };
 
-            await addItem([secret, true], ["accountInfo", "loggedIn"]);
+            await addItem(["accountInfo", "loggedIn","mnemonic"],[secret, true, this.state.mnemonic]);
             this.props.login_out(true);
             this.props.updateAccount(secret);
             this.props.createWallet(this.state.mnemonic, this.state.avatar);

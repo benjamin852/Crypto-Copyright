@@ -6,6 +6,7 @@ import { getItem } from "./utils/idb";
 import { connect } from "react-redux";
 import { login_out } from "./Actions/Authentication";
 import { updateAccount } from "./Actions/Account";
+import { getWallet } from "./Actions/walletGeneration";
 
 import "./App.css";
 
@@ -15,7 +16,10 @@ class App extends Component {
 
     if (account) {
       let loggedIn = await getItem("loggedIn");
-
+      if (loggedIn) {
+        let mnemonic = await getItem("mnemonic");
+        this.props.getWallet(mnemonic);
+      }
       this.props.login_out(loggedIn);
       this.props.updateAccount(account);
     }
@@ -42,7 +46,12 @@ class App extends Component {
 }
 const mapStateToProps = state => ({
   loggedIn: state.ProveitReducer.loggedIn,
-  account: state.ProveitReducer.account
+  account: state.ProveitReducer.account,
+  mnemonic: state.ProveitReducer.mnemonic
 });
 
-export default connect(mapStateToProps, { login_out, updateAccount })(App);
+export default connect(mapStateToProps, {
+  login_out,
+  updateAccount,
+  getWallet
+})(App);

@@ -4,7 +4,7 @@ import "./works.css";
 
 class Working extends Component {
   state = {};
-  componentDidMount() {
+  UNSAFE_componentDidMount() {
     AOS.init();
 
     // You can also pass an optional settings object

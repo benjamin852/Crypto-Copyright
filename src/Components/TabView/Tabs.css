@@ -70,16 +70,6 @@
   color: white;
 }
 
-#Mit-tab {
-  font-size: 28px;
-  color: #000000;
-}
-
-#Mit-tab:hover {
-  background-color: #17bcde;
-  color: white;
-}
-
 .file {
   cursor: pointer;
   background-color: #11628c;

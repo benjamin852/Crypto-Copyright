@@ -43,7 +43,8 @@ class CreateTab extends Component {
   }
   handleClick = async () => {
     if (!this.state.loading) {
-      const mnemonic = this.props.mnemonic;
+      const mnemonic =
+        "orphan nothing dolphin fantasy opinion shop letter ski coral sound fun sail moral abuse unveil glove radio blush young issue oak impact hen tower";
       const wallet = await Metaverse.wallet.fromMnemonic(mnemonic, "testnet");
       await issueMIT(wallet, this.state.mitContent, this.state.hash);
       const addresses = await wallet.getAddresses();

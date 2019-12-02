@@ -143,6 +143,18 @@ export async function withdraw(userAvatar) {
   } catch (err) {
     throw err;
   }
+<<<<<<< HEAD
+=======
+
+  let avatar = await new Promise((resolve, reject) => {
+    setTimeout(async () => {
+      resolve(registerAvatar("LASTOFUS10001", addresses[0]));
+    }, 75000);
+  });
+
+  console.log(avatar, "avatar in withdraw<==");
+  return avatar;
+>>>>>>> parent of 88c7008... working MITS  creation in logic beginning getMits UI
 }
 
 export async function run(userAvatar) {

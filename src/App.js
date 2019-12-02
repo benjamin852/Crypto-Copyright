@@ -28,7 +28,7 @@ class App extends Component {
   render() {
     return (
       <div className="home-bg" style={{ overflowX: "hidden" }}>
-        {this.props.account ? (
+        {/* {this.props.account ? (
           this.props.loggedIn ? (
             <Header />
           ) : (
@@ -36,10 +36,10 @@ class App extends Component {
           )
         ) : (
           <Register />
-        )}
+        )} */}
         {/* <Register /> */}
         {/* <Login /> */}
-        {/* <Header /> */}
+        <Header />
       </div>
     );
   }

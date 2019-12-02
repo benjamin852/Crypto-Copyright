@@ -85,7 +85,7 @@ class Tabs extends Component {
                 aria-labelledby="M-tab"
                 style={{ marginTop: "6%", textAlign: "center" }}
               >
-                <ListMits />
+                {/* <ListMits /> */}
               </div>
             </div>{" "}
           </div>
@@ -181,7 +181,7 @@ class Tabs extends Component {
                 aria-labelledby="Verify-tab"
                 style={{ marginTop: "6%", textAlign: "center" }}
               >
-                <ListMits />
+                {/* <ListMits /> */}
               </div>
             </div>
           </div>

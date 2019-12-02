@@ -20,23 +20,16 @@ let blockchain = Blockchain({
 
 //create new MIT
 export async function issueMIT(wallet, content, symbolHash) {
-  console.log(wallet);
   let addresses = await wallet.getAddresses();
-  console.log(addresses[0]);
-  //   avatars = new Array();
-  //   await getAvatars();  //<--nova nova2 cangr
 
   /*issuer avatar -> recipient address & change_address are the same.*/
   let avatar = await blockchain.avatar.get(addresses[0]);
-  console.log(avatar.symbol, "avatar");
 
   let height = await blockchain.height();
-  // let txs = await blockchain.address.txs(wallet.getAddress());
   let txs = await blockchain.addresses.txs(wallet.getAddresses());
   let utxos = await Metaverse.output.calculateUtxo(txs.transactions, [
     addresses[0]
   ]); //Get all utxo
-  console.log(utxos, "utxo<-");
   let result = await Metaverse.output.findUtxo(utxos, {}, height, 10000); //Collect utxo to pay fee of 0.0001 ETP
   let tx = await Metaverse.transaction_builder.registerMIT(
     result.utxo,

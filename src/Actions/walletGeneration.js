@@ -20,5 +20,3 @@ export const getWallet = mnemonic => async dispatch => {
     payload: mnemonic
   });
 };
-
-const getMits = () => {};

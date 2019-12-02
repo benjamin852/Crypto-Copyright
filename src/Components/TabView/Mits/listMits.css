@@ -1,17 +1,17 @@
-.list-md[no-lines] .item .item-inner,
+/* .list-md[no-lines] .item .item-inner,
 .list-md[no-lines] .item-block,
 .list-md[no-lines] ion-item-options {
   border-width: 0;
 }
 page-account .item-md {
   padding-left: 0;
-}
-mit-card .grid-info {
+} */
+/* mit-card .grid-info {
   padding-top: 20px;
 }
 mit-card .item-md {
   padding-left: 0;
-}
+} */
 .item-md {
   padding-left: 16px;
   padding-right: 0;
@@ -26,7 +26,7 @@ mit-card .item-md {
   -webkit-transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.item-block {
+/* .item-block {
   margin: 0;
   padding: 0;
   text-align: initial;
@@ -50,7 +50,7 @@ mit-card .item-md {
   line-height: normal;
   text-decoration: none;
   color: inherit;
-}
+} */
 .item {
   contain: content;
 }
@@ -87,12 +87,12 @@ mit-card .item-md {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2),
     0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
-ion-list {
+/* ion-list {
   margin: 0;
   padding: 0;
   display: block;
   list-style-type: none;
-}
+} */
 .center {
   text-align: center;
 }
@@ -105,7 +105,7 @@ ion-app.md {
   font-size: 1.4rem;
   background-color: #fff;
 }
-body {
+/* body {
   margin: 0;
   padding: 0;
   position: fixed;
@@ -139,7 +139,7 @@ html {
   -moz-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   text-size-adjust: 100%;
-}
+} */
 user agent stylesheet html {
   color: -internal-root-color;
 }

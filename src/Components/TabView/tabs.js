@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import CreateTab from "./createTab";
 import VerifyTab from "./verifyTab";
+import ListMits from "./Mits/listMits";
 import "./Tabs.css";
 
 class Tabs extends Component {
@@ -44,6 +45,19 @@ class Tabs extends Component {
                   Verify
                 </a>
               </li>
+              <li className="nav-item">
+                <a
+                  className="nav-link"
+                  id="Mit-tab"
+                  data-toggle="tab"
+                  href="#Mits"
+                  role="tab"
+                  aria-controls="Mits"
+                  aria-selected="false"
+                >
+                  Your MITS
+                </a>
+              </li>
             </ul>
             <div className="tab-content" id="myTabContent">
               <div
@@ -64,19 +78,16 @@ class Tabs extends Component {
               >
                 <VerifyTab />
               </div>
-<<<<<<< HEAD
               <div
                 className="tab-pane fade"
                 id="Mits"
                 role="tabpanel"
-                aria-labelledby="M-tab"
+                aria-labelledby="Verify-tab"
                 style={{ marginTop: "6%", textAlign: "center" }}
               >
-                {/* <ListMits /> */}
+                <ListMits />
               </div>
-=======
->>>>>>> parent of 88c7008... working MITS  creation in logic beginning getMits UI
-            </div>{" "}
+            </div>
           </div>
         ) : (
           <div>
@@ -125,6 +136,19 @@ class Tabs extends Component {
                   Verify
                 </a>
               </li>
+              <li className="nav-item">
+                <a
+                  className="nav-link"
+                  id="Mit-tab"
+                  data-toggle="tab"
+                  href="#Mits"
+                  role="tab"
+                  aria-controls="Verify"
+                  aria-selected="false"
+                >
+                  Your MITS
+                </a>
+              </li>
             </ul>
             <div className="tab-content" id="myTabContent">
               <div
@@ -145,18 +169,15 @@ class Tabs extends Component {
               >
                 <VerifyTab />
               </div>
-<<<<<<< HEAD
               <div
-                className="tab-pane fade show active"
-                id="Verify"
+                className="tab-pane fade show"
+                id="Mits"
                 role="tabpanel"
                 aria-labelledby="Verify-tab"
                 style={{ marginTop: "6%", textAlign: "center" }}
               >
-                {/* <ListMits /> */}
+                <ListMits />
               </div>
-=======
->>>>>>> parent of 88c7008... working MITS  creation in logic beginning getMits UI
             </div>
           </div>
         )}

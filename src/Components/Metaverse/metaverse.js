@@ -4,7 +4,7 @@ import "./metaverse.css";
 
 class Metaverse extends Component {
   state = {};
-  UNSAFE_componentDidMount() {
+  _componentDidMount() {
     AOS.init();
 
     // You can also pass an optional settings object

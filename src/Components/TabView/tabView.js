@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Tabs from "./tabs";
-import './Tabs.css';
+import "./Tabs.css";
 
 class TabView extends Component {
   state = {};

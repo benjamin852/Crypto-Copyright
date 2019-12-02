@@ -4,7 +4,7 @@ import "./team.css";
 
 class Team extends Component {
   state = {};
-  UNSAFE_componentDidMount() {
+  componentDidMount() {
     AOS.init();
 
     // You can also pass an optional settings object

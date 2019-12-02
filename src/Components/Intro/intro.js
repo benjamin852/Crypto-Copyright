@@ -4,7 +4,7 @@ import "./intro.css";
 
 class Intro extends Component {
   state = {};
-  UNSAFE_componentDidMount() {
+  componentDidMount() {
     AOS.init();
 
     // You can also pass an optional settings object

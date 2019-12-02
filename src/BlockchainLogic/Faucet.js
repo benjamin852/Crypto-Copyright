@@ -123,7 +123,7 @@ export async function registerAvatar(avatar_name, avatar_address) {
 //   }
 // }
 
-export async function withdraw() {
+export async function withdraw(userAvatar) {
   try {
     let balance = await getETPBalance();
     console.log(balance);
@@ -134,23 +134,23 @@ export async function withdraw() {
 
     let avatar = await new Promise((resolve, reject) => {
       setTimeout(async () => {
-        resolve(registerAvatar("LASTOFUS1000", addresses[0]));
+        resolve(registerAvatar(userAvatar, addresses[0]));
       }, 75000);
     });
 
     console.log(avatar, "avatar in withdraw<==");
     return avatar;
-  } catch (error) {
-    throw new Error(error);
+  } catch (err) {
+    throw err;
   }
 }
 
-export async function run() {
+export async function run(userAvatar) {
   try {
     const mnemonic = await generateReceiverWallet();
-    const avatar = await withdraw();
+    const avatar = await withdraw(userAvatar);
     return [mnemonic, avatar];
-  } catch (error) {
-    throw new Error(error);
+  } catch (err) {
+    throw err;
   }
 }

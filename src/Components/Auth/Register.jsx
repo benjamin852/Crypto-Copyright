@@ -36,33 +36,46 @@ class Register extends Component {
 
         if (existedLoggedIn === undefined && exsitedAccount === undefined) {
           this.setState({ loading: true });
+          let avatarAPI = await fetch(
+            `https://explorer-testnet.mvs.org/api/avatar/${username}`
+          );
 
-          try {
-            const [mnemonic, avatar] = await run();
-            this.setState({ mnemonic, avatar });
-          } catch (error) {
-            this.setState({ error });
+          let avatarInfo = await avatarAPI.json();
+          if ((await avatarInfo.result) === null) {
+            try {
+              const [mnemonic, avatar] = await run(username);
+              this.setState({ avatar, mnemonic });
+            } catch (err) {
+              console.log(err);
+              this.setState({ error: err.message, loading: false });
+
+              return false;
+            }
+            let passHash = keyString256(password);
+            const key = passHash.key;
+            const salt = passHash.salt;
+            let encryptedHash = aesEncrypt(key, this.state.mnemonic);
+
+            let secret = {
+              avatar: this.state.avatar,
+              salt: salt,
+              walletInfo: encryptedHash
+            };
+
+            await addItem([secret, true], ["accountInfo", "loggedIn"]);
+            this.props.login_out(true);
+            this.props.updateAccount(secret);
+            this.props.createWallet(this.state.mnemonic, this.state.avatar);
+            this.setState({ loading: false });
+          } else {
+            this.setState({
+              error: "The chosen username is taken, please try another name.",
+              loading: false
+            });
           }
-
           // let avatar = "godofwar";
           // let mnemonic =
           //   "alcohol hammer involve little wide kitten antenna fly census escape front arctic suggest angry affair flag sick pattern potato place page reopen sing mango";
-          let passHash = keyString256(password);
-          const key = passHash.key;
-          const salt = passHash.salt;
-          let encryptedHash = aesEncrypt(key, this.state.mnemonic);
-
-          let secret = {
-            avatar: this.state.avatar,
-            salt: salt,
-            walletInfo: encryptedHash
-          };
-
-          await addItem([secret, true], ["accountInfo", "loggedIn"]);
-          this.props.login_out(true);
-          this.props.updateAccount(secret);
-          this.props.createWallet(this.state.mnemonic, this.state.avatar);
-          this.setState({ loading: false });
         } else {
           this.setState({ error: "Account already existed." });
         }
@@ -73,6 +86,10 @@ class Register extends Component {
       this.setState({ error: "All fields are mandatory." });
     }
   };
+
+  componentWillUnmount() {
+    this.setState({ loading: false });
+  }
 
   render() {
     return (

@@ -41,7 +41,7 @@ class Login extends Component {
         mnemonic = decryptedMnemonic;
         let avatarInfo = await getAvatar(avatar);
         let userAddress = await avatarInfo.address;
-        let mits = await getMits([userAddress]);
+        let mits = await getMits([await userAddress]);
 
         await updateItem("loggedIn", true);
         await addItem(["mnemonic", "mits"], [mnemonic, mits]);

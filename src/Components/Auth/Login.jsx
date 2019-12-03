@@ -10,6 +10,9 @@ import { login_out } from "../../Actions/Authentication";
 import { updateAccount } from "../../Actions/Account";
 import { getItem, deleteItem, updateItem, addItem } from "../../utils/idb";
 import { keyString256, aesEncrypt, aesDecrypt } from "../../utils/creepto";
+import { getAvatar } from "../../BlockchainLogic/Faucet";
+import { getMits } from "../../BlockchainLogic/MitLogic";
+import { getMitsAction } from "../../Actions/MitGeneration";
 
 import "./Login.css";
 
@@ -29,17 +32,22 @@ class Login extends Component {
     if (this.state.password) {
       let password = this.state.password;
       let mnemonic;
-      let { salt, walletInfo } = await getItem("accountInfo");
+      let { avatar, salt, walletInfo } = await getItem("accountInfo");
       let key = keyString256(password, salt).key;
 
       let decryptedMnemonic = aesDecrypt(key, walletInfo);
 
       if (walletInfo === aesEncrypt(key, decryptedMnemonic)) {
         mnemonic = decryptedMnemonic;
+        let avatarInfo = await getAvatar(avatar);
+        let userAddress = await avatarInfo.address;
+        let mits = await getMits([userAddress]);
+
         await updateItem("loggedIn", true);
-        await addItem("mnemonic", mnemonic);
+        await addItem(["mnemonic", "mits"], [mnemonic, mits]);
         this.props.getWallet(mnemonic);
         this.props.login_out(true);
+        this.props.getMitsAction(mits);
       } else {
         this.setState({ error: "wrong password" });
       }
@@ -59,13 +67,7 @@ class Login extends Component {
         <div className="container-fluid">
           <div className="row">
             <div className="col-2 col-sm-3 col-md-4 col-lg-4 col-xl-4"> </div>
-            <div
-              className="col-8 col-sm-6 col-md-4 col-lg-4 col-xl-4 logo-text-container"
-              //   data-aos="zoom-in"
-              //   data-aos-offset="200"
-              //   // data-aos-delay="50"
-              //   data-aos-duration="1000"
-            >
+            <div className="col-8 col-sm-6 col-md-4 col-lg-4 col-xl-4 logo-text-container">
               <div className="row">
                 <div className="col">
                   <div className="text-center company-logo-section">
@@ -146,5 +148,6 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps, {
   getWallet,
   login_out,
-  updateAccount
+  updateAccount,
+  getMitsAction
 })(Login);

@@ -97,7 +97,7 @@ async function sendMIT() {
   console.log(tx, "tx"); //<- just the hash
 }
 */
-export async function getMits(addressArray) {
+export const getMits = async addressArray => {
   //Get the lastest Blockchain Length
   let height = await blockchain.height();
 
@@ -112,8 +112,8 @@ export async function getMits(addressArray) {
 
   //Calculate your balances based on the utxos
   let balances = await blockchain.balance.all(utxo, addressArray[0], height);
-  return balances.MIT.map(mit => mit.symbol, "balances");
-}
+  return balances.MIT.map(mit => mit, "balances");
+};
 
 /*
 //used in issueMit() as a logic func

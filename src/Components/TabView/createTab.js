@@ -12,6 +12,7 @@ import { getMitsAction } from "../../Actions/MitGeneration";
 import "./Tabs.css";
 import { issueMIT } from "../../BlockchainLogic/MitLogic";
 import { getMits } from "../../BlockchainLogic/MitLogic";
+import { updateItem } from "../../utils/idb";
 
 class CreateTab extends Component {
   state = {
@@ -50,6 +51,7 @@ class CreateTab extends Component {
       const addresses = await wallet.getAddresses();
       const mits = await getMits(addresses);
       console.log(mits, "mits in the component");
+      await updateItem("mits", mits);
       this.props.getMitsAction(mits);
       this.setState(
         {

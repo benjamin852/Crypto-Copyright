@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import { login_out } from "./Actions/Authentication";
 import { updateAccount } from "./Actions/Account";
 import { getWallet } from "./Actions/walletGeneration";
+import { getMitsAction } from "./Actions/MitGeneration";
 
 import "./App.css";
 
@@ -18,7 +19,9 @@ class App extends Component {
       let loggedIn = await getItem("loggedIn");
       if (loggedIn) {
         let mnemonic = await getItem("mnemonic");
+        let mits = await getItem("mits");
         this.props.getWallet(mnemonic);
+        this.props.getMitsAction(mits);
       }
       this.props.login_out(loggedIn);
       this.props.updateAccount(account);
@@ -53,5 +56,6 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps, {
   login_out,
   updateAccount,
-  getWallet
+  getWallet,
+  getMitsAction
 })(App);

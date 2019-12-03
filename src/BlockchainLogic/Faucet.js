@@ -7,7 +7,6 @@ let faucetMnemonic =
 let wallet;
 let faucet;
 let addresses;
-// let avatar;
 
 export const generateReceiverWallet = async mnemonic => {
   if (!mnemonic) {
@@ -22,7 +21,7 @@ const generateFaucet = async () => {
   faucet = await Metaverse.wallet.fromMnemonic(faucetMnemonic, "testnet");
 };
 
-async function getETPBalance() {
+const getETPBalance = async () => {
   let height = await blockchain.height();
   let address = addresses[0];
   //Get a list of wallet transactions
@@ -36,9 +35,9 @@ async function getETPBalance() {
 
   let ETPBalance = balances.ETP.available;
   return ETPBalance;
-}
+};
 
-async function sendETP(amount, recipient_address) {
+const sendETP = async (amount, recipient_address) => {
   var target = {
     ETP: amount //100 million units = 1 ETP
   };
@@ -73,9 +72,9 @@ async function sendETP(amount, recipient_address) {
   //Broadcast the transaction to the metaverse network.
   tx = await blockchain.transaction.broadcast(tx.toString("hex"));
   return tx;
-}
+};
 
-export async function registerAvatar(avatar_name, avatar_address) {
+export const registerAvatar = async (avatar_name, avatar_address) => {
   let change_address = avatar_address;
   let height = await blockchain.height();
   let txs = await blockchain.addresses.txs(addresses);
@@ -96,7 +95,12 @@ export async function registerAvatar(avatar_name, avatar_address) {
 
   tx = await blockchain.transaction.broadcast(tx.toString("hex"));
   return avatar;
-}
+};
+
+export const getAvatar = async avatar => {
+  let avatarInfo = await blockchain.avatar.get(avatar);
+  return avatarInfo;
+};
 
 // export async function withdraw() {
 //   let balance = await getETPBalance();
@@ -123,7 +127,7 @@ export async function registerAvatar(avatar_name, avatar_address) {
 //   }
 // }
 
-export async function withdraw(userAvatar) {
+export const withdraw = async userAvatar => {
   try {
     let balance = await getETPBalance();
     console.log(balance);
@@ -143,9 +147,9 @@ export async function withdraw(userAvatar) {
   } catch (err) {
     throw err;
   }
-}
+};
 
-export async function run(userAvatar) {
+export const run = async userAvatar => {
   try {
     const mnemonic = await generateReceiverWallet();
     const avatar = await withdraw(userAvatar);
@@ -153,4 +157,4 @@ export async function run(userAvatar) {
   } catch (err) {
     throw err;
   }
-}
+};

@@ -11,6 +11,7 @@ import NewsLetter from "../NewsLetter/newsLetter";
 import { updateItem, deleteItem } from "../../utils/idb";
 import { login_out } from "../../Actions/Authentication";
 import { getWallet } from "../../Actions/walletGeneration";
+import { getMitsAction } from "../../Actions/MitGeneration";
 import { connect } from "react-redux";
 
 class Header extends Component {
@@ -21,8 +22,10 @@ class Header extends Component {
   handleLogout = async event => {
     await updateItem("loggedIn", false);
     await deleteItem("mnemonic");
+    await deleteItem("mits");
     this.props.login_out(false);
     this.props.getWallet("");
+    this.props.getMitsAction("");
   };
   render() {
     return (
@@ -127,4 +130,8 @@ const mapStateToProps = state => ({
   loggedIn: state.ProveitReducer.loggedIn
 });
 
-export default connect(mapStateToProps, { login_out, getWallet })(Header);
+export default connect(mapStateToProps, {
+  login_out,
+  getWallet,
+  getMitsAction
+})(Header);

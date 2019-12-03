@@ -87,7 +87,7 @@ class Tabs extends Component {
               >
                 <ListMits />
               </div>
-            </div>{" "}
+            </div>
           </div>
         ) : (
           <div>

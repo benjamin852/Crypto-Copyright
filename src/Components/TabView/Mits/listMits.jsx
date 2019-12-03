@@ -12,7 +12,7 @@ import Typography from "@material-ui/core/Typography";
 import { red } from "@material-ui/core/colors";
 import { connect } from "react-redux";
 
-import { default_mit_image } from "../../../Assets/Images/default_mit_image.png";
+import { default_mit_image } from "../../../Assets/Images/default_mit_image";
 
 const useStyles = makeStyles(theme => ({
   // card: {
@@ -87,8 +87,7 @@ const ListMits = props => {
 };
 
 const mapStateToProps = state => ({
-  mitSymbol: state.ProveitReducer.mits.symbol,
-  mitContent: state.ProveitReducer.mits.content
+  mits: state.ProveitReducer.mits
 });
 
 export default connect(mapStateToProps)(ListMits);

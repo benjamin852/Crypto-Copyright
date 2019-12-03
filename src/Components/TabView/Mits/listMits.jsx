@@ -41,44 +41,51 @@ const useStyles = makeStyles(theme => ({
 const ListMits = props => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
-
+  React.useEffect(() => {
+    console.log(props.mitSymbol);
+  }, []);
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
   return (
     <div>
-      {props.mitSymbol ? (
-        <Card className={classes.card}>
-          <CardHeader
-            avatar={
-              <Avatar aria-label="recipe" className={classes.avatar}>
-                {default_mit_image}
-              </Avatar>
-            }
-            title={props.mitContent89}
-            subheader={`Owned By: ${props.avatar}`}
-          />
-          {/* <CardMedia
+      {props.mits ? (
+        props.mits.map(mit => (
+          <Card key={mit.symbol} className={classes.card}>
+            <CardHeader
+              avatar={
+                <Avatar
+                  alt="default metaverse mit icon"
+                  src="../../Assets/Images/default_mit_image.png"
+                  aria-label="recipe"
+                  className={classes.avatar}
+                />
+              }
+              title={mit.content}
+              subheader={`Owned By: ${mit.owner}`}
+            />
+            {/* <CardMedia
         className={classes.media}
         image="/static/images/cards/paella.jpg"
         title="Paella dish"
       /> */}
-          <CardContent>
-            <Typography variant="body2" color="textSecondary" component="p">
-              {props.mitSymbol}
-            </Typography>
-          </CardContent>
-          <CardActions disableSpacing>
-            <IconButton
-              className={clsx(classes.expand, {
-                [classes.expandOpen]: expanded
-              })}
-              onClick={handleExpandClick}
-              aria-expanded={expanded}
-              aria-label="show more"
-            ></IconButton>
-          </CardActions>
-        </Card>
+            <CardContent>
+              <Typography variant="body2" color="textSecondary" component="p">
+                {mit.symbol}
+              </Typography>
+            </CardContent>
+            <CardActions disableSpacing>
+              <IconButton
+                className={clsx(classes.expand, {
+                  [classes.expandOpen]: expanded
+                })}
+                onClick={handleExpandClick}
+                aria-expanded={expanded}
+                aria-label="show more"
+              ></IconButton>
+            </CardActions>
+          </Card>
+        ))
       ) : (
         <h4>Please Create some MITS</h4>
       )}

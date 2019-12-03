@@ -19,12 +19,14 @@ import { updateItem, getItem } from "../../../utils/idb";
 class ListMits extends Component {
   async componentDidMount() {
     let { avatar } = await getItem("accountInfo");
-    let avatarInfo = await getAvatar(avatar);
-    console.log(await avatarInfo);
-    let address = await avatarInfo.address;
-    let mits = await getMits([await address]);
-    await updateItem("mits", mits);
-    this.props.getMitsAction(mits);
+    console.log(await avatar);
+    let avatarInfo = await getAvatar(await avatar);
+    if (await avatarInfo) {
+      let address = await avatarInfo.address;
+      let mits = await getMits([await address]);
+      await updateItem("mits", mits);
+      this.props.getMitsAction(mits);
+    }
   }
 
   render() {

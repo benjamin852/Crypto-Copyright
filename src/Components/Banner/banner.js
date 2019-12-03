@@ -3,7 +3,6 @@ import AOS from "aos";
 import "./banner.css";
 
 class Banner extends Component {
-  state = {};
   componentDidMount() {
     AOS.init();
 

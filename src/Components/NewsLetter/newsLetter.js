@@ -42,6 +42,7 @@ class NewsLetter extends Component {
             >
               <img
                 className="newsLetterImage"
+                alt="Newsletter Image"
                 data-aos="zoom-in"
                 data-aos-offset="200"
                 // data-aos-delay="50"

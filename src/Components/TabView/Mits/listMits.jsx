@@ -12,8 +12,6 @@ import Typography from "@material-ui/core/Typography";
 import { red } from "@material-ui/core/colors";
 import { connect } from "react-redux";
 
-import { default_mit_image } from "../../../Assets/Images/default_mit_image";
-
 const useStyles = makeStyles(theme => ({
   // card: {
   //   maxWidth: 345
@@ -56,7 +54,7 @@ const ListMits = props => {
               avatar={
                 <Avatar
                   alt="default metaverse mit icon"
-                  src="../../Assets/Images/default_mit_image.png"
+                  src="https://explorer-testnet.mvs.org/img/assets/default_mit.png"
                   aria-label="recipe"
                   className={classes.avatar}
                 />

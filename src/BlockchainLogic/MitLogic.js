@@ -1,22 +1,9 @@
 import Metaverse from "metaversejs";
 import Blockchain from "mvs-blockchain";
 
-// let mnemonic = "orphan nothing dolphin fantasy opinion shop letter ski coral sound fun sail moral abuse unveil glove radio blush young issue oak impact hen tower";
-let wallet;
-let addresses;
-let avatars;
-
-let MITsymbols;
-let MITData;
-
 let blockchain = Blockchain({
   url: "https://explorer-testnet.mvs.org/api/"
 });
-//async function initialize() {
-//   await populateAvatarSelect(); //drop down menu of avatars
-//   await showMITBalances(); //display balance data
-//   await populateMITSelect(); //drop down menu for mit
-//}
 
 //create new MIT
 export async function issueMIT(wallet, content, symbolHash) {
@@ -114,14 +101,3 @@ export const getMits = async addressArray => {
   let balances = await blockchain.balance.all(utxo, addressArray[0], height);
   return balances.MIT.map(mit => mit, "balances");
 };
-
-/*
-//used in issueMit() as a logic func
-//consider renaming getAddress()
-async function getAvatar(avatar) {
-  console.log(avatar, "avatar at the bottom");
-  let avatarInfo = await blockchain.avatar.get(avatar);
-  console.log(avatarInfo, "avatarInfo");
-  return avatarInfo.address;
-}
-*/

@@ -10,6 +10,7 @@ import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import { red } from "@material-ui/core/colors";
+import { connect } from "react-redux";
 
 import { default_mit_image } from "../../../Assets/Images/default_mit_image.png";
 
@@ -17,6 +18,7 @@ const useStyles = makeStyles(theme => ({
   // card: {
   //   maxWidth: 345
   // },
+
   media: {
     height: 0,
     paddingTop: "56.25%" // 16:9
@@ -36,51 +38,57 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const ListMits = () => {
+const ListMits = props => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-
   return (
-    <Card className={classes.card}>
-      <CardHeader
-        avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            {default_mit_image}
-          </Avatar>
-        }
-        title={this.props.mit.content}
-        subheader={`Owned By: ${this.props.avatar}`}
-      />
-      {/* <CardMedia
+    <div>
+      {props.mitSymbol ? (
+        <Card className={classes.card}>
+          <CardHeader
+            avatar={
+              <Avatar aria-label="recipe" className={classes.avatar}>
+                {default_mit_image}
+              </Avatar>
+            }
+            title={props.mitContent89}
+            subheader={`Owned By: ${props.avatar}`}
+          />
+          {/* <CardMedia
         className={classes.media}
         image="/static/images/cards/paella.jpg"
         title="Paella dish"
       /> */}
-      <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-          {this.props.mit.symbol}
-        </Typography>
-      </CardContent>
-      <CardActions disableSpacing>
-        <IconButton
-          className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded
-          })}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        ></IconButton>
-      </CardActions>
-    </Card>
+          <CardContent>
+            <Typography variant="body2" color="textSecondary" component="p">
+              {props.mitSymbol}
+            </Typography>
+          </CardContent>
+          <CardActions disableSpacing>
+            <IconButton
+              className={clsx(classes.expand, {
+                [classes.expandOpen]: expanded
+              })}
+              onClick={handleExpandClick}
+              aria-expanded={expanded}
+              aria-label="show more"
+            ></IconButton>
+          </CardActions>
+        </Card>
+      ) : (
+        <h4>Please Create some MITS</h4>
+      )}
+    </div>
   );
 };
 
 const mapStateToProps = state => ({
-  mitSymbol: state.proveItReducer.mits
+  mitSymbol: state.ProveitReducer.mits.symbol,
+  mitContent: state.ProveitReducer.mits.content
 });
 
 export default connect(mapStateToProps)(ListMits);

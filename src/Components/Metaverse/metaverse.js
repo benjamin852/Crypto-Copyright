@@ -63,6 +63,7 @@ class Metaverse extends Component {
               <img
                 className="metaverseIcons"
                 src={require("../../Assets/Logo/blockchain.PNG")}
+                alt="Metaverse Blockchain"
               />
               <div>
                 <span className="metaverseIconText">
@@ -81,6 +82,7 @@ class Metaverse extends Component {
               <img
                 className="metaverseIcons"
                 src={require("../../Assets/Logo/dollar.png")}
+                alt="Dollar"
               />
               <div>
                 <span className="metaverseIconText">
@@ -98,6 +100,7 @@ class Metaverse extends Component {
               <img
                 className="metaverseIcons"
                 src={require("../../Assets/Logo/Services.png")}
+                alt="Metaverse Services"
               />
               <div>
                 <span className="metaverseIconText">
@@ -116,6 +119,7 @@ class Metaverse extends Component {
               <img
                 className="metaverseIcons"
                 src={require("../../Assets/Logo/earth.png")}
+                alt="Earth"
               />
               <div>
                 <span className="metaverseIconText">

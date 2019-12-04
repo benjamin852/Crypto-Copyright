@@ -63,6 +63,7 @@ class Team extends Component {
               <img
                 className="teamImage"
                 src={require("../../Assets/Images/Eric.jpg")}
+                alt="Eric Gu"
               />
               <div style={{ marginTop: "15px" }}>
                 <span className="teamName">Eric Gu</span>

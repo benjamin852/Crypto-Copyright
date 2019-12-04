@@ -82,7 +82,6 @@ const Tabs = props => {
               id="Mits"
               role="tabpanel"
               aria-labelledby="Verify-tab"
-              style={{ marginTop: "6%", textAlign: "center" }}
             >
               <ListMits />
             </div>

@@ -1,11 +1,4 @@
 .btn-verify {
-  /* background-color: #ffffff;
-  width: 100%;
-  color: #17bcde;
-  border-radius: 8px;
-  font-size: 25px;
-  padding: 3%;
-  border: 2px solid #00bcdf; */
   background-color: #ffffff;
   width: 100%;
   color: #17bcde;
@@ -94,4 +87,8 @@
 
 .mitInput input {
   text-align: center;
+}
+
+.tab-pane {
+  padding: 10px 10px 20px;
 }

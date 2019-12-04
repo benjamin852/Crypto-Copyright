@@ -29,7 +29,6 @@ function ProveitReducer(mState = { ...state }, action) {
         mState.successMsg = action.payload;
       }
       return deepCopy(mState);
-
     case PROVE:
       if (action.payload === undefined || action.payload === null) {
       } else {

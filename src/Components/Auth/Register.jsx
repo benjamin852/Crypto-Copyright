@@ -62,7 +62,10 @@ class Register extends Component {
               walletInfo: encryptedHash
             };
 
-            await addItem(["accountInfo", "loggedIn","mnemonic"],[secret, true, this.state.mnemonic]);
+            await addItem(
+              ["accountInfo", "loggedIn", "mnemonic"],
+              [secret, true, this.state.mnemonic]
+            );
             this.props.login_out(true);
             this.props.updateAccount(secret);
             this.props.createWallet(this.state.mnemonic, this.state.avatar);
@@ -103,7 +106,7 @@ class Register extends Component {
                   <div className="text-center company-logo-section">
                     <img
                       className="company-logo"
-                      src={require("../../Assets/Logo/company-logo.png")}
+                      src={require("../../Assets/Logo/crypto-copyright.png")}
                       alt="company-logo"
                     />
                   </div>

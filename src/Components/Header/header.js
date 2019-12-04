@@ -31,14 +31,13 @@ class Header extends Component {
     return (
       <React.Fragment>
         <nav className="navbar navbar-expand-md bg-color navbar-dark mb-1">
-          <div className="nav-item ml-2 mt-2">
+          {/* <div className="nav-item ml-2 mt-2">
             <a className="nav-link text-white" href="#">
               <img
                 className="logo display"
                 src={require("../../Assets/Logo/home-button.png")}
                 alt="home"
               />
-              {/* <span className="display">HOME</span> */}
             </a>
           </div>
           <button
@@ -48,7 +47,7 @@ class Header extends Component {
             data-target="#collapsibleNavbar"
           >
             <span className="navbar-toggler-icon"></span>
-          </button>
+          </button> */}
           <div
             className="collapse navbar-collapse flex-row-reverse"
             id="collapsibleNavbar"
@@ -60,7 +59,6 @@ class Header extends Component {
                   onClick={() => this.setState({ currentTab: 0 })}
                   href="#tab"
                 >
-                  {/* <div className="motion"></div> */}
                   Create
                 </a>
               </li>

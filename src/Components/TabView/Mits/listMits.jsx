@@ -1,21 +1,16 @@
 import React, { Component } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import clsx from "clsx";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
-import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 import Avatar from "@material-ui/core/Avatar";
-import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
-import { red } from "@material-ui/core/colors";
 import { connect } from "react-redux";
 import { getMits } from "../../../BlockchainLogic/MitLogic";
 import { getAvatar } from "../../../BlockchainLogic/Faucet";
 import { getMitsAction } from "../../../Actions/MitGeneration";
 import { updateItem, getItem } from "../../../utils/idb";
-
+import { refreshButton } from "./refresh-button.png";
 class ListMits extends Component {
   async componentDidMount() {
     let { avatar } = await getItem("accountInfo");
@@ -33,31 +28,32 @@ class ListMits extends Component {
     return (
       <div>
         {this.props.mits.length ? (
-          this.props.mits.map(mit => (
-            <Card key={mit.symbol}>
-              <CardHeader
-                avatar={
-                  <Avatar
-                    alt="default metaverse mit icon"
-                    src=""
-                    aria-label="recipe"
-                  />
-                }
-                title={mit.content}
-                subheader={`Owned By: ${mit.owner}`}
-              />
-              {/* <CardMedia
-          className={classes.media}
-          image="/static/images/cards/paella.jpg"
-          title="Paella dish"
-        /> */}
-              <CardContent>
-                <Typography variant="body2" color="textSecondary" component="p">
-                  {mit.symbol}
-                </Typography>
-              </CardContent>
-              <CardActions disableSpacing>
-                {/* <IconButton
+          <React.Fragment>
+            <img src={refreshButton} alt="Refresh Button" />
+            {this.props.mits.map(mit => (
+              <Card key={mit.symbol}>
+                <CardHeader
+                  avatar={
+                    <Avatar
+                      alt="default metaverse mit icon"
+                      src=""
+                      aria-label="recipe"
+                    />
+                  }
+                  title={mit.content}
+                  subheader={`Owned By: ${mit.owner}`}
+                />
+                <CardContent>
+                  <Typography
+                    variant="body2"
+                    color="textSecondary"
+                    component="p"
+                  >
+                    {mit.symbol}
+                  </Typography>
+                </CardContent>
+                <CardActions disableSpacing>
+                  {/* <IconButton
                   className={clsx(classes.expand, {
                     [classes.expandOpen]: expanded
                   })}
@@ -65,9 +61,10 @@ class ListMits extends Component {
                   aria-expanded={expanded}
                   aria-label="show more"
                 ></IconButton> */}
-              </CardActions>
-            </Card>
-          ))
+                </CardActions>
+              </Card>
+            ))}
+          </React.Fragment>
         ) : (
           <h4>Please Create some MITS</h4>
         )}

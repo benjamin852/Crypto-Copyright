@@ -84,6 +84,7 @@ class Team extends Component {
               <img
                 className="teamImage"
                 src={require("../../Assets/Images/Christine.jpg")}
+                alt="Christine Duhaime"
               />
               <div style={{ marginTop: "15px" }}>
                 <span className="teamName">Christine Duhaime</span>
@@ -105,6 +106,7 @@ class Team extends Component {
               <img
                 className="teamImage"
                 src={require("../../Assets/Images/tal.jpg")}
+                alt="Tal Zisckind"
               />
               <div style={{ marginTop: "15px" }}>
                 <span className="teamName">Tal Zisckind</span>
@@ -125,6 +127,7 @@ class Team extends Component {
               <img
                 className="teamImage"
                 src={require("../../Assets/Images/sven.jpg")}
+                alt="Sven Mutzl"
               />
               <div style={{ marginTop: "15px" }}>
                 <span className="teamName">Sven Mutzl</span>
@@ -143,6 +146,7 @@ class Team extends Component {
               <img
                 className="teamImage"
                 src={require("../../Assets/Images/laurent.jpg")}
+                alt="Laurent Salou"
               />
               <div style={{ marginTop: "15px" }}>
                 <span className="teamName">Laurent Salou</span>
@@ -161,6 +165,7 @@ class Team extends Component {
               <img
                 className="teamImage"
                 src={require("../../Assets/Images/Emma.jpg")}
+                alt="Emma Hsueh"
               />
               <div style={{ marginTop: "15px" }}>
                 <span className="teamName">Emma Hsueh</span>

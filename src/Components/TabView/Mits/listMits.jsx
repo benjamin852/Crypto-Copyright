@@ -12,17 +12,24 @@ import { getMitsAction } from "../../../Actions/MitGeneration";
 import { updateItem, getItem } from "../../../utils/idb";
 
 class ListMits extends Component {
+  address;
   async componentDidMount() {
     let { avatar } = await getItem("accountInfo");
-    console.log(await avatar);
     let avatarInfo = await getAvatar(await avatar);
     if (await avatarInfo) {
-      let address = await avatarInfo.address;
-      let mits = await getMits([await address]);
+      this.address = await avatarInfo.address;
+      let mits = await getMits([await this.address]);
       await updateItem("mits", mits);
       this.props.getMitsAction(mits);
     }
   }
+
+  handleRefresh = async () => {
+    const mits = await getMits([this.address]);
+    this.props.getMitsAction(mits);
+    await updateItem("mits", mits);
+    return this.props.mits;
+  };
 
   render() {
     return (
@@ -32,6 +39,7 @@ class ListMits extends Component {
             <img
               src={require("../../../Assets/Logo/refresh-button.png")}
               alt="Refresh Button"
+              onClick={this.handleRefresh}
             />
             {this.props.mits.map(mit => (
               <Card key={mit.symbol}>

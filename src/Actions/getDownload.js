@@ -3,7 +3,6 @@ import { BaseURL } from "./BaseURL";
 import axios from "axios";
 
 export const getDownloadAction = (hash, password, crtl) => dispatch => {
-  console.log(hash);
   axios
     .get(BaseURL + "/download?hash=" + hash + "&password=" + password)
     .then(res => {
@@ -11,7 +10,6 @@ export const getDownloadAction = (hash, password, crtl) => dispatch => {
         type: DOWNLOAD,
         payload: res.data
       });
-      console.log(res.data, "getDownload <<<=== action data");
       if (res.data) {
         crtl.setState({ loading: false });
       }
@@ -21,7 +19,6 @@ export const getDownloadAction = (hash, password, crtl) => dispatch => {
         type: DOWNLOAD_ERR_MESSAGE,
         payload: err.response.data
       });
-      console.log(err.response.data);
       if (err.response.data) {
         crtl.setState({ loading: false });
       }

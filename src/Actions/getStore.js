@@ -3,7 +3,6 @@ import { BaseURL } from "./BaseURL";
 import axios from "axios";
 
 export const getStoreAction = (hash, crtl) => dispatch => {
-  console.log(hash);
   axios
     .get(BaseURL + "/store?hash=" + hash)
     .then(res => {
@@ -21,7 +20,6 @@ export const getStoreAction = (hash, crtl) => dispatch => {
         type: STORE_ERR_MESSAGE,
         payload: err.response.data
       });
-      console.log(err.response.data);
       if (err.response.data === "DUPLICATE_ENTRY") {
         crtl.setState({ loading: false });
       }

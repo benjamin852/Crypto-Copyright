@@ -46,7 +46,6 @@ class Register extends Component {
               const [mnemonic, avatar] = await run(username);
               this.setState({ avatar, mnemonic });
             } catch (err) {
-              console.log(err);
               this.setState({ error: err.message, loading: false });
 
               return false;

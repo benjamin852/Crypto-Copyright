@@ -9,7 +9,6 @@ export const createWallet = (mnemonic, avatar) => async dispatch => {
 };
 
 export const getWallet = mnemonic => async dispatch => {
-  console.log(mnemonic);
   await Metaverse.wallet.fromMnemonic(
     mnemonic, //mnemonic should already be stored in indexdb
     "testnet"

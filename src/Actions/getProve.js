@@ -3,7 +3,6 @@ import { BaseURL } from "./BaseURL";
 import axios from "axios";
 
 export const getProveAction = (hash, crtl) => dispatch => {
-  console.log(hash);
   axios
     .get(BaseURL + "/prove?hash=" + hash)
     .then(res => {
@@ -11,7 +10,6 @@ export const getProveAction = (hash, crtl) => dispatch => {
         type: PROVE,
         payload: res.data
       });
-      console.log(res.data, "getProve action res.data<<<=======");
       if (res.data) {
         crtl.setState({ loading: false });
       }
@@ -21,7 +19,6 @@ export const getProveAction = (hash, crtl) => dispatch => {
         type: PROVE_ERR_MESSAGE,
         payload: err.response.data
       });
-      console.log(err.response.data);
       if (err) {
         crtl.setState({ loading: false });
       }

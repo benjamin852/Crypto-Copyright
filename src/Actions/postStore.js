@@ -22,7 +22,6 @@ export const postStoreAction = (
         type: STORE,
         payload: res.data
       });
-      console.log(res, "postStore res.data <<====");
       if (res.data) {
         crtl.setState({ loading: false });
         crtl.setState({ contentStatus: false });
@@ -33,7 +32,6 @@ export const postStoreAction = (
         type: STORE_ERR_MESSAGE,
         payload: err.response.data
       });
-      console.log(err.response.data);
       if (err.response.data === "DUPLICATE_ENTRY") {
         crtl.setState({ loading: false });
       }

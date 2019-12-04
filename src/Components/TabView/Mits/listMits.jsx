@@ -10,7 +10,7 @@ import { getMits } from "../../../BlockchainLogic/MitLogic";
 import { getAvatar } from "../../../BlockchainLogic/Faucet";
 import { getMitsAction } from "../../../Actions/MitGeneration";
 import { updateItem, getItem } from "../../../utils/idb";
-import { refreshButton } from "./refresh-button.png";
+
 class ListMits extends Component {
   async componentDidMount() {
     let { avatar } = await getItem("accountInfo");
@@ -29,14 +29,17 @@ class ListMits extends Component {
       <div>
         {this.props.mits.length ? (
           <React.Fragment>
-            <img src={refreshButton} alt="Refresh Button" />
+            <img
+              src={require("../../../Assets/Logo/refresh-button.png")}
+              alt="Refresh Button"
+            />
             {this.props.mits.map(mit => (
               <Card key={mit.symbol}>
                 <CardHeader
                   avatar={
                     <Avatar
                       alt="default metaverse mit icon"
-                      src=""
+                      src={require("../../../Assets/Logo/WechatIMG187.jpeg")}
                       aria-label="recipe"
                     />
                   }

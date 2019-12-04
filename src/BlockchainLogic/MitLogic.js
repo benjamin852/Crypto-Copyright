@@ -31,7 +31,6 @@ export async function issueMIT(wallet, content, symbolHash) {
   tx = await tx.encode();
   tx = await blockchain.transaction.broadcast(tx.toString("hex"));
   // .then(tx=>tx.toString('hex'))
-  console.log(tx, "tx");
 }
 /*
 //Transfer MIT To Selected avatar not address

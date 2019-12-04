@@ -68,6 +68,7 @@ class Working extends Component {
               <img
                 className="workIcon"
                 src={require("../../Assets/Logo/print.png")}
+                alt="Fingerprint"
               />
               <div style={{ marginTop: "10px" }}>
                 <span className="workHeading">Record</span>
@@ -91,6 +92,7 @@ class Working extends Component {
               <img
                 className="workIcon"
                 src={require("../../Assets/Logo/device_hub.png")}
+                alt="Device Hub"
               />
               <div style={{ marginTop: "10px" }}>
                 <span className="workHeading">Write</span>
@@ -113,6 +115,7 @@ class Working extends Component {
               <img
                 className="workIcon"
                 src={require("../../Assets/Logo/key.png")}
+                alt="Key"
               />
               <div style={{ marginTop: "10px" }}>
                 <span className="workHeading">Prove</span>

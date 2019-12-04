@@ -40,7 +40,6 @@ class VerifyTab extends Component {
     reader.onload = event => {
       const data = event.target.result;
       this.setState({ hash: SHA256(data) + "" });
-      console.log(this.state.hash);
     };
     reader.readAsBinaryString(file);
   };

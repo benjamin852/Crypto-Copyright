@@ -50,7 +50,6 @@ class CreateTab extends Component {
       await issueMIT(wallet, this.state.mitContent, this.state.hash);
       const addresses = await wallet.getAddresses();
       const mits = await getMits(addresses);
-      console.log(mits, "mits in the component");
       await updateItem("mits", mits);
       this.props.getMitsAction(mits);
       this.setState(

@@ -16,7 +16,6 @@ const createAvatarLogic = async () => {
     )
     .then(tx => wallet.sign(tx))
     .then(stx => {
-      console.log("signed transaction: " + stx);
       //Encode (serialize) the transaction
       return stx.encode();
     })

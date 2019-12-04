@@ -61,10 +61,10 @@ class Intro extends Component {
             <div className="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7">
               <div
                 className="flow-control"
-                data-aos="slide-left"
-                data-aos-offset="200"
+                // data-aos="slide-left"
+                // data-aos-offset="200"
                 // data-aos-delay="50"
-                data-aos-duration="1000"
+                // data-aos-duration="1000"
               >
                 <div className="carousel-inner intro-carousel">
                   <div className="carousel-item active">

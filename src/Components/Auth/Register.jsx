@@ -20,6 +20,7 @@ class Register extends Component {
   state = {
     username: "",
     password: "",
+    passwordMatch: "",
     email: "",
     error: null,
     loading: false,
@@ -28,61 +29,65 @@ class Register extends Component {
   };
 
   handleClick = async event => {
-    let { password, username, email } = this.state;
-    if (password && username && email) {
-      if (username.length > 3) {
-        let exsitedAccount = await getItem("accountInfo");
-        let existedLoggedIn = await getItem("loggedIn");
+    let { password, username, email, passwordMatch } = this.state;
+    if (password && username && email && passwordMatch) {
+      if (passwordMatch === password) {
+        if (username.length > 3) {
+          let exsitedAccount = await getItem("accountInfo");
+          let existedLoggedIn = await getItem("loggedIn");
 
-        if (existedLoggedIn === undefined && exsitedAccount === undefined) {
-          this.setState({ loading: true });
-          let avatarAPI = await fetch(
-            `https://explorer-testnet.mvs.org/api/avatar/${username}`
-          );
-
-          let avatarInfo = await avatarAPI.json();
-          if ((await avatarInfo.result) === null) {
-            try {
-              const [mnemonic, avatar] = await run(username);
-              this.setState({ avatar, mnemonic });
-            } catch (err) {
-              this.setState({ error: err.message, loading: false });
-
-              return false;
-            }
-            let passHash = keyString256(password);
-            const key = passHash.key;
-            const salt = passHash.salt;
-            let encryptedHash = aesEncrypt(key, this.state.mnemonic);
-
-            let secret = {
-              avatar: this.state.avatar,
-              salt: salt,
-              walletInfo: encryptedHash
-            };
-
-            await addItem(
-              ["accountInfo", "loggedIn", "mnemonic"],
-              [secret, true, this.state.mnemonic]
+          if (existedLoggedIn === undefined && exsitedAccount === undefined) {
+            this.setState({ loading: true });
+            let avatarAPI = await fetch(
+              `https://explorer-testnet.mvs.org/api/avatar/${username}`
             );
-            this.props.login_out(true);
-            this.props.updateAccount(secret);
-            this.props.createWallet(this.state.mnemonic, this.state.avatar);
-            this.setState({ loading: false });
+
+            let avatarInfo = await avatarAPI.json();
+            if ((await avatarInfo.result) === null) {
+              try {
+                const [mnemonic, avatar] = await run(username);
+                this.setState({ avatar, mnemonic });
+              } catch (err) {
+                this.setState({ error: err.message, loading: false });
+
+                return false;
+              }
+              let passHash = keyString256(password);
+              const key = passHash.key;
+              const salt = passHash.salt;
+              let encryptedHash = aesEncrypt(key, this.state.mnemonic);
+
+              let secret = {
+                avatar: this.state.avatar,
+                salt: salt,
+                walletInfo: encryptedHash
+              };
+
+              await addItem(
+                ["accountInfo", "loggedIn", "mnemonic"],
+                [secret, true, this.state.mnemonic]
+              );
+              this.props.login_out(true);
+              this.props.updateAccount(secret);
+              this.props.createWallet(this.state.mnemonic, this.state.avatar);
+              this.setState({ loading: false });
+            } else {
+              this.setState({
+                error: "The chosen username is taken, please try another name.",
+                loading: false
+              });
+            }
+            // let avatar = "godofwar";
+            // let mnemonic =
+            //   "alcohol hammer involve little wide kitten antenna fly census escape front arctic suggest angry affair flag sick pattern potato place page reopen sing mango";
           } else {
-            this.setState({
-              error: "The chosen username is taken, please try another name.",
-              loading: false
-            });
+            this.setState({ error: "Account already existed." });
           }
-          // let avatar = "godofwar";
-          // let mnemonic =
-          //   "alcohol hammer involve little wide kitten antenna fly census escape front arctic suggest angry affair flag sick pattern potato place page reopen sing mango";
         } else {
-          this.setState({ error: "Account already existed." });
+          this.setState({ error: "Username must be at least 3 charaters." });
         }
       } else {
-        this.setState({ error: "Username must be at least 3 charaters." });
+        this.setState({ error: "Your password did not match." });
       }
     } else {
       this.setState({ error: "All fields are mandatory." });
@@ -146,6 +151,17 @@ class Register extends Component {
                             onFocus={e => this.setState({ error: null })}
                             onChange={e => {
                               this.setState({ password: e.target.value });
+                            }}
+                          />
+                          <br />
+                          <TextField
+                            id="passwordMatch"
+                            type="passwordMatch"
+                            hintText="Re-Enter your Password"
+                            floatingLabelText="Password Again"
+                            onFocus={e => this.setState({ error: null })}
+                            onChange={e => {
+                              this.setState({ passwordMatch: e.target.value });
                             }}
                           />
                           <br />

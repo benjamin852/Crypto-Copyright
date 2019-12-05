@@ -98,7 +98,11 @@ export const registerAvatar = async (avatar_name, avatar_address) => {
 };
 
 export const getAvatar = async avatar => {
+  console.log(avatar, "avatar");
+  console.log(blockchain);
+  console.log(blockchain.avatar);
   let avatarInfo = await blockchain.avatar.get(avatar);
+  console.log(avatarInfo);
   return avatarInfo;
 };
 

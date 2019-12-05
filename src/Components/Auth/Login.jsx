@@ -40,14 +40,18 @@ class Login extends Component {
       if (walletInfo === aesEncrypt(key, decryptedMnemonic)) {
         mnemonic = decryptedMnemonic;
         let avatarInfo = await getAvatar(avatar);
-        let userAddress = await avatarInfo.address;
-        let mits = await getMits([await userAddress]);
+        console.log(avatarInfo, "avatarInfo<-");
+        if (await avatarInfo) {
+          console.log(avatarInfo);
+          let userAddress = await avatarInfo.address;
+          let mits = await getMits([await userAddress]);
 
-        await updateItem("loggedIn", true);
-        await addItem(["mnemonic", "mits"], [mnemonic, mits]);
-        this.props.getWallet(mnemonic);
-        this.props.login_out(true);
-        this.props.getMitsAction(mits);
+          await updateItem("loggedIn", true);
+          await addItem(["mnemonic", "mits"], [mnemonic, mits]);
+          this.props.getWallet(mnemonic);
+          this.props.login_out(true);
+          this.props.getMitsAction(mits);
+        }
       } else {
         this.setState({ error: "wrong password" });
       }

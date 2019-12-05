@@ -40,6 +40,14 @@ class ListMits extends Component {
       <div>
         {this.props.mits.length ? (
           <React.Fragment>
+            <img
+              src={require("../../../Assets/Logo/refresh-button.png")}
+              alt="Refresh Button"
+              className="refreshImg"
+              onClick={this.handleRefresh}
+            />
+            <br />
+            <br />
             <Grid className="mitContainer" container spacing={2}>
               {this.props.mits.map(mit => (
                 <Grid className="cardHolder" sx={12} md={6}>
@@ -62,19 +70,14 @@ class ListMits extends Component {
                         color="textSecondary"
                         component="p"
                       >
-                        <strong>Your File Hash : </strong>{mit.symbol}
+                        <strong>Your File Hash : </strong>
+                        {mit.symbol}
                       </Typography>
                     </CardContent>
                   </Card>
                 </Grid>
               ))}
             </Grid>
-            <img
-              src={require("../../../Assets/Logo/refresh-button.png")}
-              alt="Refresh Button"
-              className="refreshImg"
-              onClick={this.handleRefresh}
-            />
           </React.Fragment>
         ) : (
           <h4>Please Create some MITS</h4>

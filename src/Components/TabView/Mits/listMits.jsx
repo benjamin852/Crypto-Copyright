@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
-import ButtonBase from "@material-ui/core/ButtonBase";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
 import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import { connect } from "react-redux";
 import { getMits } from "../../../BlockchainLogic/MitLogic";
 import { getAvatar } from "../../../BlockchainLogic/Faucet";
@@ -16,7 +15,11 @@ import { updateItem, getItem } from "../../../utils/idb";
 import "./listMits.css";
 
 class ListMits extends Component {
+  state = {
+    loading: false
+  };
   address;
+
   async componentDidMount() {
     let { avatar } = await getItem("accountInfo");
     let avatarInfo = await getAvatar(await avatar);
@@ -29,10 +32,11 @@ class ListMits extends Component {
   }
 
   handleRefresh = async () => {
+    this.setState({ loading: true });
     const mits = await getMits([this.address]);
     this.props.getMitsAction(mits);
     await updateItem("mits", mits);
-    return this.props.mits;
+    setTimeout(() => this.setState({ loading: false }), 1000);
   };
 
   render() {
@@ -40,9 +44,26 @@ class ListMits extends Component {
       <div>
         {this.props.mits.length ? (
           <React.Fragment>
+            {this.state.loading ? (
+              <CircularProgress color="#aaa" size={20} />
+            ) : (
+              <img
+                src={require("../../../Assets/Logo/refresh-button.png")}
+                alt="Refresh Button"
+                className="refreshImg"
+                onClick={this.handleRefresh}
+              />
+            )}
             <Grid className="mitContainer" container spacing={2}>
               {this.props.mits.map(mit => (
-                <Grid className="cardHolder" sx={12} md={6}>
+                <Grid
+                  key={mit.symbol}
+                  className="cardHolder"
+                  item
+                  container
+                  sx={12}
+                  md={6}
+                >
                   <Card className="card" key={mit.symbol}>
                     <CardHeader
                       avatar={
@@ -62,19 +83,14 @@ class ListMits extends Component {
                         color="textSecondary"
                         component="p"
                       >
-                        <strong>Your File Hash : </strong>{mit.symbol}
+                        <strong>Your File Hash : </strong>
+                        {mit.symbol}
                       </Typography>
                     </CardContent>
                   </Card>
                 </Grid>
               ))}
             </Grid>
-            <img
-              src={require("../../../Assets/Logo/refresh-button.png")}
-              alt="Refresh Button"
-              className="refreshImg"
-              onClick={this.handleRefresh}
-            />
           </React.Fragment>
         ) : (
           <h4>Please Create some MITS</h4>

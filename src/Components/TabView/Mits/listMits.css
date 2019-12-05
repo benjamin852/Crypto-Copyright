@@ -18,3 +18,7 @@
   display: inline-block;
   height: 24px;
 }
+
+.refreshImg:hover {
+  cursor: pointer;
+}

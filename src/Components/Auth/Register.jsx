@@ -156,7 +156,7 @@ class Register extends Component {
                           <br />
                           <TextField
                             id="passwordMatch"
-                            type="passwordMatch"
+                            type="password"
                             hintText="Re-Enter your Password"
                             floatingLabelText="Password Again"
                             onFocus={e => this.setState({ error: null })}

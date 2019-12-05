@@ -74,7 +74,7 @@ class CreateTab extends Component {
       } else {
         this.setState({
           error:
-            "Blockchain did not find any avatar related to your account. Try again later."
+            "Blockchain did not find any avatar related to your account. Try again after 3 minutes."
         });
       }
     }

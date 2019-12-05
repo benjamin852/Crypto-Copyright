@@ -93,7 +93,15 @@ class ListMits extends Component {
             </Grid>
           </React.Fragment>
         ) : (
-          <h4>Please Create some MITS</h4>
+          <React.Fragment>
+            <img
+              src={require("../../../Assets/Logo/refresh-button.png")}
+              alt="Refresh Button"
+              className="refreshImg"
+              onClick={this.handleRefresh}
+            />
+            <h4>Please create some MITS</h4>
+          </React.Fragment>
         )}
       </div>
     );

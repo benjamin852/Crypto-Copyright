@@ -9,10 +9,11 @@ import { postStoreAction } from "../../Actions/postStore";
 import { getStoreAction } from "../../Actions/getStore";
 import { getMitsAction } from "../../Actions/MitGeneration";
 
-import "./Tabs.css";
+import { getAvatar } from "../../BlockchainLogic/Faucet";
 import { issueMIT } from "../../BlockchainLogic/MitLogic";
 import { getMits } from "../../BlockchainLogic/MitLogic";
 import { updateItem } from "../../utils/idb";
+import "./Tabs.css";
 
 class CreateTab extends Component {
   state = {
@@ -25,7 +26,8 @@ class CreateTab extends Component {
     loading: false,
     recordStatus: true,
     contentStatus: true,
-    mitContent: ""
+    mitContent: "",
+    error: null
   };
   processFile = files => {
     const file = files[0];
@@ -44,31 +46,37 @@ class CreateTab extends Component {
   }
   handleClick = async () => {
     if (!this.state.loading) {
-      // const mnemonic = "orphan nothing dolphin fantasy opinion shop letter ski coral sound fun sail moral abuse unveil glove radio blush young issue oak impact hen tower";
       const mnemonic = this.props.mnemonic;
       const wallet = await Metaverse.wallet.fromMnemonic(mnemonic, "testnet");
-      await issueMIT(wallet, this.state.mitContent, this.state.hash);
-      const addresses = await wallet.getAddresses();
-      const mits = await getMits(addresses);
-      await updateItem("mits", mits);
-      this.props.getMitsAction(mits);
-      this.setState(
-        {
-          loading: true
-        },
-        () => {
-          this.timer = setTimeout(() => {}, this.state.loading);
-          this.state.password
-            ? this.props.postStoreAction(
-                this.state.file,
-                this.state.hash,
-                this.state.password,
-                this.state.meta,
-                this
-              )
-            : this.props.getStoreAction(this.state.hash, this);
-        }
-      );
+      if (await getAvatar(this.props.avatar)) {
+        await issueMIT(wallet, this.state.mitContent, this.state.hash);
+        const addresses = await wallet.getAddresses();
+        const mits = await getMits(addresses);
+        await updateItem("mits", mits);
+        this.props.getMitsAction(mits);
+        this.setState(
+          {
+            loading: true
+          },
+          () => {
+            this.timer = setTimeout(() => {}, this.state.loading);
+            this.state.password
+              ? this.props.postStoreAction(
+                  this.state.file,
+                  this.state.hash,
+                  this.state.password,
+                  this.state.meta,
+                  this
+                )
+              : this.props.getStoreAction(this.state.hash, this);
+          }
+        );
+      } else {
+        this.setState({
+          error:
+            "Blockchain did not find any avatar related to your account. Try again later."
+        });
+      }
     }
   };
 
@@ -271,6 +279,12 @@ class CreateTab extends Component {
               className="col-xl-6 col-lg-6 col-md-8 col-sm-8 col-xs-8"
               style={{ padding: "0% 6% 0% 6%" }}
             >
+              <br />
+              {this.state.error ? (
+                <span className="error">{this.state.error}</span>
+              ) : (
+                ""
+              )}
               {this.props.successMsg === "SUCCESS" ? (
                 <button
                   onClick={() => {

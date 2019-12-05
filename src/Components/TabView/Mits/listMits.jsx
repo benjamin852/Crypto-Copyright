@@ -94,12 +94,16 @@ class ListMits extends Component {
           </React.Fragment>
         ) : (
           <React.Fragment>
-            <img
-              src={require("../../../Assets/Logo/refresh-button.png")}
-              alt="Refresh Button"
-              className="refreshImg"
-              onClick={this.handleRefresh}
-            />
+           {this.state.loading ? (
+              <CircularProgress color="#aaa" size={20} />
+            ) : (
+              <img
+                src={require("../../../Assets/Logo/refresh-button.png")}
+                alt="Refresh Button"
+                className="refreshImg"
+                onClick={this.handleRefresh}
+              />
+            )}
             <h4>Please create some MITS</h4>
           </React.Fragment>
         )}

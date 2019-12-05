@@ -92,3 +92,12 @@
 .tab-pane {
   padding: 10px 10px 20px;
 }
+
+span.error {
+  color: red;
+  font-size: 13px;
+  border: 1px solid red;
+  display: block;
+  text-align: center;
+  padding: 4px;
+}

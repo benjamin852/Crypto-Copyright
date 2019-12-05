@@ -123,7 +123,8 @@ class CreateTab extends Component {
                     onChange={e => {
                       this.processFile(e.target.files);
                       // this.handleFileName(e.target.files);
-                      this.setState({ file: e.target.files });
+                      console.log(e.target.files[0]);
+                      this.setState({ file: e.target.files[0] });
                     }}
                     name="selectedFile"
                     style={{ display: "none" }}
@@ -141,12 +142,13 @@ class CreateTab extends Component {
                 >
                   <span
                     style={{
-                      fontFamily: "Proxima Nova",
                       fontWeight: "400",
                       color: "#000000"
                     }}
                   >
-                    {this.state.fileName ? this.state.fileName : "Report.pdf"}
+                    {this.state.file.name
+                      ? this.state.file.name
+                      : "Please Select A File"}
                   </span>
                 </div>
                 <div className="d-none d-xl-block d-lg-block d-md-block d-sm-block col-xl-3 col-lg-3 col-md-2 col-sm-2" />
@@ -169,7 +171,6 @@ class CreateTab extends Component {
                       className="custom-control-label"
                       htmlFor="customCheck"
                       style={{
-                        fontFamily: "Proxima Nova",
                         fontWeight: "400",
                         color: "#000000",
                         marginLeft: "10px"

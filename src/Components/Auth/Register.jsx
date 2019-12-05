@@ -27,7 +27,7 @@ class Register extends Component {
     avatar: ""
   };
 
-  handleClick = async event => {
+  handleClick = async () => {
     let { password, username, email } = this.state;
     if (password && username && email) {
       if (username.length > 3) {

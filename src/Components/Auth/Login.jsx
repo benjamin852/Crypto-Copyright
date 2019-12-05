@@ -58,7 +58,7 @@ class Login extends Component {
     }
   };
 
-  handleRegister = async event => {
+  handleRegister = async () => {
     await deleteItem("accountInfo");
     await deleteItem("loggedIn");
     this.props.updateAccount(null);

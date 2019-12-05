@@ -92,7 +92,6 @@ export const registerAvatar = async (avatar_name, avatar_address) => {
   let avatar = await tx.outputs[0].attachment.symbol;
   tx = await wallet.sign(tx);
   tx = await tx.encode();
-
   tx = await blockchain.transaction.broadcast(tx.toString("hex"));
   return avatar;
 };

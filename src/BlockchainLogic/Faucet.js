@@ -1,5 +1,10 @@
 import Metaverse from "metaversejs";
 import Blockchain from "mvs-blockchain";
+import {
+  clearIntervalAsync,
+  setIntervalAsync
+} from "set-interval-async/dynamic";
+
 let blockchain = Blockchain({ url: "https://explorer-testnet.mvs.org/api/" });
 
 let faucetMnemonic =
@@ -97,38 +102,9 @@ export const registerAvatar = async (avatar_name, avatar_address) => {
 };
 
 export const getAvatar = async avatar => {
-  console.log(avatar, "avatar");
-  console.log(blockchain);
-  console.log(blockchain.avatar);
   let avatarInfo = await blockchain.avatar.get(avatar);
-  console.log(avatarInfo);
   return avatarInfo;
 };
-
-// export async function withdraw() {
-//   let balance = await getETPBalance();
-//   console.log(balance);
-//   if ((await balance) < 110000000) {
-//     await generateFaucet();
-//     const tx = await sendETP(100000000, addresses[0]);
-//     console.log(tx, "new tx");
-//     let avatar = await new Promise((resolve, reject) => {
-//       setInterval(async () => {
-//         const hashURL = await axios.get(
-//           `https://explorer-testnet.mvs.org/api/tx/${tx.hash}`
-//         );
-//         if (hashURL.data.status.success) {
-//           console.log("hit");
-//           // avatar = await registerAvatar("LASTOFUS19", addresses[0]);
-//           console.log(addresses[0]);
-//           resolve(registerAvatar("LASTOFUS20", addresses[0]));
-//         }
-//       }, 10000);
-//     });
-//     console.log(avatar, "avatar in withdraw<==");
-//     return avatar;
-//   }
-// }
 
 export const withdraw = async userAvatar => {
   try {
@@ -138,19 +114,50 @@ export const withdraw = async userAvatar => {
       await generateFaucet();
       await sendETP(200000000, addresses[0]);
     }
-
-    let avatar = await new Promise((resolve, reject) => {
-      setTimeout(async () => {
-        resolve(registerAvatar(userAvatar, addresses[0]));
-      }, 75000);
+    let avatar = await new Promise(async (resolve, reject) => {
+      let timer = setIntervalAsync(async () => {
+        let addressInfo = await fetch(
+          `https://explorer-testnet.mvs.org/api/address/balance/ETP/${addresses[0]}`
+        );
+        let jsonAddressInfo = await addressInfo.json();
+        console.log(jsonAddressInfo);
+        if (jsonAddressInfo.result > 1) {
+          await clearIntervalAsync(timer);
+          resolve(await registerAvatar(userAvatar, addresses[0]));
+        }
+      }, 5000);
+    }).catch(function(err) {
+      setTimeout(function() {
+        throw err;
+      });
     });
-
-    console.log(avatar, "avatar in withdraw<==");
     return avatar;
-  } catch (err) {
-    throw err;
+  } catch (error) {
+    throw error;
   }
 };
+
+// export const withdraw = async userAvatar => {
+//   try {
+//     let balance = await getETPBalance();
+//     console.log(balance);
+//     if ((await balance) < 210000000) {
+//       await generateFaucet();
+//       await sendETP(200000000, addresses[0]);
+//     }
+
+//     let avatar = await new Promise((resolve, reject) => {
+//       setTimeout(async () => {
+//         resolve(registerAvatar(userAvatar, addresses[0]));
+//       }, 75000);
+//     });
+
+//     console.log(avatar, "avatar in withdraw<==");
+//     return avatar;
+//   } catch (err) {
+//     throw err;
+//   }
+// };
 
 export const run = async userAvatar => {
   try {

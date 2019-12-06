@@ -77,9 +77,7 @@ class Register extends Component {
                 loading: false
               });
             }
-            // let avatar = "godofwar";
-            // let mnemonic =
-            //   "alcohol hammer involve little wide kitten antenna fly census escape front arctic suggest angry affair flag sick pattern potato place page reopen sing mango";
+            
           } else {
             this.setState({ error: "Account already existed." });
           }

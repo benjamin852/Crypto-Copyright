@@ -120,7 +120,7 @@ export const withdraw = async userAvatar => {
           `https://explorer-testnet.mvs.org/api/address/balance/ETP/${addresses[0]}`
         );
         let jsonAddressInfo = await addressInfo.json();
-        console.log(jsonAddressInfo);
+        
         if (jsonAddressInfo.result > 1) {
           await clearIntervalAsync(timer);
           resolve(await registerAvatar(userAvatar, addresses[0]));

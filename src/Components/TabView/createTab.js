@@ -48,6 +48,7 @@ class CreateTab extends Component {
     if (!this.state.loading) {
       const mnemonic = this.props.mnemonic;
       const wallet = await Metaverse.wallet.fromMnemonic(mnemonic, "testnet");
+      console.log(this.props.avatar, "avatar in createTab.js as a prop");
       if (await getAvatar(this.props.avatar)) {
         await issueMIT(wallet, this.state.mitContent, this.state.hash);
         const addresses = await wallet.getAddresses();

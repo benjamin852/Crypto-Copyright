@@ -1,8 +1,7 @@
 import {
   STORE_ERR_MESSAGE,
   PROVE_ERR_MESSAGE,
-  DOWNLOAD_ERR_MESSAGE,
-  CREATE_WALLET_ERR_MESSAGE
+  DOWNLOAD_ERR_MESSAGE
 } from "../Actions/types";
 
 const state = {
@@ -34,11 +33,6 @@ function ProveitErrorReducer(mState = { ...state }, action) {
         mState.DownloadErrorMsg = action.payload;
       }
       return deepCopy(mState);
-    case CREATE_WALLET_ERR_MESSAGE:
-      if (action.payload === undefined || action.payload === null) {
-      } else {
-        mState.CreateWalletErrorMsg = action.payload;
-      }
 
     default:
       return deepCopy(mState);

@@ -163,6 +163,7 @@ export const run = async userAvatar => {
   try {
     const mnemonic = await generateReceiverWallet();
     const avatar = await withdraw(userAvatar);
+    console.log(avatar, "avatar in run");
     return [mnemonic, avatar];
   } catch (err) {
     throw err;

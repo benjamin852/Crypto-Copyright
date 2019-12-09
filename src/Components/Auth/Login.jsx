@@ -5,7 +5,7 @@ import TextField from "material-ui/TextField";
 import Button from "material-ui/FlatButton";
 import { connect } from "react-redux";
 
-import { getWallet } from "../../Actions/walletGeneration";
+import { createWallet } from "../../Actions/walletGeneration";
 import { login_out } from "../../Actions/Authentication";
 import { updateAccount } from "../../Actions/Account";
 import { getItem, deleteItem, updateItem, addItem } from "../../utils/idb";
@@ -48,7 +48,7 @@ class Login extends Component {
 
           await updateItem("loggedIn", true);
           await addItem(["mnemonic", "mits"], [mnemonic, mits]);
-          this.props.getWallet(mnemonic);
+          this.props.createWallet(mnemonic, avatarInfo.symbol);
           this.props.login_out(true);
           this.props.getMitsAction(mits);
         }
@@ -150,7 +150,7 @@ const mapStateToProps = state => ({
 // this.props.mnemonic
 
 export default connect(mapStateToProps, {
-  getWallet,
+  createWallet,
   login_out,
   updateAccount,
   getMitsAction

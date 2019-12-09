@@ -10,7 +10,7 @@ import Metaverse from "../Metaverse/metaverse";
 import NewsLetter from "../NewsLetter/newsLetter";
 import { updateItem, deleteItem } from "../../utils/idb";
 import { login_out } from "../../Actions/Authentication";
-import { getWallet } from "../../Actions/walletGeneration";
+import { createWallet } from "../../Actions/walletGeneration";
 import { getMitsAction } from "../../Actions/MitGeneration";
 import { connect } from "react-redux";
 
@@ -24,7 +24,7 @@ class Header extends Component {
     await deleteItem("mnemonic");
     await deleteItem("mits");
     this.props.login_out(false);
-    this.props.getWallet("");
+    this.props.createWallet("", "");
     this.props.getMitsAction("");
   };
   render() {
@@ -130,6 +130,6 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps, {
   login_out,
-  getWallet,
+  createWallet,
   getMitsAction
 })(Header);

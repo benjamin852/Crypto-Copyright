@@ -120,12 +120,12 @@ class Intro extends Component {
                       />
                     </div>
                     <div className="row">
-                      <h6 className="intro-bottom-box-title">
-                        Record evidence
-                      </h6>
+                      <h5 className="intro-bottom-box-title">
+                        Record Evidence
+                      </h5>
                     </div>
                     <div className="row">
-                      <div className="intro-bottom-box-text">
+                      <div className="pt-2 intro-bottom-box-text">
                         Simple, intuitive interface to record evidence. Very low
                         transaction cost guarantees easy access to everyone.
                       </div>
@@ -148,12 +148,12 @@ class Intro extends Component {
                       />
                     </div>
                     <div className="row">
-                      <h6 className="intro-bottom-box-title">
-                        Immutable ledger
-                      </h6>
+                      <h5 className="intro-bottom-box-title">
+                        Immutable Ledger
+                      </h5>
                     </div>
                     <div className="row">
-                      <div className="intro-bottom-box-text">
+                      <div className="pt-2 intro-bottom-box-text">
                         Fingerprints (hash) of documents get stored on the
                         public blockchain. We store data for future generations.
                         so redundancy of multiple blockchains is our key to
@@ -178,12 +178,12 @@ class Intro extends Component {
                       />
                     </div>
                     <div className="row">
-                      <h6 className="intro-bottom-box-title">
-                        Transparent independent validation
-                      </h6>
+                      <h5 className="intro-bottom-box-title">
+                        Transparent Independent Validation
+                      </h5>
                     </div>
                     <div className="row">
-                      <div className="intro-bottom-box-text">
+                      <div className="pt-2 intro-bottom-box-text">
                         Easily prove the authenticity of your documents and
                         enable third parties to verify the information
                         independently.
@@ -207,10 +207,10 @@ class Intro extends Component {
                       />
                     </div>
                     <div className="row">
-                      <h6 className="intro-bottom-box-title">Privacy</h6>
+                      <h5 className="intro-bottom-box-title">Privacy</h5>
                     </div>
                     <div className="row">
-                      <div className="intro-bottom-box-text">
+                      <div className="pt-2 intro-bottom-box-text">
                         Your document fingerprints don’t allow recreation of
                         your original document content. Which data you want to
                         publish is fully in your hands.

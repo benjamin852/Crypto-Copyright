@@ -37,20 +37,23 @@ class NewsLetter extends Component {
           <div className="row">
             <div className="col-xl-3 col-lg-3 col-md-2 col-sm-2 col-xs-2" />
             <div
-              className="col-xl-6 col-lg-6 col-md-8 col-sm-8 col-xs-8"
-              style={{ padding: "0% 6% 0% 6%" }}
+              className="text-center col-xl-6 col-lg-6 col-md-8 col-sm-8 col-xs-8"
+              style={{ padding: "0% 6% 0% 6%"}}
             >
               <img
                 className="newsLetterImage"
+                width ="300"
                 alt="Newsletter Image"
                 data-aos="zoom-in"
                 data-aos-offset="200"
                 // data-aos-delay="50"
                 data-aos-duration="1000"
                 src={require("../../Assets/Logo/newsletter.png")}
+                style={{ width:"300px", }}
+
               />
             </div>
-            <div className="col-xl-3 col-lg-3 col-md-2 col-sm-2 col-xs-2" />
+            <div className="text-center col-xl-3 col-lg-3 col-md-2 col-sm-2 col-xs-2" />
           </div>
           <div className="row" style={{ padding: "5% 5% 5% 5%" }}>
             <input
@@ -82,9 +85,9 @@ class NewsLetter extends Component {
             />
           </div>
           <div className="row">
-            <div className="col-xl-3 col-lg-3 col-md-2 col-sm-2 col-xs-2" />
+            <div className="col-md-3 col-sm-3 col-xs-3" />
             <div
-              className="col-xl-6 col-lg-6 col-md-8 col-sm-8 col-xs-8"
+              className="text-center col-xl-6 col-lg-6 col-md-8 col-sm-8 col-xs-8"
               style={{ padding: "0% 6% 0% 6%" }}
             >
               <button

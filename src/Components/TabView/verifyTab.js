@@ -54,7 +54,7 @@ class VerifyTab extends Component {
         <div className="container">
           <h3
             style={{
-              fontWeight: "800"
+              fontWeight: "600"
             }}
           >
             Verify your document on the blockchain
@@ -164,22 +164,16 @@ class VerifyTab extends Component {
             </div>
           ) : (
             <div className="row mt-5">
-              <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <span
+              <div className="mt-5 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <span className=""
                   style={{
                     fontWeight: "600",
                     fontSize: "18px",
                     color: "#6F706F"
                   }}
                 >
-                  Drag and drop your document here, or choose a file. <br />
-                  Your file will not be uploaded.{" "}
-                  <a
-                    href="#"
-                    style={{ color: "#17BCDE", textDecoration: "none" }}
-                  >
-                    Learn more.
-                  </a>
+
+
                 </span>
                 <div className="mt-4">
                   <input
@@ -197,20 +191,20 @@ class VerifyTab extends Component {
                   />
                   <label
                     htmlFor="fileInputVerify"
-                    className="btn btn-lg w-50"
+                    className="btn btn-lg "
                     style={{
                       backgroundColor: "#F9F7F7",
                       padding: "2%",
-                      border: "2px solid #D4D1D0",
+                      border: "1px solid #D4D1D0",
                       // color: "#969696",
-                      fontSize: "20px",
+                      fontSize: "18px",
                       display: "inline-block",
-                      borderRadius: "14px",
+                      borderRadius: "5px",
                       marginTop: "16px",
                       cursor: "pointer"
                     }}
                   >
-                    BROWSE A File...
+                    Browse A File
                   </label>
                 </div>
                 <div className="mt-2">
@@ -220,7 +214,7 @@ class VerifyTab extends Component {
                       color: "#BDBEBE"
                     }}
                   >
-                    {this.state.name ? this.state.name : "Report.pdf"}
+                    {this.state.name ? this.state.name : "No file is added"}
                   </span>
                 </div>
               </div>
@@ -244,9 +238,9 @@ class VerifyTab extends Component {
                   Input the SHA256 checksum hexadecimal digest for your file
                   here.
                 </span>
-                <div style={{ padding: "4% 4% 4% 6%" }}>
+                <div style={{ padding: "3.5% 4% 4% 6%" }}>
                   <input
-                    style={{ borderRadius: "10px", fontSize: "30px" }}
+                    style={{ borderRadius: "5px", fontSize: "23px" }}
                     className="form-control form-control-lg"
                     onChange={e => this.setState({ hash: e.target.value })}
                     type="text"
@@ -287,7 +281,7 @@ class VerifyTab extends Component {
             >
               <button
                 className="mt-4 mb-5 btn btn-verify"
-                style={{ fontWeight: "700" }}
+                style={{ fontWeight: "400" }}
                 onClick={() => {
                   if (!this.state.hashExists) {
                     this.checkHash(this.state.hash);

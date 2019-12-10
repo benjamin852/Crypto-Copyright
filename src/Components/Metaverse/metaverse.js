@@ -36,20 +36,23 @@ class Metaverse extends Component {
         <div style={{ overflow: "hidden" }}>
           <div className="row">
             <div className="col-xl-3 col-lg-3 col-md-2 col-sm-2 col-xs-2" />
-            <div
-              className="col-xl-6 col-lg-6 col-md-8 col-sm-8 col-xs-8"
-              style={{ padding: "0% 6% 0% 6%" }}
-            >
-              <span
-                className="mt-4 mb-5 btn metaverseSpan"
-                data-aos="zoom-in"
-                data-aos-offset="200"
-                // data-aos-delay="50"
-                data-aos-duration="1000"
+              <div
+                className="text-center col-xl-6 col-lg-6 col-md-8 col-sm-8 col-xs-8"
+                style={{ padding: "0% 6% 7% 6%"}}
               >
-                Metaverse
-              </span>
-            </div>
+                <img
+                  className=""
+                  width ="300"
+                  alt="Metaverse Image"
+                  data-aos="zoom-in"
+                  data-aos-offset="200"
+                  // data-aos-delay="50"
+                  data-aos-duration="1000"
+                  src={require("../../Assets/Logo/metaverse-title.png")}
+                  style={{ width:"300px", }}
+
+                />
+              </div>
             <div className="col-xl-3 col-lg-3 col-md-2 col-sm-2 col-xs-2" />
           </div>
           <div className="row" style={{ textAlign: "center" }}>
@@ -65,9 +68,9 @@ class Metaverse extends Component {
                 src={require("../../Assets/Logo/blockchain.PNG")}
                 alt="Metaverse Blockchain"
               />
-              <div>
-                <span className="metaverseIconText">
-                  Public blockchain with a high <br />
+              <div className="mettext">
+                <span className="metaverseIconText pt-2">
+                  Public blockchain with a <br /> high
                   grade of decentralization
                 </span>
               </div>
@@ -84,9 +87,9 @@ class Metaverse extends Component {
                 src={require("../../Assets/Logo/dollar.png")}
                 alt="Dollar"
               />
-              <div>
-                <span className="metaverseIconText">
-                  Experts on asset tokenization
+              <div className="mettext">
+                <span className="metaverseIconText pt-2">
+                  Experts on asset <br /> tokenization
                 </span>
               </div>
             </div>
@@ -102,8 +105,8 @@ class Metaverse extends Component {
                 src={require("../../Assets/Logo/Services.png")}
                 alt="Metaverse Services"
               />
-              <div>
-                <span className="metaverseIconText">
+              <div className="mettext">
+                <span className="metaverseIconText pt-2">
                   Blockchain as a service <br /> solution
                 </span>
               </div>
@@ -121,7 +124,7 @@ class Metaverse extends Component {
                 src={require("../../Assets/Logo/earth.png")}
                 alt="Earth"
               />
-              <div>
+            <div className="mettext">
                 <span className="metaverseIconText">
                   Open Source development <br /> community
                 </span>

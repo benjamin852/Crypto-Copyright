@@ -52,7 +52,7 @@ class Header extends Component {
             className="collapse navbar-collapse flex-row-reverse"
             id="collapsibleNavbar"
           >
-            <ul className="navbar-nav" style={{ fontSize: 22 }}>
+            <ul className="navbar-nav" style={{ fontSize: 18 }}>
               <li className="nav-item">
                 <a
                   className="nav-link text-white link-style mr-5"

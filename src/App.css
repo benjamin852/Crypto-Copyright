@@ -15,7 +15,7 @@ div{
 
 @media only screen and (min-width: 900px){
     .home-bg{
-        background: url("./Assets/Logo/top-background.jpg") top no-repeat, url("./Assets//Logo/bottom-background.jpg") bottom no-repeat;
+        background: url("./Assets/Logo/Top-Bg_white.png") top no-repeat, url("./Assets//Logo/Bottom-bg-white.png") bottom no-repeat;
         background-size: 100%;
         background-repeat: no-repeat;
     }

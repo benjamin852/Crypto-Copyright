@@ -36,20 +36,23 @@ class Team extends Component {
         <div style={{ overflow: "hidden" }}>
           <div className="row">
             <div className="col-xl-3 col-lg-3 col-md-2 col-sm-2 col-xs-2" />
-            <div
-              className="col-xl-6 col-lg-6 col-md-8 col-sm-8 col-xs-8"
-              style={{ padding: "0% 6% 0% 6%" }}
-            >
-              <span
-                className="mt-4 mb-5 btn teamSpan"
-                data-aos="zoom-in"
-                data-aos-offset="200"
-                // data-aos-delay="50"
-                data-aos-duration="1000"
+              <div
+                className="text-center col-xl-6 col-lg-6 col-md-8 col-sm-8 col-xs-8"
+                style={{ padding: "0% 6% 7% 6%"}}
               >
-                Who Are We?
-              </span>
-            </div>
+                <img
+                  className=""
+                  width ="300"
+                  alt="CryptoCopyright Team Image"
+                  data-aos="zoom-in"
+                  data-aos-offset="200"
+                  // data-aos-delay="50"
+                  data-aos-duration="1000"
+                  src={require("../../Assets/Logo/team-title.png")}
+                  style={{ width:"300px", }}
+
+                />
+              </div>
             <div className="col-xl-3 col-lg-3 col-md-2 col-sm-2 col-xs-2" />
           </div>
           <div className="row" style={{ textAlign: "center" }}>

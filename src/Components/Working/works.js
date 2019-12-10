@@ -37,23 +37,26 @@ class Working extends Component {
           <div className="row">
             <div className="col-xl-3 col-lg-3 col-md-2 col-sm-1 col-xs-2" />
             <div
-              className="col-xl-6 col-lg-6 col-md-8 col-sm-10 col-xs-8"
-              style={{ padding: "0% 6% 0% 6%" }}
+              className="text-center col-xl-6 col-lg-6 col-md-8 col-sm-10 col-xs-8"
+              style={{ padding: "0% 6% 7% 6%"}}
 
               // data-aos-easing="ease-in-out"
               // data-aos-mirror="true"
               // data-aos-once="false"
               // data-aos-anchor-placement="top-center"
             >
-              <span
-                className="mt-4 mb-5 btn workSpan"
-                data-aos="zoom-in"
-                data-aos-offset="200"
-                // data-aos-delay="50"
-                data-aos-duration="1000"
-              >
-                How does it work?
-              </span>
+            <img
+              className=""
+              width ="300"
+              alt="How does it work Image"
+              data-aos="zoom-in"
+              data-aos-offset="200"
+              // data-aos-delay="50"
+              data-aos-duration="1000"
+              src={require("../../Assets/Logo/how-does-it-work.png")}
+              style={{ width:"300px", }}
+
+            />
             </div>
             <div className="col-xl-3 col-lg-3 col-md-2 col-sm-1 col-xs-2" />
           </div>
@@ -97,8 +100,8 @@ class Working extends Component {
               <div style={{ marginTop: "10px" }}>
                 <span className="workHeading">Write</span>
               </div>
-              <div style={{ marginTop: "10px" }}>
-                <span className="workDesc">
+              <div className="workDesc" style={{ marginTop: "10px", }}>
+                <span className="">
                   We group multiple fingerprints into a merkle tree on a regular
                   basis. The root hash of that tree will then be written to the
                   Metaverse blockchain.

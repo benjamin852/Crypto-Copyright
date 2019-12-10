@@ -14,6 +14,8 @@ import { issueMIT } from "../../BlockchainLogic/MitLogic";
 import { getMits } from "../../BlockchainLogic/MitLogic";
 import { updateItem } from "../../utils/idb";
 import "./Tabs.css";
+import {CopyToClipboard} from 'react-copy-to-clipboard';
+
 
 class CreateTab extends Component {
   state = {
@@ -27,8 +29,11 @@ class CreateTab extends Component {
     recordStatus: true,
     contentStatus: true,
     mitContent: "",
-    error: null
+    error: null,
+    value: '',
+   copied: false
   };
+
   processFile = files => {
     const file = files[0];
     const reader = new FileReader();
@@ -93,6 +98,7 @@ class CreateTab extends Component {
           >
             Record your document hash on the blockchain
           </h3>
+
           <span
             style={{
               // fontFamily: "Proxima Nova",
@@ -105,6 +111,7 @@ class CreateTab extends Component {
             The filename is not part of the calculation.
             <br />
           </span>
+
           {this.props.successMsg === "SUCCESS" ? (
             <div>
               <h3
@@ -116,14 +123,21 @@ class CreateTab extends Component {
               >
                 Your hash has been successfully added to the ledger.
               </h3>
-              <span>{this.state.hash}</span>
+              <span id="theHash">{this.state.hash}</span>
+              <CopyToClipboard text={this.state.hash}
+                onCopy={() => this.setState({copied: true})}>
+                  <button id="btnCopy" type="button" class=" mt-3 btn btn-outline-secondary btn-md btn-block">
+                    Copy Your Hash
+                  </button>
+              </CopyToClipboard>
+
             </div>
           ) : (
             <div>
               <div className="row">
                 <div className="d-none d-xl-block d-lg-block d-md-block d-sm-block col-xl-3 col-lg-3 col-md-2 col-sm-2" />
                 <div
-                  className="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-xs-6"
+                  className="col-xl-6 col-lg-6 col-md-8 col-sm-8 col-xs-6"
                   style={{ marginTop: "20px" }}
                 >
                   <input
@@ -141,25 +155,29 @@ class CreateTab extends Component {
                     data-multiple-caption="{count} files selected"
                     multiple
                   />
-                  <label className="w-100 h-100 file" htmlFor="fileInput">
-                    Choose a file
-                  </label>
+
+                <label className="input-group mb-3" htmlFor="fileInput">
+                  <div className="input-group-prepend">
+                    <button className="btn btn-input dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Browse
+                    </button>
+                    <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a className="dropdown-item" >Audiovisual Works</a>
+                      <a className="dropdown-item" >Dramatic Works</a>
+                      <a className="dropdown-item" >Legal Documentation</a>
+                      <a className="dropdown-item" >Literary Works</a>
+                      <a className="dropdown-item" >Musical Works</a>
+                      <a className="dropdown-item" >Pictorial/Graphical Works</a>
+                      <a className="dropdown-item" >Other</a>
+                    </div>
+                  </div>
+                  <input  className="form-control bg-light" aria-label="Text input with dropdown button" placeholder ={this.state.file.name
+                    ? this.state.file.name
+                    : "Please Select A File"} disabled
+                    />
+                </label>
                 </div>
-                <div
-                  className="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-xs-6"
-                  style={{ marginTop: "20px" }}
-                >
-                  <span
-                    style={{
-                      fontWeight: "400",
-                      color: "#000000"
-                    }}
-                  >
-                    {this.state.file.name
-                      ? this.state.file.name
-                      : "Please Select A File"}
-                  </span>
-                </div>
+
                 <div className="d-none d-xl-block d-lg-block d-md-block d-sm-block col-xl-3 col-lg-3 col-md-2 col-sm-2" />
               </div>
               <div className="row justify-content-center">
@@ -291,12 +309,12 @@ class CreateTab extends Component {
                   onClick={() => {
                     window.location.reload();
                   }}
-                  className="mt-4 mb-5 btn btn-create"
+                  className="mt-4 mb-5 btn btn-another"
                 >
                   Record Another
                 </button>
               ) : this.state.recordStatus === true ? (
-                <button disabled className="mt-4 mb-5 btn btn-create-disabled">
+                <button disabled className="mt-4 mb-5 btn btn-verify btn-create-disabled">
                   Record
                 </button>
               ) : (
@@ -321,6 +339,7 @@ class CreateTab extends Component {
     );
   }
 }
+
 
 const mapStateToProps = state => ({
   successMsg: state.ProveitReducer.successMsg,

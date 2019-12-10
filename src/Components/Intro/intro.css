@@ -52,6 +52,7 @@ h1 {
 .intro-bottom-box-title {
   margin: 0 auto 0 auto;
   text-align: center;
+   justify-content: center;
 }
 
 .intro-bottom-box {
@@ -61,8 +62,9 @@ h1 {
 
 .intro-bottom-box-text {
   margin-top: 2%;
-  text-align: center;
+  text-align: justify;
   font-size: 14px;
+  text-align-last: center;
 }
 
 .flow-control {

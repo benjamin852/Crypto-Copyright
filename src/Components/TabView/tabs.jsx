@@ -15,7 +15,7 @@ const Tabs = props => {
             role="tablist"
             style={{
               backgroundColor: "#F9F7F7",
-              padding: "10px 0px 0px 30px"
+              // padding: "10px 0px 0px 30px"
             }}
           >
             <li className="nav-item">

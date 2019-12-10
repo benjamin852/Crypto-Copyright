@@ -1,10 +1,10 @@
 .btn-verify {
   background-color: #ffffff;
-  width: 100%;
+  width: 40%;
   color: #17bcde;
   border-radius: 8px;
   font-size: 25px;
-  padding: 3%;
+  padding: 2%;
   border: 2px solid #17bcde;
 }
 
@@ -15,11 +15,20 @@
 
 .btn-create {
   background-color: #ffffff;
-  width: 100%;
+  width: 40%;
   color: #17bcde;
-  border-radius: 30px;
-  font-size: 45px;
-  padding: 3px;
+  border-radius: 8px;
+  font-size: 25px;
+  padding: 2%;
+  border: 2px solid #17bcde;
+}
+.btn-another {
+  background-color: #ffffff;
+  width: 50%;
+  color: #17bcde;
+  border-radius: 8px;
+  font-size: 25px;
+  padding: 2%;
   border: 2px solid #17bcde;
 }
 
@@ -30,11 +39,11 @@
 
 .btn-create-disabled {
   background-color: #f2efef;
-  width: 100%;
+  width: 40%;
   color: #6f7275;
-  border-radius: 30px;
-  font-size: 35px;
-  padding: 3px;
+  border-radius: 8px;
+  font-size: 25px;
+  padding: 2%;
   border: 2px solid rgb(180, 180, 180);
 }
 .btn-create-disabled:hover {
@@ -44,8 +53,9 @@
 }
 
 #Verify-tab {
-  font-size: 28px;
+  font-size: 22px;
   color: #000000;
+  padding: 13px;
 }
 
 #Verify-tab:hover {
@@ -54,8 +64,9 @@
 }
 
 #Create-tab {
-  font-size: 28px;
+  font-size: 22px;
   color: #000000;
+  padding: 13px;
 }
 
 #Create-tab:hover {
@@ -64,8 +75,9 @@
 }
 
 #Mit-tab {
-  font-size: 28px;
+  font-size: 22px;
   color: #000000;
+  padding: 13px;
 }
 
 #Mit-tab:hover {
@@ -73,13 +85,13 @@
   color: white;
 }
 
-.file {
+/* .file {
   cursor: pointer;
-  background-color: #11628c;
+  background-color: #3375b7;
   color: #ffffff;
-  padding: 5px 25px 5px 25px;
+  padding: 8px 15px;
   border-radius: 5px;
-}
+} */
 
 .file:hover {
   background-color: #52859e;
@@ -93,6 +105,10 @@
   padding: 10px 10px 20px;
 }
 
+ input::placeholder {
+  font-size:13px !important;
+}
+
 span.error {
   color: red;
   font-size: 13px;
@@ -100,4 +116,10 @@ span.error {
   display: block;
   text-align: center;
   padding: 4px;
+}
+.btn-input {
+  background-color: rgb(249, 247, 247);
+  color: #000;
+  font-size: 16px;
+  border: 1px solid lightgray;
 }

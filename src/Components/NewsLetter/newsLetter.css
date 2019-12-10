@@ -54,10 +54,10 @@
 }
 .subcribeButton {
   background-color: transparent;
-  width: 100%;
+  width: 50%;
   color: #17bcde;
   border-radius: 30px;
-  font-size: 35px;
+  font-size: 30px;
   padding: 3px;
   outline: none;
   /* animation-name: animateSubscribeBtn;

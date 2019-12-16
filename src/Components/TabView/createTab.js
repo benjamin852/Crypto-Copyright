@@ -4,17 +4,16 @@ import TextField from "material-ui/TextField";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import { connect } from "react-redux";
 import Metaverse from "metaversejs";
-
 import { postStoreAction } from "../../Actions/postStore";
 import { getStoreAction } from "../../Actions/getStore";
 import { getMitsAction } from "../../Actions/MitGeneration";
-
 import { getAvatar } from "../../BlockchainLogic/Faucet";
 import { issueMIT } from "../../BlockchainLogic/MitLogic";
 import { getMits } from "../../BlockchainLogic/MitLogic";
 import { updateItem } from "../../utils/idb";
 import "./Tabs.css";
 import {CopyToClipboard} from 'react-copy-to-clipboard';
+import SweetAlert from 'react-bootstrap-sweetalert';
 
 
 class CreateTab extends Component {
@@ -31,7 +30,7 @@ class CreateTab extends Component {
     mitContent: "",
     error: null,
     value: '',
-   copied: false
+    copied: false
   };
 
   processFile = files => {
@@ -113,7 +112,17 @@ class CreateTab extends Component {
           </span>
 
           {this.props.successMsg === "SUCCESS" ? (
+
             <div>
+            <SweetAlert
+              success
+              onConfirm={() => this.setState({ showOtherAlert: false })}
+              onCancel={() => this.setState({ showOtherAlert: false })}
+              show={this.state.showOtherAlert}
+              title="Good Job!"
+            >
+              Your document has been recorded!
+            </SweetAlert>
               <h3
                 style={{
                   color: "#050607",
@@ -156,11 +165,13 @@ class CreateTab extends Component {
                     multiple
                   />
 
+
                 <label className="input-group mb-3" htmlFor="fileInput">
                   <div className="input-group-prepend">
                     <button className="btn btn-input dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Browse
                     </button>
+
                     <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                       <a className="dropdown-item" >Audiovisual Works</a>
                       <a className="dropdown-item" >Dramatic Works</a>
@@ -180,6 +191,7 @@ class CreateTab extends Component {
 
                 <div className="d-none d-xl-block d-lg-block d-md-block d-sm-block col-xl-3 col-lg-3 col-md-2 col-sm-2" />
               </div>
+
               <div className="row justify-content-center">
                 <div
                   className="col-xl-3 col-lg-3 col-md-8 col-sm-6 col-xs-12"
